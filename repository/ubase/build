@@ -1,0 +1,41 @@
+#!/bin/sh -e
+
+cd ubase
+
+make \ 
+	PREFIX=/usr \ 
+	CFLAGS="$CFLAGS -static" \ 
+	LDFLAGS="$LDFLAGS -static" 
+ 
+make \ 
+	PREFIX=/usr \ 
+	CFLAGS="$CFLAGS -static" \ 
+	LDFLAGS="$LDFLAGS -static" \ 
+	DESTDIR="$DESTDIR" \ 
+	install
+
+# dd and mknod already present in sbase
+
+rm "$DESTDIR/usr/bin/dd" 
+rm "$DESTDIR/usr/bin/mknod" 
+rm "$DESTDIR/usr/share/man/man1/dd.1" 
+rm "$DESTDIR/usr/share/man/man1/mknod.1" 
+
+# mount and umount do not support UUIDs
+
+rm "$DESTDIR/usr/bin/mount" 
+rm "$DESTDIR/usr/bin/umount" 
+rm "$DESTDIR/usr/bin/mountpoint" 
+rm "$DESTDIR/usr/share/man/man8/mount.8" 
+rm "$DESTDIR/usr/share/man/man8/umount.8" 
+rm "$DESTDIR/usr/share/man/man1/mountpoint.1" 
+
+# su is unneeded
+
+rm "$DESTDIR/usr/bin/su" 
+rm "$DESTDIR/usr/share/man/man1/su.1"
+
+for i in "$DESTDIR/usr/bin" 
+do 
+        strip --strip-unneeded $i 
+done

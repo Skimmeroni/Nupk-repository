@@ -1,0 +1,47 @@
+#!/bin/sh -e
+
+cd sbase
+
+make \
+	PREFIX=/usr \
+	CFLAGS="$CFLAGS -static" \
+	LDFLAGS="$LDFLAGS -static"
+
+make \
+	PREFIX=/usr \
+	CFLAGS="$CFLAGS -static" \
+	LDFLAGS="$LDFLAGS -static" \
+	DESTDIR="$DESTDIR" \
+	install
+
+for i in "$DESTDIR/usr/bin"
+do
+	strip --strip-unneeded $i
+done
+
+# strings and xargs already provided
+
+rm "$DESTDIR/usr/bin/strings"
+rm "$DESTDIR/usr/bin/xargs"
+rm "$DESTDIR/usr/share/man/man1/strings.1"
+rm "$DESTDIR/usr/share/man/man1/xargs.1"
+
+# cal and cron are unneeded
+
+rm "$DESTDIR/usr/bin/cal"
+rm "$DESTDIR/usr/bin/cron"
+rm "$DESTDIR/usr/share/man/man1/cal.1"
+rm "$DESTDIR/usr/share/man/man1/cron.1"
+
+# tar, find, grep, sort and sed are (sadly) too strict to be usable
+
+rm "$DESTDIR/usr/bin/tar"
+rm "$DESTDIR/usr/bin/find"
+rm "$DESTDIR/usr/bin/grep"
+rm "$DESTDIR/usr/bin/sort"
+rm "$DESTDIR/usr/bin/sed"
+rm "$DESTDIR/usr/share/man/man1/tar.1"
+rm "$DESTDIR/usr/share/man/man1/find.1"
+rm "$DESTDIR/usr/share/man/man1/grep.1"
+rm "$DESTDIR/usr/share/man/man1/sort.1"
+rm "$DESTDIR/usr/share/man/man1/sed.1"
