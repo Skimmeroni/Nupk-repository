@@ -43,5 +43,5 @@ rm "$DESTDIR/usr/share/man/man1/sed.1"
 
 for i in "$DESTDIR/usr/bin" 
 do 
-        strip --strip-unneeded $i 
+        strip --strip-unneeded "$DESTDIR/usr/bin/$i" 
 done
