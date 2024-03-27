@@ -14,11 +14,6 @@ make \
 	DESTDIR="$DESTDIR" \
 	install
 
-for i in "$DESTDIR/usr/bin"
-do
-	strip --strip-unneeded $i
-done
-
 # strings and xargs already provided
 
 rm "$DESTDIR/usr/bin/strings"
@@ -45,3 +40,8 @@ rm "$DESTDIR/usr/share/man/man1/find.1"
 rm "$DESTDIR/usr/share/man/man1/grep.1"
 rm "$DESTDIR/usr/share/man/man1/sort.1"
 rm "$DESTDIR/usr/share/man/man1/sed.1"
+
+for i in "$DESTDIR/usr/bin" 
+do 
+        strip --strip-unneeded $i 
+done
