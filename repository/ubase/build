@@ -34,8 +34,3 @@ rm "$DESTDIR/usr/share/man/man1/mountpoint.1"
 
 rm "$DESTDIR/usr/bin/su" 
 rm "$DESTDIR/usr/share/man/man1/su.1"
-
-for i in "$DESTDIR/usr/bin" 
-do 
-        strip --strip-unneeded "$DESTDIR/usr/bin/$i"
-done
