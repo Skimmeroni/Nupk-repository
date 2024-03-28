@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+tar -xf bsdutils-$VERSION.tar.xz
+cd bsdutils-$VERSION/src/sort
+
+cp ../../include/compat.h  .
+cp ../../compat/heapsort.c .
+cp ../../compat/merge.c    . 
+
+sed -i 's/__FBSDID("$FreeBSD$");/#define __DECONST(a, v) ((a)(v))/g' *.c
+
+for i in $(ls *.c)
+do
+	$CC -c $i -DWITHOUT_NLS -DSORT_THREADS -DWITHOUT_LIBCRYPTO
+done
+
+$CC -static -DGNUSORT_NUMERIC_COMPATIBILITY *.o -o sort
+
+install -Dm755 -t "$DESTDIR/usr/bin" sort
+install -Dm644 -t "$DESTDIR/usr/share/man/man1" sort.1

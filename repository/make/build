@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf make-$VERSION.tar.gz
+cd make-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR="$DESTDIR" install
+
+rm -rf "$DESTDIR/usr/share/info"
+rm -rf "$DESTDIR/usr/share/locale"

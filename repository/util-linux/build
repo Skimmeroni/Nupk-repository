@@ -1,0 +1,39 @@
+#!/bin/sh -e
+
+tar -xf util-linux-$VERSION.tar.xz
+cd util-linux-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--libdir=/usr/lib \
+	--sbindir=/usr/bin \
+	--enable-static-programs=mount,umount \
+	--enable-usrdir-path \
+	--enable-fs-paths-default=/usr/bin \
+	--disable-all-programs \
+	--disable-bash-completion \
+	--enable-blkid \
+	--enable-fsck \
+	--enable-wipefs \
+	--enable-mkfs \
+	--enable-mount \
+	--enable-mountpoint \
+	--enable-libsmartcols \
+	--enable-libblkid \
+	--enable-libmount \
+	--enable-libuuid \
+	--without-udev \
+	--without-readline \
+	--without-libmagic \
+	--without-cap-ng \
+	--without-python
+
+make
+make DESTDIR="$DESTDIR" install
+
+rm -rf "$DESTDIR/usr/share/man/man3"
+find $DESTDIR -type f -name '*.la' -delete
+
+# ?????????
+mv "$DESTDIR/bin/"* "$DESTDIR/usr/bin"
+rmdir "$DESTDIR/usr/sbin" "$DESTDIR/bin"

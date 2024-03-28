@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd mdevd-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--enable-static-libc
+
+make
+make DESTDIR="$DESTDIR" install
+
+mkdir -p "$DESTDIR/etc/sv/mdevd"
+install -m644 ../mdevd.conf "$DESTDIR/etc"
+install -m644 ../mdevd.run  "$DESTDIR/etc/sv/mdevd/run"
+
+ln -sf /run/runit/supervise.mdevd "$DESTDIR/etc/sv/mdevd/supervise"
+rm -rf "$DESTDIR/usr/include"

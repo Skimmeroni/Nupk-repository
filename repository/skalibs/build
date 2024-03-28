@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+tar -xf skalibs-$VERSION.tar.gz
+cd skalibs-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--with-sysdep-devurandom=yes
+
+make
+make DESTDIR="$DESTDIR" install

@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+tar -xf runit-$VERSION.tar.gz
+cd init.git
+
+sed -i 's|log "Welcome to KISS!"||g'           lib/init/rc.boot
+sed -i 's|"${hostname:-KISS}"|/etc/hostname|g' lib/init/rc.boot
+sed -i 's|=>|@|g'                              lib/init/rc.lib
+
+$CC -o kpow bin/kpow.c -static 
+
+install -Dm755 lib/init/rc.lib      "$DESTDIR/usr/lib/init/rc.lib" 
+install -Dm755 lib/init/rc.boot     "$DESTIDR/etc/runit/1"  
+install -Dm755 lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
+install -Dm755 kpow                 "$DESTDIR/usr/bin/kpow" 
+
+cd ../admin/runit-$VERSION/src
+
+patch -p1 < ../../../fix-missing-headers.patch
+patch -p1 < ../../../svlogd.patch
+patch -p1 < ../../../utmpset-time_t.patch
+
+sed -i 's|sbin/runit|usr/bin/runit|g' runit.h
+printf '%s -D_GNU_SOURCE -static\n' "${CC-cc}" "$CFLAGS" > conf-cc
+printf '%s %s -static -Wl,-z -Wl,noexecstack\n' "${CC-cc}" "$CFLAGS" > conf-ld
+sed -i 's:^char \*varservice ="/service/";$:char \*varservice ="/var/service/";:' sv.c
+
+make
+
+install -Dm755 -t "$DESTDIR/usr/bin/" chpst runit runit-init runsv runsvchdir runsvdir sv svlogd utmpset
+
+install -Dm644 -t "$DESTDIR/usr/share/man/man8" ../man/*
+
+mkdir -p "$DESTDIR/var/service"
+ln -s runit-init               	"$DESTDIR/usr/bin/init"
+
+install -Dm755 ../../../2 "$DESTDIR/etc/runit/2"
+install -Dm755 -t "$DESTDIR/usr/bin" ../../../poweroff ../../../reboot

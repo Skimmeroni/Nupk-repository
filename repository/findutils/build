@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf findutils-$VERSION.tar.xz
+cd findutils-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR="$DESTDIR" install
+
+rm -rf "$DESTDIR/usr/share/info"
+rm -rf "$DESTDIR/usr/share/locale"

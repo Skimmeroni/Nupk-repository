@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export PATH="/usr/bin:/usr/sbin:/sbin:/bin" 
+
+umask 022

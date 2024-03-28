@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf zlib-$VERSION.tar.gz
+cd zlib-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR="$DESTDIR" install
+
+rm -rf "$DESTDIR/usr/share"
+find $DESTDIR -type f -name '*.la' -delete

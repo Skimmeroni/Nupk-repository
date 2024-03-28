@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+for i in fstab group host.conf hosts issue mime.types os-release passwd profile rc.conf securetty shells 
+do 
+	install -m644 $file "$DESTDIR/etc/$i" 
+done 
+ 
+install -m600 crypttab "$DESTDIR/etc/crypttab" 
+install -m600 shadow   "$DESTDIR/etc/shadow"

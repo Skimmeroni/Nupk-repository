@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+cd nextvi.git
+
+./build.sh build
+
+install -Dm755 -t "$DESTDIR/usr/bin" vi

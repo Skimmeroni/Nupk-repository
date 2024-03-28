@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+tar -xf musl-$VERSION.tar.gz
+cd musl-$VERSION
+
+./configure \
+    --prefix=/usr \
+    --syslibdir=/usr/lib
+
+make
+make DESTDIR="$DESTDIR" install
+
+mkdir -p "$DESTDIR/usr/bin"
+ln -s /usr/lib/ld-musl-armhf.so.1 "$DESTDIR/usr/bin/ldd"
+
+# Install BSD compatibility headers.
+install -Dm 755 cdefs.h "$DESTDIR/usr/include/sys/cdefs.h"
+install -Dm 755 queue.h "$DESTDIR/usr/include/sys/queue.h"
+install -Dm 755 tree.h  "$DESTDIR/usr/include/sys/tree.h"
+
+# Install getconf.
+$CC $CFLAGS getent.c  -o "$DESTDIR/usr/bin/getent"

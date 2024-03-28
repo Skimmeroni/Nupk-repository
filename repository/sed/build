@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+tar -xf sed-$VERSION.tar.xz
+cd sed-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR="$DESTDIR" install
+
+rm -rf "$DESTDIR/usr/share/info"

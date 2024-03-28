@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+tar -xf mksh-R$VERSION.tar.gz
+cd mksh-R$VERSION
+
+CFLAGS="$CFLAGS -static" sh Build.sh
+
+install -Dm755 -t "$DESTDIR/usr/bin" mksh
+install -Dm644 -t "$DESTDIR/usr/share/man/man1" mksh.1
+ln -s mksh "$DESTDIR/usr/bin/sh"
