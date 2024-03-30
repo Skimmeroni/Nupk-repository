@@ -5,9 +5,4 @@ cd linux-$VERSION
 
 make LLVM=1 LLVM_IAS=1 HOSTCC="$CC" headers
 
-# The headers require rsync for installation, this command
-# simply does the equivalent using find, mkdir and cp.
-find usr/include -name \*.h -type f | while read -r file; do
-    mkdir -p "$1/${file%/*}"
-    cp -f "$file" "$1/$file"
-done
+find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;

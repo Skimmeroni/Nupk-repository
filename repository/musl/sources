@@ -1,6 +1,8 @@
 https://www.musl-libc.org/releases/musl-{{VERSION}}.tar.gz
-files/cdefs.h
-files/getconf.c
-files/getent.c
-files/queue.h
-files/tree.h
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getconf.c
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getconf.1
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getent.c
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getent.1
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/sys/cdefs.h
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/sys/queue.h
+https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/sys/tree.h

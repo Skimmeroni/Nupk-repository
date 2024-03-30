@@ -6,6 +6,7 @@ cd util-linux-$VERSION
 ./configure \
 	--prefix=/usr \
 	--libdir=/usr/lib \
+	--bindir=/usr/bin \
 	--sbindir=/usr/bin \
 	--enable-static-programs=mount,umount \
 	--enable-usrdir-path \
@@ -34,6 +35,5 @@ make DESTDIR="$DESTDIR" install
 rm -rf "$DESTDIR/usr/share/man/man3"
 find $DESTDIR -type f -name '*.la' -delete
 
-# ?????????
-mv "$DESTDIR/bin/"* "$DESTDIR/usr/bin"
-rmdir "$DESTDIR/usr/sbin" "$DESTDIR/bin"
+# For some reason, this directory is created anyway
+rmdir "$DESTDIR/usr/sbin"
