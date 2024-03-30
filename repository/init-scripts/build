@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+cd init.git
+ 
+sed -i 's|log "Welcome to KISS!"||g'           lib/init/rc.boot
+sed -i 's|"${hostname:-KISS}"|/etc/hostname|g' lib/init/rc.boot
+sed -i 's|=>|@|g'                              lib/init/rc.lib
+ 
+$CC -o kpow bin/kpow.c -static
+ 
+install -Dm755 lib/init/rc.lib      "$DESTDIR/usr/lib/init/rc.lib"
+install -Dm755 lib/init/rc.boot     "$DESTIDR/etc/runit/1"
+install -Dm755 lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
+install -Dm755 kpow                 "$DESTDIR/usr/bin/kpow"

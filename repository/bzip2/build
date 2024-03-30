@@ -4,7 +4,7 @@ tar -xf bzip2-$VERSION.tar.gz
 cd bzip2-$VERSION
 
 make CC="$CC $CFLAGS $LDFLAGS" -f Makefile-libbz2_so
-make CC="$CC $CFLAGS -static $LDFLAGS" bzip2
+make CC="$CC $CFLAGS $LDFLAGS" bzip2
 
 mkdir -p "$DESTDIR/usr/bin"
 mkdir -p "$DESTDIR/usr/lib"
@@ -21,7 +21,7 @@ install -Dm644 -t "$DESTDIR/usr/share/man/man1" bzip2.1
 install -Dm644 -t "$DESTDIR/usr/include"        bzlib.h 
 
 install -Dm644 libbz2.so.$VERSION "$DESTDIR/usr/lib/libbz2.so.$VERSION"
-install -Dm644 libbz2.a          "$DESTDIR/usr/lib/libbz2.a"
+install -Dm644 libbz2.a           "$DESTDIR/usr/lib/libbz2.a"
 
 ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so"
 ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR"

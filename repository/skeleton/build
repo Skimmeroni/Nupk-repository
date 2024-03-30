@@ -23,8 +23,6 @@ mkdir -m 755 \
     "$DESTDIR/usr/share/man/man7" \
     "$DESTDIR/usr/share/man/man8" \
     "$DESTDIR/var/cache" \
-    "$DESTDIR/var/local" \
-    "$DESTDIR/var/opt" \
     "$DESTDIR/var/log" \
     "$DESTDIR/var/log/old" \
     "$DESTDIR/var/lib" \
@@ -45,8 +43,6 @@ mkdir -m 1777 \
     "$DESTDIR/var/spool/mail"
 
 ln -sf usr/bin "$DESTDIR/bin"
-ln -sf usr/bin "$DESTDIR/sbin"
-ln -sf bin     "$DESTDIR/usr/sbin"
 ln -sf usr/lib "$DESTDIR/lib"
 ln -sf usr/lib "$DESTDIR/lib64"
 
@@ -55,3 +51,11 @@ ln -sf spool/mail        "$DESTDIR/var/mail"
 ln -sf ../run            "$DESTDIR/var/run"
 ln -sf ../run/lock       "$DESTDIR/var/lock"
 ln -sf /proc/self/mounts "$DESTDIR/etc/mtab"
+
+for i in fstab group host.conf hostname hosts issue mime.types os-release passwd profile rc.conf securetty shells 
+do 
+	install -m644 $file "$DESTDIR/etc/$i" 
+done 
+ 
+install -m600 crypttab "$DESTDIR/etc/crypttab" 
+install -m600 shadow   "$DESTDIR/etc/shadow"
