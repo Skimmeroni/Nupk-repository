@@ -1,1 +1,6 @@
 https://www.musl-libc.org/releases/musl-{{VERSION}}.tar.gz
+files/cdefs.h
+files/getconf.c
+files/getent.c
+files/queue.h
+files/tree.h
