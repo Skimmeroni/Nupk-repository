@@ -1,0 +1,2 @@
+#!/bin/sh
+exec cron -n 2>&1
