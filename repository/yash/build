@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+tar -xf yash-$VERSION.tar.gz
+cd yash-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--enable-array \
+	--enable-dirstack \
+	--enable-double-bracket \
+	--enable-socket \
+	--enable-history \
+	--disable-help \
+	--disable-lineedit \
+	--disable-nls \
+	--disable-printf \
+	--disable-test \
+	--disable-ulimit
+
+make
+make DESTDIR="$DESTDIR" install
+
+ln -s sh "$DESTDIR/usr/bin/yash"
