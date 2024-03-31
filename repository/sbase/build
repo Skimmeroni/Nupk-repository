@@ -14,7 +14,7 @@ make \
 	DESTDIR="$DESTDIR" \
 	install
 
-install -Dm644 ../cron.run "$DESTDIR/etc/sv/cron/run" 
+install -Dm755 ../cron.run "$DESTDIR/etc/sv/cron/run" 
 ln -sf /run/runit/supervise.cron "$DESTDIR/etc/sv/cron/supervise"
 
 # strings and xargs already provided

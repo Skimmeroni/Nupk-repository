@@ -20,4 +20,4 @@ cd yash-$VERSION
 make
 make DESTDIR="$DESTDIR" install
 
-ln -s sh "$DESTDIR/usr/bin/yash"
+ln -sf sh "$DESTDIR/usr/bin/yash"

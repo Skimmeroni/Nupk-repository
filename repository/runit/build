@@ -19,7 +19,7 @@ install -Dm755 -t "$DESTDIR/usr/bin/" chpst runit runit-init runsv runsvchdir ru
 install -Dm644 -t "$DESTDIR/usr/share/man/man8" ../man/*
 
 mkdir -p "$DESTDIR/var/service"
-ln -s runit-init               	"$DESTDIR/usr/bin/init"
+ln -sf runit-init               	"$DESTDIR/usr/bin/init"
 
 install -Dm755 ../../../2 "$DESTDIR/etc/runit/2"
 install -Dm755 -t "$DESTDIR/usr/bin" ../../../poweroff ../../../reboot

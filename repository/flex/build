@@ -11,7 +11,7 @@ cd flex-$VERSION
 make
 make DESTDIR="$DESTDIR" install
 
-ln -s flex "$DESTDIR/usr/bin/lex"
+ln -sf flex "$DESTDIR/usr/bin/lex"
 
 rm -rf "$DESTDIR/usr/share/doc"
 rm -rf "$DESTDIR/usr/share/info"

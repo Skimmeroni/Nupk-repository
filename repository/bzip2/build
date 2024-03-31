@@ -6,9 +6,6 @@ cd bzip2-$VERSION
 make CC="$CC $CFLAGS $LDFLAGS" -f Makefile-libbz2_so
 make CC="$CC $CFLAGS $LDFLAGS" bzip2
 
-mkdir -p "$DESTDIR/usr/bin"
-mkdir -p "$DESTDIR/usr/lib"
-
 install -Dm755 bzip2  "$DESTDIR/usr/bin/bzip2"
 install -Dm755 bzdiff "$DESTDIR/usr/bin/bzdiff"
 install -Dm755 bzgrep "$DESTDIR/usr/bin/bzgrep"

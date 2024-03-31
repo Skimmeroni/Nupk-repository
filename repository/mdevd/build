@@ -10,9 +10,8 @@ cd mdevd-$VERSION
 make
 make DESTDIR="$DESTDIR" install
 
-mkdir -p "$DESTDIR/etc/sv/mdevd"
-install -m644 ../mdevd.conf "$DESTDIR/etc"
-install -m644 ../mdevd.run  "$DESTDIR/etc/sv/mdevd/run"
-
+install -Dm644 ../mdevd.conf "$DESTDIR/etc/mdevd.conf"
+install -Dm755 ../mdevd.run  "$DESTDIR/etc/sv/mdevd/run"
 ln -sf /run/runit/supervise.mdevd "$DESTDIR/etc/sv/mdevd/supervise"
+
 rm -rf "$DESTDIR/usr/include"
