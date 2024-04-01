@@ -1,2 +1,3 @@
 git://git.suckless.org/sbase
 files/cron.run
+patches/install-add-GNU-s-extension.patch

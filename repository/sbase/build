@@ -2,6 +2,8 @@
 
 cd sbase
 
+patch -p1 < ../install-add-GNU-s-extension.patch
+
 make \
 	PREFIX=/usr \
 	CFLAGS="$CFLAGS -static" \
