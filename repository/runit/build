@@ -1,25 +1,27 @@
 #!/bin/sh -e
 
-tar -xf runit-$VERSION.tar.gz
-cd admin/runit-$VERSION/src
+cd runit.git/src
 
-patch -p1 < ../../../fix-missing-headers.patch
-patch -p1 < ../../../svlogd.patch
-patch -p1 < ../../../utmpset-time_t.patch
+sed -i 's|/sbin/runit|/usr/bin/runit|g'               runit.h
+sed -i 's|/etc/runit/ctraltdel|/usr/bin/ctrlaltdel|g' runit.h
 
-sed -i 's|sbin/runit|usr/bin/runit|g' runit.h
-printf '%s -D_GNU_SOURCE -static\n' "${CC-cc}" "$CFLAGS" > conf-cc
-printf '%s %s -static -Wl,-z -Wl,noexecstack\n' "${CC-cc}" "$CFLAGS" > conf-ld
-sed -i 's:^char \*varservice ="/service/";$:char \*varservice ="/var/service/";:' sv.c
+echo "$CC $CFLAGS -D_GNU_SOURCE -static"         > conf-cc
+echo "$CC $CFLAGS -static -Wl,-z -Wl,noexecstac" > conf-ld
 
 make
 
-install -Dm755 -t "$DESTDIR/usr/bin/" chpst runit runit-init runsv runsvchdir runsvdir sv svlogd utmpset
+for i in chpst runit runit-init runsv runsvchdir runsvdir sv svlogd utmpset
+do
+	install -Dm755 $i          "$DESTDIR/usr/bin/$i"
+	install -Dm644 ../man/$i.8 "$DESTDIR/usr/share/man/man8/$i.8"
+done
 
-install -Dm644 -t "$DESTDIR/usr/share/man/man8" ../man/*
+install -Dm755 ../../2        "$DESTDIR/etc/runit/2"
+install -Dm755 ../../poweroff "$DESTDIR/usr/bin/poweroff"
+install -Dm755 ../../reboot   "$DESTDIR/usr/bin/reboot"
+
+ln -sf runit-init                "$DESTDIR/usr/bin/init"
+ln -sf /usr/lib/init/rc.boot     "$DESTDIR/etc/runit/1"
+ln -sf /usr/lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
 
 mkdir -p "$DESTDIR/var/service"
-ln -sf runit-init               	"$DESTDIR/usr/bin/init"
-
-install -Dm755 ../../../2 "$DESTDIR/etc/runit/2"
-install -Dm755 -t "$DESTDIR/usr/bin" ../../../poweroff ../../../reboot

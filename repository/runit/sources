@@ -1,7 +1,4 @@
-http://smarden.org/runit/runit-{{VERSION}}.tar.gz
+https://github.com/void-linux/runit.git
 files/2
 files/poweroff
 files/reboot
-patches/fix-missing-headers.patch
-patches/svlogd.patch
-patches/utmpset-time_t.patch
