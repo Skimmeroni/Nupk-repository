@@ -1,9 +1,8 @@
 #!/bin/sh
 
-PATH=/usr/bin:
+PATH=/usr/bin
 
-for getty in 1 2 ; do
-	while :; do /sbin/getty /dev/tty${getty} linux 2>&1 ; done &
-done
+while :do /usr/bin/getty /dev/tty1 2>&1 ; done &
+while :do /usr/bin/getty /dev/tty2 2>&1 ; done &
 
 exec /usr/bin/runsvdir -P /var/service

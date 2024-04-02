@@ -35,6 +35,15 @@
  	int f1, f2;
  
  	if ((f1 = open(s1, O_RDONLY)) < 0)
+@@ -77,7 +98,7 @@
+ static void
+ usage(void)
+ {
+-	eprintf("usage: %s [-g group] [-o owner] [-m mode] (-d dir ... | [-D] (-t dest source ... | source ... dest))\n", argv0);
++	eprintf("usage: %s [-s] [-g group] [-o owner] [-m mode] (-d dir ... | [-D] (-t dest source ... | source ... dest))\n", argv0);
+ }
+ 
+ int
 @@ -104,7 +125,7 @@
  		Dflag = 1;
  		break;
