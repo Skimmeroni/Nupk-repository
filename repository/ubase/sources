@@ -1,1 +1,2 @@
 git://git.suckless.org/ubase
+patches/getty-login-add-autologin.patch

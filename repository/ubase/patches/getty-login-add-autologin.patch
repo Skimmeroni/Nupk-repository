@@ -1,0 +1,145 @@
+--- a/getty.c
++++ b/getty.c
+@@ -21,7 +21,7 @@
+ static void
+ usage(void)
+ {
+-	eprintf("usage: %s [tty] [term] [cmd] [args...]\n", argv0);
++	eprintf("usage: %s [-a user] [tty] [term] [cmd] [args...]\n", argv0);
+ }
+ 
+ int
+@@ -36,17 +36,22 @@
+ 	unsigned int i = 0;
+ 	ssize_t n;
+ 	long pos;
++	int aflag = 0;
+ 
+ 	ARGBEGIN {
++	case 'a':
++		aflag = 1; /* autologin */
++		break;
+ 	default:
+ 		usage();
+ 	} ARGEND;
+ 
++	/* If the -a flag is supplied, arguments are shifted by one */
+ 	strlcpy(term, defaultterm, sizeof(term));
+ 	if (argc > 0) {
+-		tty = argv[0];
++		tty = argv[0 + aflag];
+ 		if (argc > 1)
+-			strlcpy(term, argv[1], sizeof(term));
++			strlcpy(term, argv[1 + aflag], sizeof(term));
+ 	}
+ 
+ 	sa.sa_handler = SIG_IGN;
+@@ -110,7 +115,7 @@
+ 	}
+ 
+ 	if (argc > 2)
+-		return execvp(argv[2], argv + 2);
++		return execvp(argv[2 + aflag], argv + 2 + aflag);
+ 
+ 	if (gethostname(hostname, sizeof(hostname)) == 0)
+ 		printf("%s ", hostname);
+@@ -119,6 +124,11 @@
+ 
+ 	/* Flush pending input */
+ 	ioctl(0, TCFLSH, (void *)0);
++	if (aflag) {
++		strcpy(logname, argv[0]);
++		return execlp("/bin/login", "login", "-fp", logname, NULL);
++	}
++
+ 	memset(logname, 0, sizeof(logname));
+ 	while (1) {
+ 		n = read(0, &c, 1);
+--- a/getty.8
++++ b/getty.8
+@@ -6,7 +6,7 @@
+ .Nd suckless linux getty
+ .Sh SYNOPSIS
+ .Nm
+-.Op Ar tty Op Ar term Op Ar cmd Op Ar args...
++.Op Ar -a name Op Ar tty Op Ar term Op Ar cmd Op Ar args...
+ .Sh DESCRIPTION
+ .Nm
+ opens a tty device, prompts for a login name and by default
+@@ -18,5 +18,9 @@
+ The hostname is printed in the login name prompt as well. The
+ .Ar tty
+ should be specified using an absolute path.
++.Sh OPTIONS
++.Bl -tag -width Ds
++.It Fl a
++Automatically login.
+ .Sh SEE ALSO
+-.Xr login 1
+\ No newline at end of file
++.Xr login 1
+--- a/login.c
++++ b/login.c
+@@ -64,7 +64,7 @@
+ static void
+ usage(void)
+ {
+-	eprintf("usage: %s [-p] username\n", argv0);
++	eprintf("usage: %s [-f] [-p] username\n", argv0);
+ }
+ 
+ int
+@@ -76,11 +76,15 @@
+ 	uid_t uid;
+ 	gid_t gid;
+ 	int pflag = 0;
++	int fflag = 0;
+ 
+ 	ARGBEGIN {
+ 	case 'p':
+ 		pflag = 1;
+ 		break;
++	case 'f'
++		fflag = 1;
++		break;
+ 	default:
+ 		usage();
+ 	} ARGEND;
+@@ -107,11 +111,13 @@
+ 	/* Flush pending input */
+ 	ioctl(0, TCFLSH, (void *)0);
+ 
+-	pass = getpass("Password: ");
+-	if (!pass)
+-		eprintf("getpass:");
+-	if (pw_check(pw, pass) <= 0)
+-		exit(1);
++	if (!fflag) {
++		pass = getpass("Password: ");
++		if (!pass)
++			eprintf("getpass:");
++		if (pw_check(pw, pass) <= 0)
++			exit(1);
++	}
+ 
+ 	tty = ttyname(0);
+ 	if (!tty)
+--- a/login.1
++++ b/login.1
+@@ -6,6 +6,7 @@
+ .Nd log into the system
+ .Sh SYNOPSIS
+ .Nm
++.Op Fl f
+ .Op Fl p
+ .Ar username
+ .Sh DESCRIPTION
+@@ -22,6 +23,8 @@
+ .Pa /etc/passwd .
+ .Sh OPTIONS
+ .Bl -tag -width Ds
++.It Fl f
++Do not perform authentication, user is preauthenticated.
+ .It Fl p
+ Preserve the environment.
+ .El
