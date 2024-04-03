@@ -6,8 +6,8 @@ sed -i 's/gcc/cc/g' makefile
 
 make CC="$CC"
 
-install -Dm755 a.out    "$DESTDIR/usr/bin/awk"
-install -Dm644  awk.1   "$DESTDIR/usr/share/man/man1/awk.1" 
-install -Dm644  LICENSE "$DESTDIR/usr/share/LICENSES/awk.license"
+install -Dm755 a.out   "$DESTDIR/usr/bin/awk"
+install -Dm644 awk.1   "$DESTDIR/usr/share/man/man1/awk.1" 
+install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/awk.license"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/awk"
