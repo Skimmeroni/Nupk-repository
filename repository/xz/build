@@ -9,6 +9,6 @@ cd xz-$VERSION
     --disable-nls
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 find $DESTDIR -type f -name '*.la' -delete

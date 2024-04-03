@@ -8,8 +8,8 @@ export CFLAGS="$CFLAGS -Wno-error"
 ./configure --prefix=/usr
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 
-cp -f src/grep "$DESTDIR/usr/bin/ggrep"
+ln -sf grep "$DESTDIR/usr/bin/ggrep"

@@ -8,7 +8,9 @@ sed -i 's|=>|@|g'                              lib/init/rc.lib
  
 $CC -o kpow bin/kpow.c -static
  
-install -Dm755 lib/init/rc.lib      "$DESTDIR/usr/lib/init/rc.lib"
-install -Dm755 lib/init/rc.boot     "$DESTIDR/usr/lib/init/rc.boot"
-install -Dm755 lib/init/rc.shutdown "$DESTDIR/usr/lib/init/rc.shutdown"
-install -Dm755 kpow                 "$DESTDIR/usr/bin/kpow"
+install -Dm755 lib/init/rc.lib       "$DESTDIR/usr/lib/init/rc.lib"
+install -Dm755 lib/init/rc.boot      "$DESTIDR/usr/lib/init/rc.boot"
+install -Dm755 lib/init/rc.shutdown  "$DESTDIR/usr/lib/init/rc.shutdown"
+install -Dm755 kpow                  "$DESTDIR/usr/bin/kpow"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/kpow"

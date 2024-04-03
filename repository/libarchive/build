@@ -17,7 +17,7 @@ cd libarchive-$VERSION
 	--enable-static
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/man/man3"
 find $DESTDIR -type f -name '*.la' -delete

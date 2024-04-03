@@ -6,4 +6,4 @@ cd less-$VERSION
 ./configure --prefix=/usr
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip

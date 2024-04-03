@@ -21,7 +21,7 @@ cd curl-$VERSION
 	--without-zstd
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/man/man3"
 rm -rf "$DESTDIR/usr/share/aclocal"

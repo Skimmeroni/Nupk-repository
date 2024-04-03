@@ -8,7 +8,7 @@ cd mdevd-$VERSION
 	--enable-static-libc
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 install -Dm644 ../mdevd.conf "$DESTDIR/etc/mdevd.conf"
 install -Dm755 ../mdevd.run  "$DESTDIR/etc/sv/mdevd/run"

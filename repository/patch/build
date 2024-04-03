@@ -13,3 +13,4 @@ $CC -static patch.c *.o -o patch
 
 install -Dm755 -t "$DESTDIR/usr/bin" patch
 install -Dm644 -t "$DESTDIR/usr/share/man/man1" patch.1
+strip --strip-unneeded "$DESTDIR/usr/bin/patch"

@@ -12,7 +12,7 @@ cd dhcpcd-$VERSION
 	--without-udev
 
 make
-make DESTDIR="$DESTDIR" BINMODE=755 install
+make DESTDIR="$DESTDIR" BINMODE=755 install-strip
 
 install -Dm755 ../dhcpcd.run "$DESTDIR/etc/sv/dhcpcd/run"
 ln -sf /run/runit/supervise.dhcpcd "$DESTDIR/etc/sv/dhcpcd/supervise"

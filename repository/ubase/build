@@ -30,4 +30,9 @@ rm "$DESTDIR/usr/bin/umount"
 rm "$DESTDIR/usr/bin/mountpoint" 
 rm "$DESTDIR/usr/share/man/man8/mount.8" 
 rm "$DESTDIR/usr/share/man/man8/umount.8" 
-rm "$DESTDIR/usr/share/man/man1/mountpoint.1" 
+rm "$DESTDIR/usr/share/man/man1/mountpoint.1"
+
+for i in "$DESTDIR/usr/bin"
+do 
+	strip --strip-unneeded "$DESTDIR/usr/bin/$i"
+done

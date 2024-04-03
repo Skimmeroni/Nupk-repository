@@ -13,6 +13,7 @@ make
 for i in chpst runit runit-init runsv runsvchdir runsvdir sv svlogd utmpset
 do
 	install -Dm755 $i          "$DESTDIR/usr/bin/$i"
+	strip   --strip-unneeded   "$DESTDIR/usr/bin/$i"
 	install -Dm644 ../man/$i.8 "$DESTDIR/usr/share/man/man8/$i.8"
 done
 

@@ -9,6 +9,6 @@ cd bison-$VERSION
 	--without-libtextstyle-prefix
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/info"

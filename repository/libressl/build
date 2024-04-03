@@ -9,7 +9,7 @@ cd libressl-$VERSION
 	--disable-tests
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/man"
 install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"

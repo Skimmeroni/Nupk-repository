@@ -36,3 +36,8 @@ rm "$DESTDIR/usr/share/man/man1/tar.1"
 rm "$DESTDIR/usr/share/man/man1/find.1"
 rm "$DESTDIR/usr/share/man/man1/grep.1"
 rm "$DESTDIR/usr/share/man/man1/sed.1"
+
+for i in "$DESTDIR/usr/bin"
+do
+	strip --strip-unneeded "$DESTDIR/usr/bin/$i"
+done

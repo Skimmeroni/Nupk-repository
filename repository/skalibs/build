@@ -8,4 +8,4 @@ cd skalibs-$VERSION
 	--with-sysdep-devurandom=yes
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip

@@ -9,7 +9,7 @@ cd flex-$VERSION
 	ac_cv_func_realloc_0_nonnull=yes
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 ln -sf flex "$DESTDIR/usr/bin/lex"
 

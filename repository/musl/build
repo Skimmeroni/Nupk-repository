@@ -4,6 +4,9 @@ mkdir -p "$DESTDIR/usr/bin"
 $CC $CFLAGS getent.c   -o "$DESTDIR/usr/bin/getent" 
 $CC $CFLAGS getconf.c  -o "$DESTDIR/usr/bin/getconf"
 
+strip --strip-unneeded "$DESTDIR/usr/bin/getent"
+strip --strip-unneeded "$DESTDIR/usr/bin/getconf"
+
 install -Dm755 getconf.1 "$DESTDIR/usr/share/man/man1/getconf.1"
 install -Dm755 getent.1  "$DESTDIR/usr/share/man/man1/getent.1"
 
@@ -19,7 +22,7 @@ cd musl-$VERSION
 	--syslibdir=/usr/lib
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 ln -sf /usr/lib/ld-musl-armhf.so.1 "$DESTDIR/usr/bin/ldd"
 ln -sf libc.so "$DESTDIR/usr/lib/ld-musl-armhf.so.1"

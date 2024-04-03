@@ -6,7 +6,7 @@ cd $VERSION
 sed -i 's|sbin|bin|g' Makefile
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/etc"
 
