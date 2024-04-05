@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+tar -xf shadow-$VERSION.tar.gz
+cd shadow-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--disable-account-tools-setuid \
+	--disable-lastlog \
+	--disable-logind \
+	--disable-man \
+	--disable-nls \
+	--disable-shadowgrp \
+	--disable-subordinate-ids \
+	--with-sha-crypt \
+	--without-acl \
+	--without-attr \
+	--without-audit \
+	--without-btrfs \
+	--without-libbsd \
+	--without-libpam \
+	--without-nscd \
+	--without-selinux \
+	--without-skey \
+	--without-su
+
+make
+make DESTDIR="$DESTDIR" install-strip
