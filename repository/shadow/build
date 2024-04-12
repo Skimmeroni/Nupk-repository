@@ -5,8 +5,8 @@ cd shadow-$VERSION
 
 ./configure \
 	--prefix=/usr \
+	--enable-lastlog \
 	--disable-account-tools-setuid \
-	--disable-lastlog \
 	--disable-logind \
 	--disable-man \
 	--disable-nls \
@@ -17,6 +17,7 @@ cd shadow-$VERSION
 	--without-attr \
 	--without-audit \
 	--without-btrfs \
+	--without-group-name-max-length \
 	--without-libbsd \
 	--without-libpam \
 	--without-nscd \
