@@ -16,5 +16,5 @@ do
 	./zic -d "$DESTDIR/usr/share/zoneinfo/right" -L leapseconds $t
 done
 
-# Apparently, for POSIX compliance
+# POSIX compliance (?)
 ./zic -d "$DESTDIR/usr/share/zoneinfo" -p America/New_York

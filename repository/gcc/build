@@ -1,0 +1,44 @@
+#!/bin/sh -e
+
+tar -xf gcc-$VERSION.tar.xz
+mkdir -p "gcc-$VERSION/builderoni"
+cd "gcc-$VERSION/builderoni"
+
+../configure \
+	libat_cv_have_ifunc=no \
+	--prefix=/usr \
+	--libexecdir=/usr/lib \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info \
+	--disable-multilib \
+	--disable-lto \
+	--disable-symvers \
+	--disable-libmpx \
+	--disable-libmudflap \
+	--disable-libsanitizer \
+	--disable-werror \
+	--disable-fixed-point \
+	--disable-nls \
+	--enable-checking=release \
+	--enable-__cxa_atexit \
+	--enable-default-pie \
+	--enable-default-ssp \
+	--enable-shared \
+	--enable-host-shared \
+	--enable-threads \
+	--enable-tls \
+	--enable-initfini-array \
+	--enable-languages=c,c++ \
+	--without-included-gettext \
+	--without-ist \
+	--without-zstd \
+	--with-system-zlib \
+	--build="$(cc -dumpmachine)"
+
+make
+make DESTDIR="$DESTDIR" install
+
+ln -sf gcc "$DESTDIR/usr/bin/cc"
+
+# POSIX compliance (?)
+install -Dm755 ../../c99 "$DESTDIR/usr/bin/c99"
