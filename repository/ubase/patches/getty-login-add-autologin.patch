@@ -99,7 +99,7 @@
  	case 'p':
  		pflag = 1;
  		break;
-+	case 'f'
++	case 'f':
 +		fflag = 1;
 +		break;
  	default:

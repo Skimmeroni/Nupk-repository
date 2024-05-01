@@ -1,8 +1,6 @@
 https://www.musl-libc.org/releases/musl-{{VERSION}}.tar.gz
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getconf.c
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getconf.1
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getent.c
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/usr.bin/getconf/getent.1
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/sys/cdefs.h
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/sys/queue.h
-https://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/sys/tree.h
+https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/getconf.c
+https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/getent.c
+https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/cdefs.h
+https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/queue.h
+https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/tree.h

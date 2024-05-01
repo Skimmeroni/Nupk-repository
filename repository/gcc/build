@@ -19,6 +19,7 @@ cd "gcc-$VERSION/builderoni"
 	--disable-werror \
 	--disable-fixed-point \
 	--disable-nls \
+	--disable-bootstrap \
 	--enable-checking=release \
 	--enable-__cxa_atexit \
 	--enable-default-pie \
@@ -28,15 +29,19 @@ cd "gcc-$VERSION/builderoni"
 	--enable-threads \
 	--enable-tls \
 	--enable-initfini-array \
-	--enable-languages=c,c++ \
+	--enable-languages=c,c++,fortran \
 	--without-included-gettext \
-	--without-ist \
+	--without-isl \
 	--without-zstd \
+	--with-gcc-major-version-only \
 	--with-system-zlib \
 	--build="$(cc -dumpmachine)"
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR="$DESTDIR" install-strip
+
+rm -rf "$DESTDIR/usr/share/info"
+find $DESTDIR -type f -name '*.la' -delete
 
 ln -sf gcc "$DESTDIR/usr/bin/cc"
 

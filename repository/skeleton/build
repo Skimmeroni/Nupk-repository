@@ -52,7 +52,7 @@ ln -sf ../run            "$DESTDIR/var/run"
 ln -sf ../run/lock       "$DESTDIR/var/lock"
 ln -sf /proc/self/mounts "$DESTDIR/etc/mtab"
 
-for i in fstab group host.conf hostname hosts issue mime.types os-release passwd profile rc.conf securetty shells 
+for i in fstab group host.conf hostname hosts issue os-release passwd profile rc.conf securetty shells 
 do 
 	install -m644 $file "$DESTDIR/etc/$i" 
 done 

@@ -25,6 +25,6 @@ cd binutils-$VERSION
 
 make configure-host
 make tooldir=/usr
-make tooldir=/usr DESTDIR="$DESTDIR" install
+make tooldir=/usr DESTDIR="$DESTDIR" install-strip
 
 ln -sf ld.bfd "$DESTDIR/usr/bin/ld"

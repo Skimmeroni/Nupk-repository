@@ -19,6 +19,8 @@ make \
 install -Dm755 ../cron.run "$DESTDIR/etc/sv/cron/run" 
 ln -sf /run/runit/supervise.cron "$DESTDIR/etc/sv/cron/supervise"
 
+mv "$DESTDIR/usr/bin/xinstall" "$DESTDIR/usr/bin/install"
+
 # strings and xargs already provided
 
 rm "$DESTDIR/usr/bin/strings"

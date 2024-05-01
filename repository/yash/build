@@ -3,6 +3,8 @@
 tar -xf yash-$VERSION.tar.gz
 cd yash-$VERSION
 
+export CFLAGS="$CFLAGS -static"
+
 ./configure \
 	--prefix=/usr \
 	--enable-array \
