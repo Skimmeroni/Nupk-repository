@@ -1,0 +1,16 @@
+#!/bin/sh -e
+
+tar -xf dash-$VERSION.tar.gz
+cd dash-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--bindir=/usr/bin \
+	--mandir=/usr/share/man \
+	--enable-static \
+	--disable-libedit
+
+make
+make DESTDIR="$DESTDIR" install-strip
+
+ln -sf dash "$DESTDIR/usr/bin/sh"
