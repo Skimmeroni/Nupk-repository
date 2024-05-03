@@ -3,9 +3,13 @@
 tar -xf grep-$VERSION.tar.xz
 cd grep-$VERSION
 
-export CFLAGS="$CFLAGS -Wno-error"
+export CFLAGS="$CFLAGS -Wno-error -static"
 
-./configure --prefix=/usr
+./configure \
+	--prefix=/usr \
+	--disable-nls \
+	--enable-threads=posix \
+	--without-packager
 
 make
 make DESTDIR="$DESTDIR" install-strip

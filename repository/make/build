@@ -3,10 +3,14 @@
 tar -xf make-$VERSION.tar.gz
 cd make-$VERSION
 
-./configure --prefix=/usr
+export LDFLAGS="$LDFLAGS -static"
+
+./configure \
+	--prefix=/usr \
+	--disable-nls \
+	--without-guile
 
 make
 make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
-rm -rf "$DESTDIR/usr/share/locale"

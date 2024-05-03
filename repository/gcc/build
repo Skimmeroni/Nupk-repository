@@ -41,6 +41,7 @@ make
 make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
+rm -rf "$DESTDIR/usr/share/man/man7"
 find $DESTDIR -type f -name '*.la' -delete
 
 ln -sf gcc "$DESTDIR/usr/bin/cc"

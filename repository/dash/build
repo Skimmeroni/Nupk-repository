@@ -8,7 +8,7 @@ cd dash-$VERSION
 	--bindir=/usr/bin \
 	--mandir=/usr/share/man \
 	--enable-static \
-	--disable-libedit
+	--without-libedit
 
 make
 make DESTDIR="$DESTDIR" install-strip

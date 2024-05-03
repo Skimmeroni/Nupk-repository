@@ -3,7 +3,16 @@
 tar -xf sed-$VERSION.tar.xz
 cd sed-$VERSION
 
-./configure --prefix=/usr
+export CFLAGS="$CFLAGS -static"
+
+./configure \
+	--prefix=/usr \
+	--enable-threads=posix \
+	--disable-acl \
+	--disable-nls \
+	--disable-i18n \
+	--without-selinux \
+	--without-packager
 
 make
 make DESTDIR="$DESTDIR" install-strip
