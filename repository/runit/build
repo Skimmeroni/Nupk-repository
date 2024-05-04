@@ -2,11 +2,11 @@
 
 cd runit.git/src
 
-sed -i 's|/sbin/runit|/usr/bin/runit|g'               runit.h
-sed -i 's|/etc/runit/ctraltdel|/usr/bin/ctrlaltdel|g' runit.h
+sed -i 's|/sbin/runit|/usr/bin/runit|g'                runit.h
+sed -i 's|/etc/runit/ctrlaltdel|/usr/bin/ctrlaltdel|g' runit.h
 
-echo "$CC $CFLAGS -D_GNU_SOURCE -static"         > conf-cc
-echo "$CC $CFLAGS -static -Wl,-z -Wl,noexecstac" > conf-ld
+echo "$CC $CFLAGS -D_GNU_SOURCE -Wno-implicit -static" > conf-cc
+echo "$CC $CFLAGS -static -Wl,-z -Wl,noexecstac"       > conf-ld
 
 make
 
