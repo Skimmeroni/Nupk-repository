@@ -8,4 +8,7 @@ cd skalibs-$VERSION
 	--with-sysdep-devurandom=yes
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR="$DESTDIR" install
+
+find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
