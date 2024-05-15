@@ -11,4 +11,5 @@ cd mpfr-$VERSION
 make
 make DESTDIR="$DESTDIR" install
 
+rm -rf "$DESTDIR/usr/share"
 find $DESTDIR -type f -name '*.la' -delete
