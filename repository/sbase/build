@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-cd sbase
+cd sbase.git
 
 patch -p1 < ../install-add-GNU-s-extension.patch
 

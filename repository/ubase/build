@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-cd ubase
+cd ubase.git
 
 patch -p1 < ../getty-login-add-autologin.patch
 
