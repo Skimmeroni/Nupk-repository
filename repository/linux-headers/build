@@ -3,6 +3,6 @@
 tar -xf linux-$VERSION.tar.xz
 cd linux-$VERSION
 
-make LLVM=1 LLVM_IAS=1 HOSTCC="$CC" headers
+make HOSTCC="$CC" headers
 
 find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
