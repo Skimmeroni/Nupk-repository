@@ -8,10 +8,13 @@ cd mdevd-$VERSION
 	--enable-static-libc
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR="$DESTDIR" install
 
-install -Dm644 ../mdevd.conf "$DESTDIR/etc/mdevd.conf"
+install -Dm644 ../mdev.conf "$DESTDIR/etc/mdev.conf"
 install -Dm755 ../mdevd.run  "$DESTDIR/etc/sv/mdevd/run"
 ln -sf /run/runit/supervise.mdevd "$DESTDIR/etc/sv/mdevd/supervise"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/mdevd"
+strip --strip-unneeded "$DESTDIR/usr/bin/mdevd-coldplug"
 
 rm -rf "$DESTDIR/usr/include"
