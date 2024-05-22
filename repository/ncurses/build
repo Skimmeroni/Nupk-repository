@@ -1,12 +1,13 @@
 #!/bin/sh -e
 
-tar -xf v$PKGVER.tar.gz
-cd netbsd-curses-$PKGVER
+tar -xf v$VERSION.tar.gz
+cd netbsd-curses-$VERSION
 
 make PREFIX=/usr all
 make PREFIX=/usr DESTDIR="$DESTDIR" install
 
 ln -sf libterminfo.so "$DESTDIR/usr/lib/libtinfo.so"
+ln -sf libterminfo.a  "$DESTDIR/usr/lib/libtinfo.a"
 
 # Remove duplicate
 rm "$DESTDIR/usr/bin/clear"
