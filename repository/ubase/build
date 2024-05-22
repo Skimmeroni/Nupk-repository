@@ -2,7 +2,7 @@
 
 cd ubase.git
 
-patch -p1 < ../getty-login-add-autologin.patch
+#patch -p1 < ../getty-login-add-autologin.patch
 
 make \
 	PREFIX=/usr \
