@@ -4,6 +4,7 @@ mkdir -p "$DESTDIR/usr/bin"
 $CC $CFLAGS getent.c   -o "$DESTDIR/usr/bin/getent" 
 $CC $CFLAGS getconf.c  -o "$DESTDIR/usr/bin/getconf"
 
+install -Dm755 ldd     "$DESTDIR/usr/bin/ldd"
 install -Dm755 cdefs.h "$DESTDIR/usr/include/sys/cdefs.h"
 install -Dm755 queue.h "$DESTDIR/usr/include/sys/queue.h"
 install -Dm755 tree.h  "$DESTDIR/usr/include/sys/tree.h"
@@ -18,7 +19,6 @@ cd musl-$VERSION
 make
 make DESTDIR="$DESTDIR" install
 
-ln -sf /usr/lib/ld-musl-armhf.so.1 "$DESTDIR/usr/bin/ldd"
 ln -sf libc.so "$DESTDIR/usr/lib/ld-musl-armhf.so.1"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/getent"
