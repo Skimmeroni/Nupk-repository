@@ -25,6 +25,7 @@ EOF
 	ac_cv_fread_reads_directories=yes
 
 make LIBS="$(curl-config --static-libs) libgit.a reftable/libreftable.a xdiff/lib.a -lz"
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR="$DESTDIR" install
 
+mkdir -p "$DESTDIR/usr/share/man"
 tar -xf ../git-manpages-$VERSION.tar.xz -C "$DESTDIR/usr/share/man"
