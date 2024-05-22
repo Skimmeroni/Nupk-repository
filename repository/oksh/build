@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf oksh-$VERSION.tar.gz
+cd oksh-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--bindir=/usr/bin \
+	--mandir=/usr/share/man \
+	--disable-curses \
+	--enable-static \
+	--strip
+
+make LIBS=-lterminfo
+make DESTDIR="$DESTDIR" install
+
+ln -sf oksh "$DESTDIR/usr/bin/sh"
