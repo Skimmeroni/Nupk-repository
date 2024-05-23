@@ -32,7 +32,4 @@ rm "$DESTDIR/usr/share/man/man8/mount.8"
 rm "$DESTDIR/usr/share/man/man8/umount.8"
 rm "$DESTDIR/usr/share/man/man1/mountpoint.1"
 
-for i in $(ls "$DESTDIR/usr/bin")
-do 
-	strip --strip-unneeded "$DESTDIR/usr/bin/$i"
-done
+find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
