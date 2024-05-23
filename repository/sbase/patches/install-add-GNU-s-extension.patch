@@ -60,7 +60,7 @@
  is used to select another mode.
  When the symbolic notation is used, the base mode is 0000.
 +.It Fl s
-+Strip files (if needed) before installing
++Strip files (if needed) before installing.
  .El
  .Sh SEE ALSO
  .Xr chmod 1 ,
