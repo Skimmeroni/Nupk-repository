@@ -24,5 +24,3 @@ install -Dm755 ../../reboot   "$DESTDIR/usr/bin/reboot"
 ln -sf runit-init                "$DESTDIR/usr/bin/init"
 ln -sf /usr/lib/init/rc.boot     "$DESTDIR/etc/runit/1"
 ln -sf /usr/lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
-
-mkdir -p "$DESTDIR/var/service"
