@@ -44,9 +44,7 @@ mkdir -m 1777 \
 
 ln -sf usr/bin "$DESTDIR/bin"
 ln -sf usr/lib "$DESTDIR/lib"
-ln -sf usr/lib "$DESTDIR/lib64"
 
-ln -sf lib               "$DESTDIR/usr/lib64"
 ln -sf spool/mail        "$DESTDIR/var/mail"
 ln -sf ../run            "$DESTDIR/var/run"
 ln -sf ../run/lock       "$DESTDIR/var/lock"
