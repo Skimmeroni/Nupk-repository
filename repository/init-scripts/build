@@ -2,9 +2,7 @@
 
 cd init-scripts.git
  
-sed -i 's|log "Welcome to KISS!"||g'           lib/init/rc.boot
-sed -i 's|"${hostname:-KISS}"|/etc/hostname|g' lib/init/rc.boot
-sed -i 's|=>|@|g'                              lib/init/rc.lib
+patch -p1 < ../unkissify.patch
  
 $CC -o kpow bin/kpow.c -static
  
