@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+tar -xf dtc-$VERSION.tar.gz
+cd dtc-$VERSION
+
+export NO_PYTHON=1
+export NO_VALGRIND=1
+export NO_YAML=1
+
+make PREFIX=/usr
+make PREFIX=/usr DESTDIR="$DESTDIR" install
