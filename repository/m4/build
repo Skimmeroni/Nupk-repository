@@ -3,8 +3,6 @@
 tar -xf m4-$VERSION.tar.xz
 cd m4-$VERSION
 
-export CFLAGS="$CFLAGS -static"
-
 ./configure \
 	--prefix=/usr \
 	--disable-nls \
