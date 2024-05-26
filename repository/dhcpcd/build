@@ -9,7 +9,8 @@ cd dhcpcd-$VERSION
 	--sysconfdir=/etc \
 	--rundir=/run \
 	--libexecdir=/usr/lib/dhcpcd \
-	--without-udev
+	--without-udev \
+	--without-openssl
 
 make
 make DESTDIR="$DESTDIR" BINMODE=755 install
