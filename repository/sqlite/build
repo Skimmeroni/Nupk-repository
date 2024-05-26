@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+tar -xf sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00.tar.gz
+cd sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00
+
+export CPPFLAGS="$CPPFLAGS -DSQLITE_ENABLE_FTS3"
+export CPPFLAGS="$CPPFLAGS -DSQLITE_ENABLE_FTS3_PARENTHESIS"
+export CPPFLAGS="$CPPFLAGS -DSQLITE_ENABLE_FTS4"
+export CPPFLAGS="$CPPFLAGS -DSQLITE_ENABLE_COLUMN_METADATA"
+
+./configure \
+	--prefix=/usr \
+	--enable-dynamic-extensions \
+	--enable-editline \
+	--enable-fts5 \
+	--enable-threadsafe \
+	--disable-debug \
+	--disable-readline
+
+make
+make DESTDIR="$DESTDIR" install-strip
+
+find $DESTDIR -type f -name '*.la' -delete
