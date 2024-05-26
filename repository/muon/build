@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+tar -xf $VERSION.tar.gz
+cd muon-$VERSION
+
+export DESTDIR="$DESTDIR"
+
+./bootstrap.sh build
+
+build/muon setup -Dprefix=/usr build
+build/muon -C build samu
+build/muon -C build install
+
+ln -sf muon "$DESTDIR/usr/bin/meson"
+strip --strip-unneeded "$DESTDIR/usr/bin/muon"
