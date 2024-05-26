@@ -13,6 +13,7 @@ cd util-linux-$VERSION
 	--enable-fs-paths-default=/usr/bin \
 	--disable-all-programs \
 	--disable-bash-completion \
+	--disable-makeinstall-chown \
 	--enable-blkid \
 	--enable-fsck \
 	--enable-wipefs \
