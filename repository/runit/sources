@@ -2,3 +2,4 @@ https://github.com/void-linux/runit.git
 files/2
 files/poweroff
 files/reboot
+patches/use-char-const-instead-of-const-char-const-pointer.patch

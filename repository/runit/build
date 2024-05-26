@@ -2,6 +2,8 @@
 
 cd runit.git/src
 
+patch -p1 < ../../use-char-const-instead-of-const-char-const-pointer.patch
+
 sed -i 's|/sbin/runit|/usr/bin/runit|g'                runit.h
 sed -i 's|/etc/runit/ctrlaltdel|/usr/bin/ctrlaltdel|g' runit.h
 
