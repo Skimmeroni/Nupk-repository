@@ -9,7 +9,7 @@ do
 	$CC -c $i
 done
 
-$CC -static diff.c *.o -o diff
+$CC -static *.o -o diff
 
 install -Dm755 -t "$DESTDIR/usr/bin" diff
 install -Dm644 -t "$DESTDIR/usr/share/man/man1" diff.1
