@@ -5,3 +5,5 @@ cd scdoc-$VERSION
 
 make PREFIX=/usr
 make PREFIX=/usr PCDIR=/usr/lib/pkgconfig install
+
+strip --strip-unneeded "$DESTDIR/usr/bin/scdoc"
