@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+tar -xf libdrm-$VERSION.tar.xz
+cd libdrm-$VERSION
+
+muon setup \
+	-Dprefix=/usr \
+	-Dlibdir=/usr/lib \
+	-Dbuildtype=release \
+	-Ddefault_library=both \
+	-Dudev=false \
+	-Dcairo-tests=disabled \
+	-Dvalgrind=disabled \
+	-Dtests=false \
+	-Dman-pages=disabled \
+	build
+
+muon -C build samu
+muon -C build install -d "$DESTDIR"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'  -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so' -exec strip --strip-unneeded {} \;
+find $DESTDIR -type f -name '*.la' -delete
