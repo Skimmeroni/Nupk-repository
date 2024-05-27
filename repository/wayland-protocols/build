@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+tar -xf wayland-protocols-$VERSION.tar.xz
+cd wayland-protocols-$VERSION
+
+muon setup \
+	-Dprefix=/usr \
+	-Dbuildtype=release \
+	-Dtests=false \
+	build
+
+muon -C build samu
+muon -C build install -d "$DESTDIR"
