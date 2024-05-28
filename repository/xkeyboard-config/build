@@ -1,0 +1,21 @@
+#!/bin/sh -e
+
+tar -xf xkeyboard-config-$VERSION.tar.xz
+mv xml2lst xkeyboard-config-$VERSION/rules
+cd xkeyboard-config-$VERSION
+
+sed -i "s/subdir('po')//g"       meson.build
+sed -i "s/xml2lst\.pl/xml2lst/g" rules/meson.build
+
+muon setup \
+	-Dprefix=/usr \
+	-Dbuildtype=release \
+	-Dxkb-base=/usr/share/X11/xkb \
+	-Dcompat-rules=true \
+	build
+
+muon -C build samu
+muon -C build install -d "$DESTDIR"
+
+mkdir -p "$DESTDIR/usr/lib"
+mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib/pkgconfig"
