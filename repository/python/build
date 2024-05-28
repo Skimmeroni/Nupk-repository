@@ -3,25 +3,26 @@
 tar -xf Python-$VERSION.tar.xz
 cd Python-$VERSION
 
-# See: "PythonNoSemanticInterpositionSpeedup"
 export CFLAGS="$CFLAGS -DTHREAD_STACK_SIZE=0x100000 -fno-semantic-interposition"
 export LDFLAGS="$LDFLAGS -fno-semantic-interposition"
 
-patch -p1 < ../python3-always-pip.patch
-patch -p1 < ../python3-pyc-hash.patch
-
-#sed -i 's/-linux-gnu$/-linux-musleabi/g' configure
-#sed -i 's/arm-linux-gnueabihf$/armv7-linux-musleabihf/g' configure
-#sed -i 's/MULTIARCH=\$(.*/MULTIARCH=armv7-linux-musleabihf/g' configure
+cat > Modules/Setup.local << EOF
+*disabled*
+_tkinker
+_dbm
+_gdbm
+nis
+ossaudiodev
+EOF
 
 ./configure \
 	--prefix=/usr \
 	--enable-shared \
+	--enable-loadable-sqlite-extensions \
 	--with-readline=editline \
 	--with-tzpath=/usr/share/zoneinfo \
 	--with-system-expat \
-	--with-system-ffi \
-	--with-ensurepip=yes \
+	--without-ensurepip \
 	--disable-test-modules \
 	--without-doc-strings
 
@@ -31,21 +32,20 @@ make install
 ln -sf python3         "$DESTDIR/usr/bin/python"
 ln -sf python3-config  "$DESTDIR/usr/bin/python-config"
 
-# There's probably a better way to remove cruft
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/test"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/*/test"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/*/tests"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/pydoc*"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/idlelib"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtle*"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/config-*"
+# Even when disabled, it's created anyway :(
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/tkinter"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/idlelib"
+rm -f  "$DESTDIR/usr/bin/idle$MAJOR"
+rm -f  "$DESTDIR/usr/bin/idle$MAJOR.$MINOR"
+
+# That's... there
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtledemo"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtle.py"
+
+# Python2 has been EOL since ages
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/lib2to3"
-rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/site-packages/pip*"
-rm -f  "$DESTDIR/usr/bin/pydoc*"
-rm -f  "$DESTDIR/usr/bin/idle*"
-rm -f  "$DESTDIR/usr/bin/2to3*"
-rm -f  "$DESTDIR/usr/bin/pip*"
+rm -f  "$DESTDIR/usr/bin/2to3"
+rm -f  "$DESTDIR/usr/bin/2to3-$MAJOR.$MINOR"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/python3"
 find "$DESTDIR/usr/lib" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
