@@ -45,6 +45,7 @@ find "$DESTDIR" -name TODO\*       -exec rm -f {} +
 find "$DESTDIR" -name Change\*     -exec rm -f {} +
 find "$DESTDIR" -name \*.bs        -exec rm -f {} +
 find "$DESTDIR" -name \*.0 -type f -exec rm -f {} +
+rm -rf "$DESTDIR/usr/share/man/man3"
 
 # Fix permissions.
 find "$DESTDIR/usr/lib" -type f -exec chmod 644 {} \;
