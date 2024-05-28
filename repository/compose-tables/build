@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf libX11-$VERSION.tar.xz
+cd libX11-$VERSION
+
+patch -p1 < ../compose-only.patch
+
+./configure \
+	--prefix=/usr \
+	--disable-specs \
+	--disable-xkb \
+	--without-fop \
+	--without-xmlto \
+	--with-keysymdefdir="/usr/include/X11"
+
+make -C nls
+make -C nls install
