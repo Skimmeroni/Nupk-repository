@@ -8,6 +8,9 @@ muon setup \
 	-Dbuildtype=release \
 	-Ddefault_library=both \
 	-Dgtk=disabled \
+	-Dtest=disabled \
+	-Dlibpng=disabled \
+	-Ddemos=disabled \
 	build
 
 muon -C build samu
