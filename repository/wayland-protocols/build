@@ -5,13 +5,10 @@ cd wayland-protocols-$VERSION
 
 muon setup \
 	-Dprefix=/usr \
+	-Ddatadir=lib \
 	-Dbuildtype=release \
 	-Dtests=false \
 	build
 
 muon -C build samu
 muon -C build install -d "$DESTDIR"
-
-mkdir -p "$DESTDIR/usr/lib/pkgconfig"
-mv "$DESTDIR/usr/share/pkgconfig/wayland-protocols.pc" "$DESTDIR/usr/lib/pkgconfig"
-rmdir "$DESTDIR/usr/share/pkgconfig"
