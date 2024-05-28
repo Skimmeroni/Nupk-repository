@@ -41,8 +41,16 @@ rm -f  "$DESTDIR/usr/bin/idle$MAJOR.$MINOR"
 # That's... there
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtledemo"
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtle.py"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/__pycache__/turtle.*"
 
-# Python2 has been EOL since ages
+# I don't really use pydoc that much
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/pydoc_data"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/pydoc.py"
+rm -f  "$DESTDIR/usr/bin/pydoc$MAJOR"
+rm -f  "$DESTDIR/usr/bin/pydoc$MAJOR.$MINOR"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/__pycache__/pydoc.*"
+
+# Python2 has been EOL since ages!
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/lib2to3"
 rm -f  "$DESTDIR/usr/bin/2to3"
 rm -f  "$DESTDIR/usr/bin/2to3-$MAJOR.$MINOR"
