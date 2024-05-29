@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf libdisplay-info-$VERSION.tar.gz
+cd libdisplay-info-$VERSION
+
+muon setup \
+	-Dprefix=/usr \
+	-Dbuildtype=release \
+	-Ddefault_library=both \
+	build
+
+muon -C build samu
+muon -C build install -d "$DESTDIR"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
