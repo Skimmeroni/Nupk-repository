@@ -9,5 +9,4 @@ build/muon setup -Dprefix=/usr build
 build/muon -C build samu
 build/muon -C build install -d "$DESTDIR"
 
-ln -sf muon "$DESTDIR/usr/bin/meson"
 strip --strip-unneeded "$DESTDIR/usr/bin/muon"
