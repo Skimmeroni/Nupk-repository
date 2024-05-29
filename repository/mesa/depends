@@ -1,0 +1,14 @@
+bison
+expat
+flex
+libdrm
+libglvnd
+libudev-zero
+linux-headers
+m4
+muon
+pkgconf
+mako
+wayland
+wayland-protocols
+zlib

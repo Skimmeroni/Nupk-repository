@@ -1,0 +1,44 @@
+#!/bin/sh -e
+
+# Mesa is a very complicated piece of code, and
+# muon is still in its infancy. As such, this build
+# will most likely fail.
+# 
+# If it does, you can download meson and give it a
+# shot. Like:
+#
+# meson setup [...] build
+# meson compile -C build
+# meson install -C build
+#
+# And then delete it afterwards. Sadly, there's not
+# much you can do
+
+tar -xf mesa-$VERSION.tar.xz
+cd mesa-$VERSION
+
+muon setup \
+	-Dprefix=/usr \
+	-Dsysconfdir=/etc \
+	-Dmandir=/usr/share/man \
+	-Dlocalstatedir=/var \
+	-Dbuildtype=release \
+	-Ddefault_library=both \
+	-Dglx-read-only-text=true \
+	-Dplatforms=wayland \
+	-Dglx=disabled \
+	-Degl=enabled \
+	-Dgles1=enabled \
+	-Dgles2=enabled \
+	-Degl-native-platform=wayland \
+	-Dvalgrind=disabled \
+	-Dzstd=disabled \
+	-Dglvnd=true \
+	-Dvulkan-drivers= \
+	-Dgallium-drivers=panfrost,swrast,kmsro \
+	-Dllvm=disabled \
+	-Dshared-llvm=disabled \
+	build
+
+muon -C build samu
+muon -C build install -d "$DESTDIR"
