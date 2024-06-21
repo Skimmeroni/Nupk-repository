@@ -3,18 +3,3 @@
 export PATH="/usr/bin:/bin" 
 
 umask 022
-
-COLOR_RED="\033[1;31m"
-COLOR_GREEN="\033[1;32m"
-COLOR_EMPTY="\033[0m"
-
-if [ $USER == 'root' ]
-then
-	DISPLAYED_USER=$(echo -e "$COLOR_RED$USER@$COLOR_EMPTY")
-	DISPLAYED_HOST=$(echo -e "$COLOR_RED$(hostname)$COLOR_EMPTY")
-	export PS1="$DISPLAYED_USER$DISPLAYED_HOST:\$PWD # "
-else
-	DISPLAYED_USER=$(echo -e "$COLOR_GREEN$USER@$COLOR_EMPTY")
-	DISPLAYED_HOST=$(echo -e "$COLOR_GREEN$(hostname)$COLOR_EMPTY")
-	export PS1="$DISPLAYED_USER$DISPLAYED_HOST:\$PWD $ "
-fi
