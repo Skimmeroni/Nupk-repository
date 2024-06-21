@@ -5,15 +5,15 @@ cd xkeyboard-config-$VERSION
 
 sed -i "s/subdir('po')//g" meson.build
 
-muon setup \
+meson setup \
 	-Dprefix=/usr \
 	-Dbuildtype=release \
 	-Dxkb-base=/usr/share/X11/xkb \
 	-Dcompat-rules=true \
 	build
 
-muon -C build samu
-muon -C build install -d "$DESTDIR"
+meson -C build compile
+meson -C build install -d "$DESTDIR"
 
 mkdir -p "$DESTDIR/usr/lib"
 mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib/pkgconfig"

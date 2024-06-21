@@ -3,7 +3,7 @@
 tar -xf libxkbcommon-$VERSION.tar.xz
 cd libxkbcommon-$VERSION
 
-muon setup \
+meson setup \
 	-Dprefix=/usr \
 	-Dlibdir=/usr/lib \
 	-Dlibexecdir=/usr/lib \
@@ -15,8 +15,8 @@ muon setup \
 	-Denable-xkbregistry=false \
 	build
 
-muon -C build samu
-muon -C build install -d "$DESTDIR"
+meson -C build compile
+meson -C build install -d "$DESTDIR"
 
 rm -rf "$DESTDIR/usr/share/bash-completion"
 

@@ -5,8 +5,8 @@ cd muon-$VERSION
 
 ./bootstrap.sh build
 
-build/muon setup -Dprefix=/usr build
-build/muon -C build samu
-build/muon -C build install -d "$DESTDIR"
+build/meson setup -Dprefix=/usr build
+build/meson -C build compile
+build/meson -C build install -d "$DESTDIR"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/muon"

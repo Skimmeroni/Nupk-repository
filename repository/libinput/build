@@ -3,7 +3,7 @@
 tar -xf libinput-$VERSION.tar.gz
 cd libinput-$VERSION
 
-muon setup \
+meson setup \
 	-Dprefix=/usr \
 	-Dsysconfdir=/etc \
 	-Dmandir=/usr/share/man \
@@ -17,8 +17,8 @@ muon setup \
 	-Dzshcompletiondir=no \
 	build
 
-muon -C build samu
-muon -C build install -d "$DESTDIR"
+meson -C build compile
+meson -C build install -d "$DESTDIR"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/libinput"
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;

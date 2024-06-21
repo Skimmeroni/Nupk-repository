@@ -7,7 +7,7 @@ libudev-zero
 libxkbcommon
 linux-headers
 mesa
-muon
+meson
 pixman
 seatd
 wayland

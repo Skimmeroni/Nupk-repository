@@ -6,7 +6,7 @@ libglvnd
 libudev-zero
 linux-headers
 m4
-muon
+meson
 pkgconf
 mako
 wayland

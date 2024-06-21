@@ -17,7 +17,7 @@
 tar -xf mesa-$VERSION.tar.xz
 cd mesa-$VERSION
 
-muon setup \
+meson setup \
 	-Dprefix=/usr \
 	-Dsysconfdir=/etc \
 	-Dmandir=/usr/share/man \
@@ -40,5 +40,5 @@ muon setup \
 	-Dshared-llvm=disabled \
 	build
 
-muon -C build samu
-muon -C build install -d "$DESTDIR"
+meson -C build compile
+meson -C build install -d "$DESTDIR"

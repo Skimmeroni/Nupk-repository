@@ -3,12 +3,12 @@
 tar -xf wayland-protocols-$VERSION.tar.xz
 cd wayland-protocols-$VERSION
 
-muon setup \
+meson setup \
 	-Dprefix=/usr \
 	-Ddatadir=lib \
 	-Dbuildtype=release \
 	-Dtests=false \
 	build
 
-muon -C build samu
-muon -C build install -d "$DESTDIR"
+meson -C build compile
+meson -C build install -d "$DESTDIR"
