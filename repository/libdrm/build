@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
-tar -xf libdrm-$VERSION.tar.xz
-cd libdrm-$VERSION
-
 echo "This package is just a stub, edit it build parameters and remove this line"
 exit 1
+
+tar -xf libdrm-$VERSION.tar.xz
+cd libdrm-$VERSION
 
 meson setup \
 	-Dprefix=/usr \
