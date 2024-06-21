@@ -2,8 +2,6 @@
 
 cd ubase.git
 
-#patch -p1 < ../getty-login-add-autologin.patch
-
 make \
 	PREFIX=/usr \
 	CFLAGS="$CFLAGS -static" \

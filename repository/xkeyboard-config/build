@@ -1,11 +1,9 @@
 #!/bin/sh -e
 
 tar -xf xkeyboard-config-$VERSION.tar.xz
-mv xml2lst xkeyboard-config-$VERSION/rules
 cd xkeyboard-config-$VERSION
 
-sed -i "s/subdir('po')//g"       meson.build
-sed -i "s/xml2lst\.pl/xml2lst/g" rules/meson.build
+sed -i "s/subdir('po')//g" meson.build
 
 muon setup \
 	-Dprefix=/usr \

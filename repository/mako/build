@@ -3,8 +3,6 @@
 tar -xf Mako-$VERSION.tar.gz
 cd Mako-$VERSION
 
-patch -p1 < ../no-entry-points.patch
-
 python setup.py build
 python setup.py install \
 	--prefix=/usr \

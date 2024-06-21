@@ -1,2 +1,1 @@
 https://files.pythonhosted.org/packages/source/M/Mako/Mako-{{VERSION}}.tar.gz
-patches/no-entry-points.patch
