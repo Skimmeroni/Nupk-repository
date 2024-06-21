@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-echo "This package is just a stub, edit it build parameters and remove this line"
+echo "This package is just a stub, edit its build parameters and remove this line"
 exit 1
 
 mkdir -m 755 \
