@@ -3,6 +3,9 @@
 tar -xf libdrm-$VERSION.tar.xz
 cd libdrm-$VERSION
 
+echo "This package is just a stub, edit it build parameters and remove this line"
+exit 1
+
 meson setup \
 	-Dprefix=/usr \
 	-Dlibdir=/usr/lib \
@@ -13,6 +16,17 @@ meson setup \
 	-Dvalgrind=disabled \
 	-Dtests=false \
 	-Dman-pages=disabled \
+	-Dintel=disabled \
+	-Dradeon=disabled \
+	-Damdgpu=disabled \
+	-Dnouveau=disabled \
+	-Dvmwgfx=disabled \
+	-Domap=disabled \
+	-Dexynos=disabled \
+	-Dfreedreno=disabled \
+	-Dtegra=disabled \
+	-Dvc4=disabled \
+	-Detnaviv=disabled \
 	build
 
 meson -C build compile
