@@ -1,18 +1,7 @@
 #!/bin/sh -e
 
-# Mesa is a very complicated piece of code, and
-# muon is still in its infancy. As such, this build
-# will most likely fail.
-# 
-# If it does, you can download meson and give it a
-# shot. Like:
-#
-# meson setup [...] build
-# meson compile -C build
-# meson install -C build
-#
-# And then delete it afterwards. Sadly, there's not
-# much you can do
+echo "This package is just a stub, edit it build parameters and remove this line"
+exit 1
 
 tar -xf mesa-$VERSION.tar.xz
 cd mesa-$VERSION
@@ -24,7 +13,6 @@ meson setup \
 	-Dlocalstatedir=/var \
 	-Dbuildtype=release \
 	-Ddefault_library=both \
-	-Dglx-read-only-text=true \
 	-Dplatforms=wayland \
 	-Dglx=disabled \
 	-Degl=enabled \
@@ -33,11 +21,11 @@ meson setup \
 	-Degl-native-platform=wayland \
 	-Dvalgrind=disabled \
 	-Dzstd=disabled \
-	-Dglvnd=true \
-	-Dvulkan-drivers= \
-	-Dgallium-drivers=panfrost,swrast,kmsro \
-	-Dllvm=disabled \
-	-Dshared-llvm=disabled \
+	-Dglvnd=??? \
+	-Dvulkan-drivers=??? \
+	-Dgallium-drivers=??? \
+	-Dllvm=??? \
+	-Dshared-llvm=??? \
 	build
 
 meson -C build compile
