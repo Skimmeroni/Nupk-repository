@@ -53,13 +53,6 @@ ln -sf ../run            "$DESTDIR/var/run"
 ln -sf ../run/lock       "$DESTDIR/var/lock"
 ln -sf /proc/self/mounts "$DESTDIR/etc/mtab"
 
-# Is this the most reliable way to check if a system is 64 bit?
-if $(echo __SIZEOF_POINTER__ | cpp -E - - | grep -q '^8$')
-then
-	ln -sf usr/lib "$DESTDIR/lib64"
-	ln -sf lib "$DESTDIR/usr/lib64"
-fi
-
 for i in fstab group host.conf hostname hosts issue os-release passwd profile rc.conf shells
 do
 	install -m644 $i "$DESTDIR/etc/$i" 
