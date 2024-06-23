@@ -48,3 +48,9 @@ ln -sf gcc "$DESTDIR/usr/bin/cc"
 
 # POSIX compliance (?)
 install -Dm755 ../../c99 "$DESTDIR/usr/bin/c99"
+
+if [ -d "$DESTDIR/usr/lib64" ]
+then
+	cp -r  "$DESTDIR/usr/lib64/"* "$DESTDIR/usr/lib"
+	rm -rf "$DESTDIR/usr/lib64"
+fi
