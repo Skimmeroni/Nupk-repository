@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf libedit-$VERSION.tar.gz
+cd libedit-$VERSION
+
+patch -p1 < ../fix-missing-header.patch
+
+./configure \
+	--prefix=/usr \
+	--enable-static \
+	--enable-fast-install
+
+make
+make install
+
+find $DESTDIR -type f -name '*.la' -delete
+rm -rf "$DESTDIR/usr/share/man/man3"

@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+tar -xf bison-$VERSION.tar.xz
+cd bison-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--disable-nls \
+	--without-libtextstyle-prefix
+
+make
+make DESTDIR="$DESTDIR" install-strip
+
+rm -rf "$DESTDIR/usr/share/info"

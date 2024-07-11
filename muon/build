@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf $VERSION.tar.gz
+cd muon-$VERSION
+
+./bootstrap.sh build
+
+build/meson setup -Dprefix=/usr build
+build/meson -C build compile
+build/meson -C build install -d "$DESTDIR"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/muon"

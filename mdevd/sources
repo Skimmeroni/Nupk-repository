@@ -1,0 +1,3 @@
+https://github.com/skarnet/mdevd/archive/refs/tags/v{{VERSION}}.tar.gz
+files/mdev.conf
+files/mdevd.run

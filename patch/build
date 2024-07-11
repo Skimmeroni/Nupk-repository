@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd ccore-$VERSION/src/openbsd/patch
+cp ../compat.h .
+
+for i in $(ls *.c)
+do
+	$CC -c $i
+done
+
+$CC -static *.o -o patch
+
+install -Dm755 -t "$DESTDIR/usr/bin" patch
+install -Dm644 -t "$DESTDIR/usr/share/man/man1" patch.1
+
+strip --strip-unneeded "$DESTDIR/usr/bin/patch"

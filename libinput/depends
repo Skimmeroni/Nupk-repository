@@ -1,0 +1,6 @@
+libevdev
+libudev-zero
+linux-headers
+mtdev
+meson
+pkgconf

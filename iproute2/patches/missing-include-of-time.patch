@@ -1,0 +1,30 @@
+--- a/bridge/vlan.c
++++ b/bridge/vlan.c
+@@ -4,6 +4,7 @@
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <sys/socket.h>
++#include <sys/time.h>
+ #include <net/if.h>
+ #include <netinet/in.h>
+ #include <linux/if_bridge.h>
+--- a/bridge/vni.c
++++ b/bridge/vni.c
+@@ -10,6 +10,7 @@
+ #include <string.h>
+ #include <fcntl.h>
+ #include <sys/socket.h>
++#include <sys/time.h>
+ #include <net/if.h>
+ #include <netinet/in.h>
+ #include <linux/if_link.h>
+--- a/vdpa/vdpa.c
++++ b/vdpa/vdpa.c
+@@ -3,6 +3,7 @@
+ #include <stdio.h>
+ #include <getopt.h>
+ #include <errno.h>
++#include <sys/time.h>
+ #include <linux/genetlink.h>
+ #include <linux/if_ether.h>
+ #include <linux/vdpa.h>

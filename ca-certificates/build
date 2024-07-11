@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+install -Dm644 cacert-$VERSION.pem "$DESTDIR/etc/ssl/cert.pem"

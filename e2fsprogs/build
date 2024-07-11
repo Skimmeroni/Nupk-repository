@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+tar -xf e2fsprogs-$VERSION.tar.xz
+cd e2fsprogs-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--sbindir=/usr/bin \
+	--sysconfdir=/etc \
+	--enable-symlink-install \
+	--disable-libuuid \
+	--disable-libblkid \
+	--disable-nls \
+	--disable-uuidd \
+	--disable-fsck \
+	--disable-elf-shlibs \
+	--disable-tls \
+	--disable-lto \
+	--disable-fuse2fs \
+	--disable-e2initrd-helper \
+	--with-pthread \
+	--without-systemd-unit-dir \
+	--without-udev-rules-dir
+	
+make
+make DESTDIR="$DESTDIR" install-strip
+
+rmdir "$DESTDIR/usr/share/info"

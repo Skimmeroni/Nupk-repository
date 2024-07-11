@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf libressl-$VERSION.tar.gz
+cd libressl-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-tests
+
+make
+make DESTDIR="$DESTDIR" install-strip
+
+rm -rf "$DESTDIR/usr/share/man"
+find $DESTDIR -type f -name '*.la' -delete
+
+install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"

@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+tar -xf expat-$VERSION.tar.bz2
+cd expat-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--without-xmlwf \
+	--without-examples \
+	--without-tests \
+	--without-docbook
+
+make
+make DESTDIR="$DESTDIR" install-strip
+
+rm -rf "$DESTDIR/usr/share"
+find $DESTDIR -type f -name '*.la' -delete

@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+tar -xf pixman-$VERSION.tar.xz
+cd pixman-$VERSION
+
+meson setup \
+	-Dprefix=/usr \
+	-Dbuildtype=release \
+	-Ddefault_library=both \
+	-Dgtk=disabled \
+	-Dtest=disabled \
+	-Dlibpng=disabled \
+	-Ddemos=disabled \
+	build
+
+meson -C build compile
+meson -C build install -d "$DESTDIR"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
