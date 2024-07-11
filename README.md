@@ -15,12 +15,12 @@ These are the guidelines:
 + Man pages are built only if the requirements are not cursed (e.g. Perl)
 + Fonts are installed to /usr/share/fonts/TTF or /usr/share/fonts/OTF
 + Some files will always be removed, such as
- + Libtool files, unless necessary (e.g. ImageMagick)
- + Examples
- + Man3 files
- + Documentation (it's a very specific use case)
- + Info files (use man pages, duh)
- + Aclocal files (are needed only for autotools which we don't use)
+  + Libtool files, unless necessary (e.g. ImageMagick)
+  + Examples
+  + Man3 files
+  + Documentation (it's a very specific use case)
+  + Info files (use man pages, duh)
+  + Aclocal files (are needed only for autotools which we don't use)
 + All tests are disabled
 + No NLS (Native Language Support)
 + No ACL (Access Control List)
