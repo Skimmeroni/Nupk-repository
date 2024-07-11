@@ -1,8 +1,5 @@
 #!/bin/sh -e
 
-echo "This package is just a stub, edit its build parameters and remove this line"
-exit 1
-
 tar -xf $VERSION.tar.gz
 cd tz-$VERSION
 
@@ -25,5 +22,3 @@ done
 
 strip --strip-unneeded "$DESTDIR/usr/bin/zic"
 strip --strip-unneeded "$DESTDIR/usr/bin/zdump"
-
-ln -sf ???/??? "$DESTDIR/etc/localtime"

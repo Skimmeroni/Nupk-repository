@@ -1,8 +1,5 @@
 #!/bin/sh -e
 
-echo "This package is just a stub, edit its build parameters and remove this line"
-exit 1
-
 mkdir -m 755 \
 	"$DESTDIR/boot" \
 	"$DESTDIR/dev" \
@@ -52,10 +49,3 @@ ln -sf spool/mail        "$DESTDIR/var/mail"
 ln -sf ../run            "$DESTDIR/var/run"
 ln -sf ../run/lock       "$DESTDIR/var/lock"
 ln -sf /proc/self/mounts "$DESTDIR/etc/mtab"
-
-for i in fstab group host.conf hostname hosts issue os-release passwd profile rc.conf shells
-do
-	install -m644 $i "$DESTDIR/etc/$i" 
-done
-
-install -m600 shadow "$DESTDIR/etc/shadow"

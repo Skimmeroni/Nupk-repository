@@ -1,3 +1,0 @@
-# Issue 'man fstab' for more details
-
-tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
