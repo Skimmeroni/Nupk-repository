@@ -1,8 +1,0 @@
-#!/bin/sh -e
-
-tar -xf linux-$VERSION.tar.xz
-cd linux-$VERSION
-
-make HOSTCC="$CC" headers
-
-find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
