@@ -4,11 +4,7 @@ tar -xf v$VERSION.tar.gz
 cd ccore-$VERSION/src/openbsd/diff
 cp ../compat.h .
 
-for i in $(ls *.c)
-do
-	$CC -c $i
-done
-
+$CC -c *.c
 $CC -static *.o -o diff
 
 install -Dm755 -t "$DESTDIR/usr/bin" diff
