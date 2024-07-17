@@ -30,7 +30,7 @@ These are the guidelines:
 Of course, you are free to fork the repo and change it as you please.
 
 # What if I want to build a linux system out of these?
-At the very least, you'll need these:
+At the very least, you'll need:
 
 awk, bc, binutils, bison, bzip2, ca-certificates, curl, dhcpcd, diff,
 findutils, flex, gcc, git, grep, init-scripts, iproute2, libarchive,
