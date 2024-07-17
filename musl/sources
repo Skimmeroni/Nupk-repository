@@ -1,6 +1,0 @@
-https://www.musl-libc.org/releases/musl-{{VERSION}}.tar.gz
-https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/getconf.c
-https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/getent.c
-https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/cdefs.h
-https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/queue.h
-https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/tree.h
