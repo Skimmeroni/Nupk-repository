@@ -1,20 +1,19 @@
 #!/bin/sh -e
 
-tar -xf sed-$VERSION.tar.xz
-cd sed-$VERSION
+tar -xf bsdutils-$VERSION.tar.xz
+cd bsdutils-$VERSION/src/sed
 
-export CFLAGS="$CFLAGS -static"
+cp ../../compat/strlcat.c .
+cp ../../compat/strlcpy.c .
+cp ../../include/compat.h .
+cp ../../include/sys/cdefs.h .
 
-./configure \
-	--prefix=/usr \
-	--enable-threads=posix \
-	--disable-acl \
-	--disable-nls \
-	--disable-i18n \
-	--without-selinux \
-	--without-packager
+sed -i 's|<sys/cdefs.h>|"cdefs.h"|g' *.c
 
-make
-make DESTDIR="$DESTDIR" install-strip
+$CC -c *.c
+$CC -static *.o -o sed
 
-rm -rf "$DESTDIR/usr/share/info"
+install -Dm755 -t "$DESTDIR/usr/bin" sed
+install -Dm644 -t "$DESTDIR/usr/share/man/man1" sed.1
+
+strip --strip-unneeded "$DESTDIR/usr/bin/sed"
