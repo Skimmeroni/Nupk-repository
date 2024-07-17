@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+tar -xf $VERSION.tar.gz
+cd seatd-$VERSION
+
+meson setup \
+    -Dprefix=/usr \
+    -Ddefault_library=both \
+    -Dbuildtype=release \
+    build
+
+meson -C build compile
+meson -C build install -d "$DESTDIR"
+
+install -Dm755 ../seatd.run "$DESTDIR/etc/sv/seatd/run"
+ln -sf /run/runit/supervise.seatd "$DESTDIR/etc/sv/seatd/supervise"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;

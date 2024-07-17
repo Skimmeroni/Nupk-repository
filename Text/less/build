@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+tar -xf less-$VERSION.tar.gz
+cd less-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR="$DESTDIR" install-strip

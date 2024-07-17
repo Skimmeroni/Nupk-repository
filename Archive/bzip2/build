@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+tar -xf bzip2-$VERSION.tar.gz
+cd bzip2-$VERSION
+
+make CC="$CC $CFLAGS $LDFLAGS" -f Makefile-libbz2_so
+make CC="$CC $CFLAGS $LDFLAGS" bzip2
+
+install -Dm755 bzip2  "$DESTDIR/usr/bin/bzip2"
+install -Dm755 bzdiff "$DESTDIR/usr/bin/bzdiff"
+install -Dm755 bzgrep "$DESTDIR/usr/bin/bzgrep"
+install -Dm755 bzmore "$DESTDIR/usr/bin/bzmore"
+
+ln -sf bzip2 "$DESTDIR/usr/bin/bunzip2"
+ln -sf bzip2 "$DESTDIR/usr/bin/bzcat"
+
+install -Dm644 -t "$DESTDIR/usr/share/man/man1" bzip2.1 
+install -Dm644 -t "$DESTDIR/usr/include"        bzlib.h 
+
+install -Dm644 libbz2.so.$VERSION "$DESTDIR/usr/lib/libbz2.so.$VERSION"
+install -Dm644 libbz2.a           "$DESTDIR/usr/lib/libbz2.a"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/bzip2"
+strip --strip-unneeded "$DESTDIR/usr/lib/libbz2.so.$VERSION"
+strip --strip-unneeded "$DESTDIR/usr/lib/libbz2.a"
+
+ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so"
+ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR"
+ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR.$MINOR"

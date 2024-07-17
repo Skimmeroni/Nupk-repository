@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd dhcpcd-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--sbindir=/usr/bin \
+	--sysconfdir=/etc \
+	--rundir=/run \
+	--libexecdir=/usr/lib/dhcpcd \
+	--without-udev \
+	--without-openssl
+
+make
+make DESTDIR="$DESTDIR" BINMODE=755 install
+
+install -Dm755 ../dhcpcd.run "$DESTDIR/etc/sv/dhcpcd/run"
+ln -sf /run/runit/supervise.dhcpcd "$DESTDIR/etc/sv/dhcpcd/supervise"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/dhcpcd"
+
+rm -rf "$DESTDIR/var"

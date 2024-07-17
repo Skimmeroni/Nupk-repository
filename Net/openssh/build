@@ -1,0 +1,31 @@
+#!/bin/sh -e
+
+tar -xf openssh-$VERSION.tar.gz
+cd openssh-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--datadir=/usr/share/openssh \
+	--sysconfdir=/etc/ssh \
+	--sbindir=/usr/bin \
+	--libexecdir=/usr/lib/openssh \
+	--without-selinux \
+	--with-privsep-user=nobody \
+	--with-mantype=doc \
+	--without-rpath \
+	--enable-strip \
+	--with-ssl-engine \
+	--with-pid-dir=/run \
+	--disable-wtmp \
+	--disable-utmp \
+	--disable-security-key
+
+make
+make DESTDIR="$DESTDIR" install
+
+cp -f contrib/ssh-copy-id   "$DESTDIR/usr/bin"
+cp -f contrib/ssh-copy-id.1 "$DESTDIR/usr/share/man/man1"
+chmod +x "$DESTDIR/usr/bin/ssh-copy-id"
+
+install -Dm755 ../sshd.run "$DESTDIR/etc/sv/sshd/run" 
+ln -sf /run/runit/supervise.sshd "$DESTDIR/etc/sv/sshd/supervise"

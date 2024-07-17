@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd hwdata-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--libdir=/usr/lib \
+	--datadir=/usr/lib \
+	--disable-blacklist
+
+make
+make install

@@ -1,0 +1,33 @@
+#!/bin/sh -e
+
+tar -xf binutils-$VERSION.tar.xz
+cd binutils-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--with-lib-path=/usr/lib \
+	--enable-deterministic-archives \
+	--enable-ld=default \
+	--enable-plugins \
+	--disable-jansson \
+	--disable-gold \
+	--disable-lto \
+	--disable-multilib \
+	--disable-werror \
+	--disable-gdb \
+	--disable-nls \
+	--disable-readline \
+	--disable-gprof \
+	--disable-gprofng \
+	--with-mmap \
+	--with-system-zlib \
+	--without-zstd
+
+make configure-host
+make tooldir=/usr
+make tooldir=/usr DESTDIR="$DESTDIR" install-strip
+
+ln -sf ld.bfd "$DESTDIR/usr/bin/ld"
+
+rm -rf "$DESTDIR/usr/share/info"
+find $DESTDIR -type f -name '*.la' -delete

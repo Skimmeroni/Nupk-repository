@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+tar -xf u-boot-v$VERSION.tar.gz
+cd u-boot-v$VERSION
+
+sed -i 's/hostprogs-$(CONFIG_TOOLS_MKEFICAPSULE) += mkeficapsule//g' tools/Makefile
+
+NO_PYTHON=1 make tools-only_defconfig tools-only
+
+install -Dm755 tools/mkimage "$DESTDIR/usr/bin/mkimage"
+install -Dm755 tools/dumpimage "$DESTDIR/usr/bin/dumpimage"
+strip --strip-unneeded "$DESTDIR/usr/bin/mkimage"
+strip --strip-unneeded "$DESTDIR/usr/bin/dumpimage"
+
+install -Dm644 doc/mkimage.1 "$DESTDIR/usr/share/man/man1/mkimage.1"

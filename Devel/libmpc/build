@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+tar -xf mpc-$VERSION.tar.gz
+cd mpc-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--enable-shared \
+
+make
+make DESTDIR="$DESTDIR" install
+
+rm -rf "$DESTDIR/usr/share"
+find $DESTDIR -type f -name '*.la' -delete

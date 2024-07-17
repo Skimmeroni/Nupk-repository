@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd setuptools-$VERSION
+
+# Useful trick for boostrapping setuptools
+mkdir -p "build/scripts-3.$(python -c "print(__import__('sys').version_info[1])")"
+
+python setup.py build
+python setup.py install \
+	--prefix=/usr \
+	--root="$DESTDIR"

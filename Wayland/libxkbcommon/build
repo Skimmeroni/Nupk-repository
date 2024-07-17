@@ -1,0 +1,26 @@
+#!/bin/sh -e
+
+tar -xf libxkbcommon-$VERSION.tar.xz
+cd libxkbcommon-$VERSION
+
+meson setup \
+	-Dprefix=/usr \
+	-Dlibdir=/usr/lib \
+	-Dlibexecdir=/usr/lib \
+	-Dbuildtype=release \
+	-Ddefault_library=both \
+	-Denable-docs=false \
+	-Denable-wayland=true \
+	-Denable-x11=false \
+	-Denable-xkbregistry=false \
+	build
+
+meson -C build compile
+meson -C build install -d "$DESTDIR"
+
+rm -rf "$DESTDIR/usr/share/bash-completion"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib/xkbcommon" -type f     -exec strip --strip-unneeded {} \;
+strip --strip-unneeded "$DESTDIR/usr/bin/xkbcli"

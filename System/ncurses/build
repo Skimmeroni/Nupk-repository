@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd netbsd-curses-$VERSION
+
+make PREFIX=/usr all
+make PREFIX=/usr DESTDIR="$DESTDIR" install
+
+ln -sf libterminfo.so "$DESTDIR/usr/lib/libtinfo.so"
+ln -sf libterminfo.a  "$DESTDIR/usr/lib/libtinfo.a"
+
+# Remove duplicate
+rm "$DESTDIR/usr/bin/clear"
+rm "$DESTDIR/usr/share/man/man1/clear.1"
+
+rm -rf "$DESTDIR/usr/share/man/man3"
+
+find "$DESTDIR/usr/bin"       -type f -exec strip --strip-unneeded {} \;
+find "$DESTDIR" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find "$DESTDIR" -name '*.so*' -type f -exec strip --strip-unneeded {} \;

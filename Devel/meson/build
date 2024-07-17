@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf $VERSION.tar.gz
+cd meson-$VERSION
+
+python setup.py build
+python setup.py install \
+    --root="$DESTDIR" \
+    --optimize=1 \
+    --skip-build
+
+rm -rf "$DESTDIR/usr/share/polkit-1"

@@ -1,0 +1,56 @@
+#!/bin/sh -e
+
+tar -xf gcc-$VERSION.tar.xz
+mkdir -p "gcc-$VERSION/builderoni"
+cd "gcc-$VERSION/builderoni"
+
+../configure \
+	libat_cv_have_ifunc=no \
+	--prefix=/usr \
+	--libexecdir=/usr/lib \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info \
+	--disable-multilib \
+	--disable-lto \
+	--disable-symvers \
+	--disable-libmpx \
+	--disable-libmudflap \
+	--disable-libsanitizer \
+	--disable-werror \
+	--disable-fixed-point \
+	--disable-nls \
+	--disable-bootstrap \
+	--enable-checking=release \
+	--enable-__cxa_atexit \
+	--enable-default-pie \
+	--enable-default-ssp \
+	--enable-shared \
+	--enable-host-shared \
+	--enable-threads \
+	--enable-tls \
+	--enable-initfini-array \
+	--enable-languages=c,c++,fortran \
+	--without-included-gettext \
+	--without-isl \
+	--without-zstd \
+	--with-gcc-major-version-only \
+	--with-system-zlib \
+	--build="$(cc -dumpmachine)"
+
+make
+make DESTDIR="$DESTDIR" install-strip
+
+rm -rf "$DESTDIR/usr/share/info"
+rm -rf "$DESTDIR/usr/share/man/man7"
+find $DESTDIR -type f -name '*.la' -delete
+
+ln -sf gcc "$DESTDIR/usr/bin/cc"
+
+# POSIX compliance (?)
+install -Dm755 ../../c99 "$DESTDIR/usr/bin/c99"
+
+if [ -d "$DESTDIR/usr/lib64" ]
+then
+	cp -r  "$DESTDIR/usr/lib64/"* "$DESTDIR/usr/lib"
+	rm -rf "$DESTDIR/usr/lib64"
+fi
