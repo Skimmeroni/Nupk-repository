@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DEPENDENCIES="libressl zlib"
+INFO=""
+PRETTY_NAME="openssh"
+SOURCES="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-$VERSION.tar.gz"
+SOURCES="$SOURCES files/sshd.run"
+MAJOR="9"
+MINOR="7"
+PATCH="1"
+VERSION="$MAJOR.$MINORp$PATCH"

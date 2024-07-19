@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DEPENDENCIES="curl zlib"
+INFO="Stupid content tracker: distributed VCS designed for speed and efficiency"
+PRETTY_NAME="git"
+SOURCES="https://mirrors.edge.kernel.org/pub/software/scm/git/git-$VERSION.tar.xz"
+SOURCES="$SOURCES https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-$VERSION.tar.xz"
+MAJOR="2"
+MINOR="45"
+PATCH="1"
+VERSION="$MAJOR.$MINOR.$PATCH"

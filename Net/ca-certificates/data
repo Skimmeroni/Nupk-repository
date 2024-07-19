@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Common CA Certificates PEM files"
+PRETTY_NAME="ca-certificates"
+SOURCES="https://curl.se/ca/cacert-$VERSION.pem"
+MAJOR="2024"
+MINOR="03"
+PATCH="11"
+VERSION="$MAJOR-$MINOR-$PATCH"
