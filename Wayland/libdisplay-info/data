@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="hwdata meson"
+INFO=""
+PRETTY_NAME="libdisplay-info"
+SOURCES="https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$VERSION/libdisplay-info-$VERSION.tar.gz"
+MAJOR="0"
+MINOR="1"
+PATCH="1"
+VERSION="$MAJOR.$MINOR.$PATCH"

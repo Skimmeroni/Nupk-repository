@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Handler library for evdev events"
+PRETTY_NAME="libevdev"
+SOURCES="https://freedesktop.org/software/libevdev/libevdev-$VERSION.tar.xz"
+MAJOR="1"
+MINOR="13"
+PATCH="1"
+VERSION="$MAJOR.$MINOR.$PATCH"

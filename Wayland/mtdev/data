@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Multitouch Protocol Translation Library"
+PRETTY_NAME="mtdev"
+SOURCES="https://bitmath.org/code/mtdev/mtdev-$VERSION.tar.bz2"
+MAJOR="1"
+MINOR="1"
+PATCH="7"
+VERSION="$MAJOR.$MINOR.$PATCH"

@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="meson"
+INFO="Low-level pixel manipulation routines"
+PRETTY_NAME="pixman"
+SOURCES="https://x.org/releases/individual/lib/pixman-$VERSION.tar.xz"
+MAJOR="0"
+MINOR="43"
+PATCH="4"
+VERSION="$MAJOR.$MINOR.$PATCH"

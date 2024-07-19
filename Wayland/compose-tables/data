@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="X.Org Compose Key tables from libX11"
+PRETTY_NAME="X11"
+SOURCES="https://x.org/releases/individual/lib/libX11-$VERSION.tar.xz"
+SOURCES="$SOURCES patches/compose-only.patch"
+MAJOR="1"
+MINOR="8"
+PATCH="7"
+VERSION="$MAJOR.$MINOR.$PATCH"

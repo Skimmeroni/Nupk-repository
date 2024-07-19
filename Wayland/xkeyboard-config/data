@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES="meson perl"
+INFO="X keyboard configuration database"
+PRETTY_NAME="xkeyboard-config"
+SOURCES="https://x.org/releases/individual/data/xkeyboard-config/xkeyboard-config-$VERSION.tar.xz"
+MAJOR="2"
+MINOR="41"
+VERSION="$MAJOR.$MINOR"
