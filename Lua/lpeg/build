@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+tar -xf lpeg-$VERSION.tar.gz
+cd lpeg-$VERSION
+
+patch -p1 < ../both-static-and-dynamic.patch
+
+make
+
+install -Dm644 lpeg.so "$DESTDIR/usr/lib/lua/lpeg.so"
+install -Dm644 lpeg.a  "$DESTDIR/usr/lib/lua/lpeg.a"
+install -Dm644 re.lua  "$DESTDIR/usr/share/lua/re.lua"

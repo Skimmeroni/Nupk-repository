@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+
+mkdir -p "$DESTDIR/usr/share/lua"
+cp -r lua_cliargs-$VERSION/src/* "$DESTDIR/usr/share/lua"

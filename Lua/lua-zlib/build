@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+cd lua-zlib-$VERSION
+
+$CC -fPIC $CFLAGS -o zlib.out -c lua_zlib.c
+$AR rcs zlib.a zlib.out
+$CC -shared -llua $LDFLAGS -o zlib.so zlib.out -lz
+
+install -Dm644 zlib.so "$DESTDIR/usr/lib/lua/zlib.so"
+install -Dm644 zlib.a  "$DESTDIR/usr/lib/lua/zlib.a"

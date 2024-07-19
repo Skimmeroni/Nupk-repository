@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+
+mkdir -p "$DESTDIR/usr/share/lua/vstruct"
+
+cp    vstruct-$VERSION/*.lua "$DESTDIR/usr/share/lua/vstruct"
+cp -r vstruct-$VERSION/ast   "$DESTDIR/usr/share/lua/vstruct"
+cp -r vstruct-$VERSION/io    "$DESTDIR/usr/share/lua/vstruct"

@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+tar -xf v$VERSION.tar.gz
+
+install -Dm644 cosmo-$VERSION/src/cosmo.lua "$DESTDIR/usr/share/lua/cosmo.lua"
+cp -r          cosmo-$VERSION/src/cosmo     "$DESTDIR/usr/share/lua"

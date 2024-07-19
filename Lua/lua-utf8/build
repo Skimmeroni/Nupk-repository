@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+tar -xf $VERSION.tar.gz
+cd luautf8-$VERSION
+
+$CC -fPIC $CFLAGS -o lua-utf8.out -c lutf8lib.c
+$AR rcs lua-utf8.a lua-utf8.out
+$CC -shared -llua $LDFLAGS -o lua-utf8.so lua-utf8.out
+
+install -Dm644 lua-utf8.so "$DESTDIR/usr/lib/lua/lua-utf8.so"
+install -Dm644 lua-utf8.a  "$DESTDIR/usr/lib/lua/lua-utf8.a"

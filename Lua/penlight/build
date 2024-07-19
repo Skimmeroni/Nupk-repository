@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+tar -xf $VERSION.tar.gz
+
+mkdir -p "$DESTDIR/usr/share/lua"
+cp -r Penlight-$VERSION/lua/pl "$DESTDIR/usr/share/lua" 
