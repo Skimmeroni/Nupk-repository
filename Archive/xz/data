@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Utils for managing LZMA compressed files"
+PRETTY_NAME="xz"
+SOURCES="https://tukaani.org/xz/xz-$VERSION.tar.gz"
+MAJOR="5"
+MINOR="4"
+PATCH="6"
+VERSION="$MAJOR.$MINOR.$PATCH"

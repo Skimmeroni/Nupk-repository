@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES="zlib"
+INFO="A parallel implementation of gzip"
+PRETTY_NAME="pigz"
+SOURCES="https://zlib.net/pigz/pigz-$VERSION.tar.gz"
+MAJOR="2"
+MINOR="8"
+VERSION="$MAJOR.$MINOR"
