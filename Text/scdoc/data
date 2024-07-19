@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Standalone tool for generating man pages with a simple syntax"
+PRETTY_NAME="scdoc"
+SOURCES="https://git.sr.ht/~sircmpwn/scdoc/archive/$VERSION.tar.gz"
+MAJOR="1"
+MINOR="11"
+PATCH="3"
+VERSION="$MAJOR.$MINOR.$PATCH"

@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+DEPENDENCIES="bison"
+INFO="The One True Awk"
+PRETTY_NAME="awk"
+SOURCES="https://github.com/onetrueawk/awk.git"
+VERSION="git"
