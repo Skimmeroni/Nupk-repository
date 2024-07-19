@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DEPENDENCIES="expat lua"
+INFO=""
+PRETTY_NAME="lua-expat"
+SOURCES="https://github.com/lunarmodules/luaexpat/archive/refs/tags/$VERSION.tar.gz"
+SOURCES="$SOURCES patches/both-static-and-dynamic.patch"
+MAJOR="1"
+MINOR="5"
+PATCH="0"
+VERSION="$MAJOR.$MINOR.$PATCH"

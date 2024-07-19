@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES="lua lua-filesystem"
+INFO=""
+PRETTY_NAME="lua-repl"
+SOURCES="https://github.com/hoelzro/lua-repl/archive/refs/tags/$VERSION.tar.gz"
+MAJOR="0"
+MINOR="10"
+VERSION="$MAJOR.$MINOR"

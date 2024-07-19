@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="lua lua-filesystem"
+INFO=""
+PRETTY_NAME="penlight"
+SOURCES="https://github.com/lunarmodules/Penlight/archive/refs/tags/$VERSION.tar.gz"
+MAJOR="1"
+MINOR="13"
+PATCH="1"
+VERSION="$MAJOR.$MINOR.$PATCH"

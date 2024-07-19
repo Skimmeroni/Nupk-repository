@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES="lua zlib"
+INFO=""
+PRETTY_NAME="lua-zlib"
+SOURCES="https://github.com/brimworks/lua-zlib/archive/refs/tags/v$VERSION.tar.gz"
+MAJOR="1"
+MINOR="2"
+VERSION="$MAJOR.$MINOR"

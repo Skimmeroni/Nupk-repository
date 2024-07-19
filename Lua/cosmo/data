@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="lua lpeg"
+INFO=""
+PRETTY_NAME="cosmo"
+SOURCES="https://github.com/mascarenhas/cosmo/archive/refs/tags/v$VERSION.tar.gz"
+MAJOR="16"
+MINOR="06"
+PATCH="04"
+VERSION="$MAJOR.$MINOR.$PATCH"
