@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Compare files"
+PRETTY_NAME="diff"
+SOURCES="https://github.com/eltanin-os/ccore/archive/refs/tags/v$VERSION.tar.gz"
+MAJOR="0"
+MINOR="1"
+PATCH="0"
+VERSION="$MAJOR.$MINOR.$PATCH"

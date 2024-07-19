@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="libedit"
+INFO="CLI calculator"
+PRETTY_NAME="bc-gh"
+SOURCES="https://github.com/gavinhoward/bc/releases/download/$VERSION/bc-$VERSION.tar.gz"
+MAJOR="6"
+MINOR="7"
+PATCH="5"
+VERSION="$MAJOR.$MINOR.$PATCH"

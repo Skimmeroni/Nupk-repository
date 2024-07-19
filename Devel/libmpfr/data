@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="gmp"
+INFO=""
+PRETTY_NAME="mpfr"
+SOURCES="https://www.mpfr.org/mpfr-current/mpfr-$VERSION.tar.xz"
+MAJOR="4"
+MINOR="2"
+PATCH="1"
+VERSION="$MAJOR.$MINOR.$PATCH"

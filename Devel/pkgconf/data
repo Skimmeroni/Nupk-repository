@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="pkg-config compatible replacement with no dependencies other than C99"
+PRETTY_NAME="pkgconf"
+SOURCES="https://distfiles.ariadne.space/pkgconf/pkgconf-$VERSION.tar.xz"
+MAJOR="2"
+MINOR="2"
+PATCH="0"
+VERSION="$MAJOR.$MINOR.$PATCH"

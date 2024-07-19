@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Standard tool to compile source trees"
+PRETTY_NAME="make"
+SOURCES="https://ftp.gnu.org/gnu/make/make-$VERSION.tar.gz"
+MAJOR="4"
+MINOR="4"
+PATCH="1"
+VERSION="$MAJOR.$MINOR.$PATCH"

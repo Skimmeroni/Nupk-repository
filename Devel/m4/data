@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="GNU macro processor"
+PRETTY_NAME="m4"
+SOURCES="https://ftp.gnu.org/gnu/m4/m4-$VERSION.tar.xz"
+MAJOR="1"
+MINOR="4"
+PATCH="19"
+VERSION="$MAJOR.$MINOR.$PATCH"
