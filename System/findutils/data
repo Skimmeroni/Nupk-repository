@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="GNU utilities for finding files"
+PRETTY_NAME="findutils"
+SOURCES="https://ftp.gnu.org/gnu/findutils/findutils-$VERSION.tar.xz"
+MAJOR="4"
+MINOR="9"
+PATCH="0"
+VERSION="$MAJOR.$MINOR.$PATCH"

@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="linux-headers"
+INFO=""
+PRETTY_NAME="libudev-zero"
+SOURCES="https://github.com/illiliti/libudev-zero/archive/$VERSION.tar.gz"
+MAJOR="1"
+MINOR="0"
+PATCH="3"
+VERSION="$MAJOR.$MINOR.$PATCH"

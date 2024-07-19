@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES="ncurses"
+INFO="BSD replacement for libreadline"
+PRETTY_NAME="libedit"
+SOURCES="https://www.thrysoee.dk/editline/libedit-$VERSION.tar.gz"
+SOURCES="$SOURCES patches/fix-missing-header.patch"
+MAJOR="20230828-3"
+MINOR="1"
+VERSION="$MAJOR.$MINOR"

@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES="bison flex libressl linux-headers"
+INFO=""
+PRETTY_NAME="uboot-tools"
+SOURCES="https://source.denx.de/u-boot/u-boot/-/archive/v$VERSION/u-boot-v$VERSION.tar.gz"
+MAJOR="2024"
+MINOR="04"
+VERSION="$MAJOR.$MINOR"
