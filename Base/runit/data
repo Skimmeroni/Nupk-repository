@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="A UNIX init scheme with service supervision"
+PRETTY_NAME="runit"
+SOURCES="https://github.com/void-linux/runit.git"
+SOURCES="$SOURCES files/2"
+SOURCES="$SOURCES files/poweroff"
+SOURCES="$SOURCES files/reboot"
+SOURCES="$SOURCES patches/use-char-const-instead-of-const-char-const-pointer.patch"
+VERSION="git"

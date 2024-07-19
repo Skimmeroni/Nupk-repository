@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="init-agnostic init scripts from KISS linux"
+PRETTY_NAME="init-scripts"
+SOURCES="https://codeberg.org/kiss-community/init.git"
+SOURCES="$SOURCES patches/unkissify.patch"
+VERSION="git"

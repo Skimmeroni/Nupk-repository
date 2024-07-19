@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="OpenBSD shell"
+PRETTY_NAME="oksh"
+SOURCES="https://github.com/ibara/oksh/releases/download/oksh-$VERSION/oksh-$VERSION.tar.gz"
+MAJOR="7"
+MINOR="3"
+VERSION="$MAJOR.$MINOR"

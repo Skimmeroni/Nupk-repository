@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Dummy package manager in roughly 400 lines of shell script"
+PRETTY_NAME="nupk"
+SOURCES="https://github.com/Skimmeroni/Nupk.git"
+VERSION="git"

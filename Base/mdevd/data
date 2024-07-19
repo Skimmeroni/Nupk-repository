@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+DEPENDENCIES="linux-headers skalibs"
+INFO="Small mdev-compatible kernel hotplug daemon similar to udevd - documentation"
+PRETTY_NAME="mdevd"
+SOURCES="https://github.com/skarnet/mdevd/archive/refs/tags/v$VERSION.tar.gz"
+SOURCES="$SOURCES files/mdev.conf"
+SOURCES="$SOURCES files/mdevd.run"
+MAJOR="0"
+MINOR="1"
+PATCH="6"
+VERSION="$MAJOR.$MINOR.$PATCH"

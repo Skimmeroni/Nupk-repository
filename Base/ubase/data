@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO="Unportable Linux base utilities"
+PRETTY_NAME="ubase"
+SOURCES="git://git.suckless.org/ubase"
+VERSION="git"
