@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO=""
+PRETTY_NAME="ttf-gentium-plus"
+SOURCES="https://software.sil.org/downloads/r/gentium/GentiumPlus-$VERSION.zip"
+MAJOR="6"
+MINOR="200"
+VERSION="$MAJOR.$MINOR"

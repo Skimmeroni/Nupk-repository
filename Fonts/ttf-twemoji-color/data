@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO=""
+PRETTY_NAME="ttf-twemoji-color"
+SOURCES="https://github.com/13rac1/twemoji-color-font/releases/download/v$VERSION/TwitterColorEmoji-SVGinOT-Linux-$VERSION.tar.gz"
+MAJOR="14"
+MINOR="0"
+PATCH="2"
+VERSION="$MAJOR.$MINOR.$PATCH"

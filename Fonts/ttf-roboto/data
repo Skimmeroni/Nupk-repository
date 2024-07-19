@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DEPENDENCIES=""
+INFO=""
+PRETTY_NAME="ttf-roboto"
+SOURCES="https://github.com/googlefonts/roboto/releases/download/v$VERSION/roboto-android.zip"
+MAJOR="2"
+MINOR="138"
+VERSION="$MAJOR.$MINOR"
