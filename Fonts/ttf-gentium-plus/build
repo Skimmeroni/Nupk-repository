@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+mkdir build
+unzip -d build GentiumPlus-$VERSION.zip
+
+mkdir -p "$DESTDIR/usr/share/fonts/TTF"
+cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
+
+install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-gentium-plus.license"
