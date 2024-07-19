@@ -19,25 +19,41 @@ make \
 install -Dm755 ../cron.run       "$DESTDIR/etc/sv/cron/run"
 ln -sf /run/runit/supervise.cron "$DESTDIR/etc/sv/cron/supervise"
 
+# used to be done automatically by the makefile
+
 mv "$DESTDIR/usr/bin/xinstall"              "$DESTDIR/usr/bin/install"
 mv "$DESTDIR/usr/share/man/man1/xinstall.1" "$DESTDIR/usr/share/man/man1/install.1"
 
-# strings and xargs already provided
+# strings is already provided by binutils
 
 rm "$DESTDIR/usr/bin/strings"
-rm "$DESTDIR/usr/bin/xargs"
 rm "$DESTDIR/usr/share/man/man1/strings.1"
+
+# xargs is already provided by findutils
+
+rm "$DESTDIR/usr/bin/xargs"
 rm "$DESTDIR/usr/share/man/man1/xargs.1"
 
-# tar, find, grep, and sed are (sadly) too strict to be usable
+# sed lacks the -i option, which is omnipresent in configure scripts :(
+
+rm "$DESTDIR/usr/bin/sed"
+rm "$DESTDIR/usr/share/man/man1/sed.1"
+
+# compiling the Linux kernel requires find to support -printf
+# note: Busybox find also does not support -printf
+
+rm "$DESTDIR/usr/bin/find"
+rm "$DESTDIR/usr/share/man/man1/find.1"
+
+# grep lacks many options found in configure scripts, like -o
+# it's also quite slow
+
+rm "$DESTDIR/usr/bin/grep"
+rm "$DESTDIR/usr/share/man/man1/grep.1"
+
+# tar might be usable (requires investigation)
 
 rm "$DESTDIR/usr/bin/tar"
-rm "$DESTDIR/usr/bin/find"
-rm "$DESTDIR/usr/bin/grep"
-rm "$DESTDIR/usr/bin/sed"
 rm "$DESTDIR/usr/share/man/man1/tar.1"
-rm "$DESTDIR/usr/share/man/man1/find.1"
-rm "$DESTDIR/usr/share/man/man1/grep.1"
-rm "$DESTDIR/usr/share/man/man1/sed.1"
 
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
