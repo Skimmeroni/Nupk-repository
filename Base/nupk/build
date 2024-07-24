@@ -4,4 +4,5 @@ install -Dm755 -t "$DESTDIR/usr/bin" nupk.git/nupk
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > nupk@$VERSION.tar.gz
 exit

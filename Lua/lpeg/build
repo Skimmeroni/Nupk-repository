@@ -13,4 +13,5 @@ install -Dm644 re.lua  "$DESTDIR/usr/share/lua/re.lua"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lpeg@$VERSION.tar.gz
 exit

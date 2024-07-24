@@ -12,4 +12,5 @@ install -Dm644 zlib.a  "$DESTDIR/usr/lib/lua/zlib.a"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lua-zlib@$VERSION.tar.gz
 exit

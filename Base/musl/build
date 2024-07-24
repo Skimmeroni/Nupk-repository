@@ -52,4 +52,5 @@ chmod 755 "$DESTDIR/usr/bin/ldd"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > musl@$VERSION.tar.gz
 exit

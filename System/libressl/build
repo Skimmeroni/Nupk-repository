@@ -18,4 +18,5 @@ install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > libressl@$VERSION.tar.gz
 exit

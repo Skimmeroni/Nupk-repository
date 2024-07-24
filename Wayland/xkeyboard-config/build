@@ -20,4 +20,5 @@ mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib/pkgconfig"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > xkeyboard-config@$VERSION.tar.gz
 exit

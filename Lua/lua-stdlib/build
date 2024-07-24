@@ -7,4 +7,5 @@ cp -r          lua-stdlib-release-v$VERSION/lib/std     "$DESTDIR/usr/share/lua"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lua-stdlib@$VERSION.tar.gz
 exit

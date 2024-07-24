@@ -16,4 +16,5 @@ install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/lua-filesystem.license"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lua-filesystem@$VERSION.tar.gz
 exit

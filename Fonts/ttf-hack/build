@@ -7,4 +7,5 @@ cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > ttf-hack@$VERSION.tar.gz
 exit

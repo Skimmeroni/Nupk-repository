@@ -41,4 +41,5 @@ rmdir "$DESTDIR/usr/sbin"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > util-linux@$VERSION.tar.gz
 exit

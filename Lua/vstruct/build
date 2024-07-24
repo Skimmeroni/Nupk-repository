@@ -10,4 +10,5 @@ cp -r vstruct-$VERSION/io    "$DESTDIR/usr/share/lua/vstruct"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > vstruct@$VERSION.tar.gz
 exit

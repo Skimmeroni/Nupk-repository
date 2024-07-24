@@ -15,4 +15,5 @@ find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > skalibs@$VERSION.tar.gz
 exit

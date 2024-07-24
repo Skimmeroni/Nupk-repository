@@ -8,4 +8,5 @@ cp -r          lua-repl-$VERSION/repl    "$DESTDIR/usr/share/lua"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lua-repl@$VERSION.tar.gz
 exit

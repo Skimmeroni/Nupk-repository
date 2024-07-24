@@ -9,4 +9,5 @@ find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > linux-headers@$VERSION.tar.gz
 exit

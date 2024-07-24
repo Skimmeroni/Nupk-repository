@@ -20,4 +20,5 @@ ln -sf grep "$DESTDIR/usr/bin/ggrep"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > grep@$VERSION.tar.gz
 exit

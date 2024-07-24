@@ -15,4 +15,5 @@ rm -rf "$DESTDIR/usr/share/info"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > bison@$VERSION.tar.gz
 exit

@@ -6,4 +6,5 @@ install -Dm644 -t "$DESTDIR/usr/share/lua/cassowary" cassowary.lua-$VERSION/cass
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > cassowary@$VERSION.tar.gz
 exit

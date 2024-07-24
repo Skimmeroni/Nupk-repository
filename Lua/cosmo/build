@@ -7,4 +7,5 @@ cp -r          cosmo-$VERSION/src/cosmo     "$DESTDIR/usr/share/lua"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > cosmo@$VERSION.tar.gz
 exit

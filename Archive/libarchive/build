@@ -30,4 +30,5 @@ ln -sf bsdunzip "$DESTDIR/usr/bin/unzip"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > libarchive@$VERSION.tar.gz
 exit

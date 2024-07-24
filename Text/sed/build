@@ -20,4 +20,5 @@ strip --strip-unneeded "$DESTDIR/usr/bin/sed"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > sed@$VERSION.tar.gz
 exit

@@ -12,4 +12,5 @@ make PREFIX=/usr DESTDIR="$DESTDIR" install
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > dtc@$VERSION.tar.gz
 exit

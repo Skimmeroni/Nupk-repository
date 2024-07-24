@@ -16,4 +16,5 @@ install -Dm644 doc/mkimage.1 "$DESTDIR/usr/share/man/man1/mkimage.1"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > u-boot-tools@$VERSION.tar.gz
 exit

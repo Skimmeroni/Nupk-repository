@@ -10,4 +10,5 @@ make install
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lua-expat@$VERSION.tar.gz
 exit

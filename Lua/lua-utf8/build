@@ -12,4 +12,5 @@ install -Dm644 lua-utf8.a  "$DESTDIR/usr/lib/lua/lua-utf8.a"
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > lua-utf8@$VERSION.tar.gz
 exit

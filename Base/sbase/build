@@ -60,4 +60,5 @@ find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > sbase@$VERSION.tar.gz
 exit
