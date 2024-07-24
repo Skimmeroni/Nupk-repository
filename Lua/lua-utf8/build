@@ -9,3 +9,7 @@ $CC -shared -llua $LDFLAGS -o lua-utf8.so lua-utf8.out
 
 install -Dm644 lua-utf8.so "$DESTDIR/usr/lib/lua/lua-utf8.so"
 install -Dm644 lua-utf8.a  "$DESTDIR/usr/lib/lua/lua-utf8.a"
+
+su
+chown -R root:root $DESTDIR
+exit

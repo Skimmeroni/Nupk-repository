@@ -15,3 +15,7 @@ patch -p1 < ../compose-only.patch
 
 make -C nls
 make -C nls install
+
+su
+chown -R root:root $DESTDIR
+exit

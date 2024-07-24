@@ -5,3 +5,7 @@ cd TwitterColorEmoji-SVGinOT-Linux-$VERSION
 
 install -Dm644 -t "$DESTDIR/usr/share/fonts/TTF" TwitterColorEmoji-SVGinOT.ttf
 install -Dm644 LICENSE-CC-BY.txt "$DESTDIR/usr/share/LICENSES/ttf-twemoji-color.license"
+
+su
+chown -R root:root $DESTDIR
+exit

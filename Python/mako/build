@@ -9,3 +9,7 @@ python setup.py install \
 	--root="$DESTDIR"
 
 find "$DESTDIR/usr/lib" -type f -name '*.so' -exec strip --strip-unneeded {} \;
+
+su
+chown -R root:root $DESTDIR
+exit

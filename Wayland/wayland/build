@@ -18,3 +18,7 @@ meson -C build install -d "$DESTDIR"
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 strip --strip-unneeded "$DESTDIR/usr/bin/wayland-scanner"
+
+su
+chown -R root:root $DESTDIR
+exit

@@ -17,3 +17,7 @@ make DESTDIR="$DESTDIR" install-strip
 rm -rf "$DESTDIR/usr/share/info"
 
 ln -sf grep "$DESTDIR/usr/bin/ggrep"
+
+su
+chown -R root:root $DESTDIR
+exit

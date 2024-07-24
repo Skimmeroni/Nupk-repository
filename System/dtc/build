@@ -9,3 +9,7 @@ export NO_YAML=1
 
 make PREFIX=/usr
 make PREFIX=/usr DESTDIR="$DESTDIR" install
+
+su
+chown -R root:root $DESTDIR
+exit

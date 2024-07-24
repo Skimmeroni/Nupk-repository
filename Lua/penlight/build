@@ -4,3 +4,7 @@ gzip -cd $VERSION.tar.gz | tar -x
 
 mkdir -p "$DESTDIR/usr/share/lua"
 cp -r Penlight-$VERSION/lua/pl "$DESTDIR/usr/share/lua" 
+
+su
+chown -R root:root $DESTDIR
+exit

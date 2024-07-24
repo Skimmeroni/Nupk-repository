@@ -5,3 +5,7 @@ unzip -d build roboto-android.zip
 
 mkdir -p "$DESTDIR/usr/share/fonts/TTF"
 cp build/*.ttf "$DESTDIR/usr/share/fonts/TTF"
+
+su
+chown -R root:root $DESTDIR
+exit

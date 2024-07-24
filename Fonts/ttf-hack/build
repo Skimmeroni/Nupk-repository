@@ -4,3 +4,7 @@ gzip -cd Hack-v$VERSION-ttf.tar.gz | tar -x
 
 mkdir -p "$DESTDIR/usr/share/fonts/TTF"
 cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
+
+su
+chown -R root:root $DESTDIR
+exit

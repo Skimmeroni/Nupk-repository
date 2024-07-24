@@ -6,3 +6,7 @@ cd linux-$VERSION
 make HOSTCC="$CC" headers
 
 find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
+
+su
+chown -R root:root $DESTDIR
+exit

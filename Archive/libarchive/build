@@ -27,3 +27,7 @@ install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libarchive.license"
 ln -sf bsdcpio  "$DESTDIR/usr/bin/cpio"
 ln -sf bsdtar   "$DESTDIR/usr/bin/tar"
 ln -sf bsdunzip "$DESTDIR/usr/bin/unzip"
+
+su
+chown -R root:root $DESTDIR
+exit

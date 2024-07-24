@@ -11,3 +11,7 @@ cd hwdata-$VERSION
 
 make
 make install
+
+su
+chown -R root:root $DESTDIR
+exit

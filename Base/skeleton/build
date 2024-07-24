@@ -49,3 +49,7 @@ ln -sf spool/mail        "$DESTDIR/var/mail"
 ln -sf ../run            "$DESTDIR/var/run"
 ln -sf ../run/lock       "$DESTDIR/var/lock"
 ln -sf /proc/self/mounts "$DESTDIR/etc/mtab"
+
+su
+chown -R root:root $DESTDIR
+exit

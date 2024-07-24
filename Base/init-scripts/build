@@ -12,3 +12,7 @@ install -Dm755 lib/init/rc.shutdown  "$DESTDIR/usr/lib/init/rc.shutdown"
 install -Dm755 kpow                  "$DESTDIR/usr/bin/kpow"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/kpow"
+
+su
+chown -R root:root $DESTDIR
+exit

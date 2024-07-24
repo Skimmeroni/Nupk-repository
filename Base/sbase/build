@@ -57,3 +57,7 @@ rm "$DESTDIR/usr/bin/tar"
 rm "$DESTDIR/usr/share/man/man1/tar.1"
 
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
+
+su
+chown -R root:root $DESTDIR
+exit

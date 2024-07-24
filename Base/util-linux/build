@@ -38,3 +38,7 @@ find $DESTDIR -type f -name '*.la' -delete
 
 # For some reason, this directory is created anyway
 rmdir "$DESTDIR/usr/sbin"
+
+su
+chown -R root:root $DESTDIR
+exit

@@ -22,3 +22,7 @@ done
 
 strip --strip-unneeded "$DESTDIR/usr/bin/zic"
 strip --strip-unneeded "$DESTDIR/usr/bin/zdump"
+
+su
+chown -R root:root $DESTDIR
+exit

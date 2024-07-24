@@ -11,3 +11,7 @@ install -Dm644 awk.1   "$DESTDIR/usr/share/man/man1/awk.1"
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/awk.license"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/awk"
+
+su
+chown -R root:root $DESTDIR
+exit

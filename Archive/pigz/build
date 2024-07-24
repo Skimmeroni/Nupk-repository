@@ -14,3 +14,7 @@ install -Dm644 -t "$DESTDIR/usr/share/man/man1" pigz.1
 
 ln -sf pigz "$DESTDIR/usr/bin/gzip"
 strip --strip-unneeded "$DESTDIR/usr/bin/pigz"
+
+su
+chown -R root:root $DESTDIR
+exit

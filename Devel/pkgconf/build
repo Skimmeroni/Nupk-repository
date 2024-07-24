@@ -14,3 +14,7 @@ ln -s pkgconf "$DESTDIR/usr/bin/pkg-config"
 
 rm -rf "$DESTDIR/usr/share/doc"
 find $DESTDIR -type f -name '*.la' -delete
+
+su
+chown -R root:root $DESTDIR
+exit

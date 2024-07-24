@@ -10,3 +10,7 @@ build/meson -C build compile
 build/meson -C build install -d "$DESTDIR"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/muon"
+
+su
+chown -R root:root $DESTDIR
+exit

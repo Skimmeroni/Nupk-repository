@@ -18,3 +18,7 @@ strip --strip-unneeded "$DESTDIR/usr/bin/mdevd"
 strip --strip-unneeded "$DESTDIR/usr/bin/mdevd-coldplug"
 
 rm -rf "$DESTDIR/usr/include"
+
+su
+chown -R root:root $DESTDIR
+exit

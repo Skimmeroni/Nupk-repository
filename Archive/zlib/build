@@ -13,3 +13,7 @@ find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 rm -rf "$DESTDIR/usr/share"
 find $DESTDIR -type f -name '*.la' -delete
+
+su
+chown -R root:root $DESTDIR
+exit

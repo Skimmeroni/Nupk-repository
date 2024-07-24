@@ -18,3 +18,7 @@ meson -C build install -d "$DESTDIR"
 
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+
+su
+chown -R root:root $DESTDIR
+exit

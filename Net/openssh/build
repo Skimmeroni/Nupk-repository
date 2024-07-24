@@ -29,3 +29,7 @@ chmod +x "$DESTDIR/usr/bin/ssh-copy-id"
 
 install -Dm755 ../sshd.run "$DESTDIR/etc/sv/sshd/run" 
 ln -sf /run/runit/supervise.sshd "$DESTDIR/etc/sv/sshd/supervise"
+
+su
+chown -R root:root $DESTDIR
+exit

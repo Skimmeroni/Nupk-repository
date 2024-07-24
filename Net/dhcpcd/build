@@ -21,3 +21,7 @@ ln -sf /run/runit/supervise.dhcpcd "$DESTDIR/etc/sv/dhcpcd/supervise"
 strip --strip-unneeded "$DESTDIR/usr/bin/dhcpcd"
 
 rm -rf "$DESTDIR/var"
+
+su
+chown -R root:root $DESTDIR
+exit

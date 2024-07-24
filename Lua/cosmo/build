@@ -4,3 +4,7 @@ gzip -cd v$VERSION.tar.gz | tar -x
 
 install -Dm644 cosmo-$VERSION/src/cosmo.lua "$DESTDIR/usr/share/lua/cosmo.lua"
 cp -r          cosmo-$VERSION/src/cosmo     "$DESTDIR/usr/share/lua"
+
+su
+chown -R root:root $DESTDIR
+exit

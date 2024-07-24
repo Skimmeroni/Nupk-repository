@@ -7,3 +7,7 @@ mkdir -p "$DESTDIR/usr/share/fonts/TTF"
 cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
 
 install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-gentium-plus.license"
+
+su
+chown -R root:root $DESTDIR
+exit

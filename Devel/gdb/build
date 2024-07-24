@@ -13,3 +13,7 @@ make -C gdb DESTDIR="$DESTDIR" install-strip
 make -C gdbserver DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
+
+su
+chown -R root:root $DESTDIR
+exit

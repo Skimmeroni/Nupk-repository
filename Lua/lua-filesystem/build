@@ -13,3 +13,7 @@ install -Dm644 src/lfs.so "$DESTDIR/usr/lib/lua/lfs.so"
 install -Dm644 src/lfs.a  "$DESTDIR/usr/lib/lua/lfs.a"
 
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/lua-filesystem.license"
+
+su
+chown -R root:root $DESTDIR
+exit

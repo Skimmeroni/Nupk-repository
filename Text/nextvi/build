@@ -8,3 +8,7 @@ export CFLAGS="$CFLAGS -static"
 
 install -Dm755 -t "$DESTDIR/usr/bin" vi
 strip --strip-unneeded "$DESTDIR/usr/bin/vi"
+
+su
+chown -R root:root $DESTDIR
+exit

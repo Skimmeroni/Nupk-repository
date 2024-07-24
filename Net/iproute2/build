@@ -25,3 +25,7 @@ cp man/man8/tc* "$DESTDIR/usr/share/man/man8"
 strip --strip-unneeded "$DESTDIR/usr/bin/ip"
 strip --strip-unneeded "$DESTDIR/usr/bin/tc"
 strip --strip-unneeded "$DESTDIR/usr/lib/libnetlink.a"
+
+su
+chown -R root:root $DESTDIR
+exit

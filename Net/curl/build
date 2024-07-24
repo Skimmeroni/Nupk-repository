@@ -27,3 +27,7 @@ make DESTDIR="$DESTDIR" install-strip
 rm -rf "$DESTDIR/usr/share/aclocal"
 
 find $DESTDIR -type f -name '*.la' -delete
+
+su
+chown -R root:root $DESTDIR
+exit

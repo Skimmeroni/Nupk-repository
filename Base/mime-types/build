@@ -2,3 +2,7 @@
 
 grep -v '#' mime.types > mime-processed
 install -Dm644 mime-processed "$DESTDIR/etc/mime.types"
+
+su
+chown -R root:root $DESTDIR
+exit

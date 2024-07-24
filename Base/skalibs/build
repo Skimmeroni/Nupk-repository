@@ -12,3 +12,7 @@ make DESTDIR="$DESTDIR" install
 
 find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
+su
+chown -R root:root $DESTDIR
+exit

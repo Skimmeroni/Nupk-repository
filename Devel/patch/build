@@ -11,3 +11,7 @@ install -Dm755 -t "$DESTDIR/usr/bin" patch
 install -Dm644 -t "$DESTDIR/usr/share/man/man1" patch.1
 
 strip --strip-unneeded "$DESTDIR/usr/bin/patch"
+
+su
+chown -R root:root $DESTDIR
+exit

@@ -18,3 +18,7 @@ rm -rf "$DESTDIR/usr/share/man/man3"
 find "$DESTDIR/usr/bin"       -type f -exec strip --strip-unneeded {} \;
 find "$DESTDIR" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find "$DESTDIR" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
+su
+chown -R root:root $DESTDIR
+exit

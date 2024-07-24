@@ -17,3 +17,7 @@ meson -C build install -d "$DESTDIR"
 
 mkdir -p "$DESTDIR/usr/lib"
 mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib/pkgconfig"
+
+su
+chown -R root:root $DESTDIR
+exit

@@ -7,3 +7,7 @@ cd less-$VERSION
 
 make
 make DESTDIR="$DESTDIR" install-strip
+
+su
+chown -R root:root $DESTDIR
+exit

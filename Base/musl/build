@@ -49,3 +49,7 @@ exec /lib/ld-musl-$ARCH.so.1 --list "\$@"
 EOF
 
 chmod 755 "$DESTDIR/usr/bin/ldd"
+
+su
+chown -R root:root $DESTDIR
+exit

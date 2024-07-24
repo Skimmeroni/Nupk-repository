@@ -54,3 +54,7 @@ then
 	cp -r  "$DESTDIR/usr/lib64/"* "$DESTDIR/usr/lib"
 	rm -rf "$DESTDIR/usr/lib64"
 fi
+
+su
+chown -R root:root $DESTDIR
+exit

@@ -7,3 +7,7 @@ make PREFIX=/usr
 make PREFIX=/usr PCDIR=/usr/lib/pkgconfig install
 
 strip --strip-unneeded "$DESTDIR/usr/bin/scdoc"
+
+su
+chown -R root:root $DESTDIR
+exit

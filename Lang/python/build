@@ -58,3 +58,7 @@ rm -f  "$DESTDIR/usr/bin/2to3-$MAJOR.$MINOR"
 strip --strip-unneeded "$DESTDIR/usr/bin/python3"
 find "$DESTDIR/usr/lib" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
+su
+chown -R root:root $DESTDIR
+exit

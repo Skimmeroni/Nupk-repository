@@ -13,3 +13,7 @@ strip --strip-unneeded "$DESTDIR/usr/bin/mkimage"
 strip --strip-unneeded "$DESTDIR/usr/bin/dumpimage"
 
 install -Dm644 doc/mkimage.1 "$DESTDIR/usr/share/man/man1/mkimage.1"
+
+su
+chown -R root:root $DESTDIR
+exit

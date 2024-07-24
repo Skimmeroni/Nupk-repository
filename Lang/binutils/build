@@ -31,3 +31,7 @@ ln -sf ld.bfd "$DESTDIR/usr/bin/ld"
 
 rm -rf "$DESTDIR/usr/share/info"
 find $DESTDIR -type f -name '*.la' -delete
+
+su
+chown -R root:root $DESTDIR
+exit

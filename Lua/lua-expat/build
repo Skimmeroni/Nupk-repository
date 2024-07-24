@@ -7,3 +7,7 @@ patch -p1 < ../both-static-and-dynamic.patch
 
 make
 make install
+
+su
+chown -R root:root $DESTDIR
+exit

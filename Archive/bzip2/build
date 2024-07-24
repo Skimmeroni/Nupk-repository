@@ -27,3 +27,7 @@ strip --strip-unneeded "$DESTDIR/usr/lib/libbz2.a"
 ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so"
 ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR"
 ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR.$MINOR"
+
+su
+chown -R root:root $DESTDIR
+exit
