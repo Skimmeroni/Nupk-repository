@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d zlib-$VERSION.tar.gz | tar -x
+gzip -cd zlib-$VERSION.tar.gz | tar -x
 cd zlib-$VERSION
 
 ./configure --prefix=/usr

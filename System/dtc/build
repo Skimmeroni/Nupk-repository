@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d dtc-$VERSION.tar.gz | tar -x
+gzip -cd dtc-$VERSION.tar.gz | tar -x
 cd dtc-$VERSION
 
 export NO_PYTHON=1

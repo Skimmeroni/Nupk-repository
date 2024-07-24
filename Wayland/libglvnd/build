@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d libglvnd-v$VERSION.tar.gz | tar -x
+gzip -cd libglvnd-v$VERSION.tar.gz | tar -x
 cd libglvnd-v$VERSION
 
 meson setup -Dprefix=/usr -Dbuildtype=release build

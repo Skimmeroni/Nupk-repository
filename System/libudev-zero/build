@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d $VERSION.tar.gz | tar -x
+gzip -cd $VERSION.tar.gz | tar -x
 cd libudev-zero-$VERSION
 
 make PREFIX=/usr

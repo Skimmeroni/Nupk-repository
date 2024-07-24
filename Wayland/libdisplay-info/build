@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d libdisplay-info-$VERSION.tar.gz | tar -x
+gzip -cd libdisplay-info-$VERSION.tar.gz | tar -x
 cd libdisplay-info-$VERSION
 
 meson setup \

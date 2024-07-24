@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-bzip2 -d expat-$VERSION.tar.bz2 | tar -x
+bzip2 -cd expat-$VERSION.tar.bz2 | tar -x
 cd expat-$VERSION
 
 ./configure \

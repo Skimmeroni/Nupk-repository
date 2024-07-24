@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d linux-$VERSION.tar.xz | tar -x
+xz -cd linux-$VERSION.tar.xz | tar -x
 cd linux-$VERSION
 
 make HOSTCC="$CC" headers

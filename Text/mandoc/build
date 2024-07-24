@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d mandoc-$VERSION.tar.gz | tar -x
+gzip -cd mandoc-$VERSION.tar.gz | tar -x
 cd mandoc-$VERSION
 
 patch -p1 < ../mandoc-no-warn.patch

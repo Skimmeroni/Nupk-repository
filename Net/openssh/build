@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d openssh-$VERSION.tar.gz | tar -x
+gzip -cd openssh-$VERSION.tar.gz | tar -x
 cd openssh-$VERSION
 
 ./configure \

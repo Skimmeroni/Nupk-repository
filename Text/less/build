@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d less-$VERSION.tar.gz | tar -x
+gzip -cd less-$VERSION.tar.gz | tar -x
 cd less-$VERSION
 
 ./configure --prefix=/usr

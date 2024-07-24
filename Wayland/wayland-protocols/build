@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d wayland-protocols-$VERSION.tar.xz | tar -x
+xz -cd wayland-protocols-$VERSION.tar.xz | tar -x
 cd wayland-protocols-$VERSION
 
 meson setup \

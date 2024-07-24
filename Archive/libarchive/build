@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d libarchive-$VERSION.tar.xz | tar -x
+xz -cd libarchive-$VERSION.tar.xz | tar -x
 cd libarchive-$VERSION
 
 ./configure \

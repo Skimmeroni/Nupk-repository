@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d xkeyboard-config-$VERSION.tar.xz | tar -x
+xz -cd xkeyboard-config-$VERSION.tar.xz | tar -x
 cd xkeyboard-config-$VERSION
 
 sed -i "s/subdir('po')//g" meson.build

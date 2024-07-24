@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d libffi-$VERSION.tar.gz | tar -x
+gzip -cd libffi-$VERSION.tar.gz | tar -x
 cd libffi-$VERSION
 
 ./configure \

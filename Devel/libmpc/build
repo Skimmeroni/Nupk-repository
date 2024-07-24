@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d mpc-$VERSION.tar.gz | tar -x
+gzip -cd mpc-$VERSION.tar.gz | tar -x
 cd mpc-$VERSION
 
 ./configure \

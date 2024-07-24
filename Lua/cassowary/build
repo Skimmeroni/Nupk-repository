@@ -1,5 +1,5 @@
 #!/bin/sh -e
 
-gzip -d v$VERSION.tar.gz | tar -x
+gzip -cd v$VERSION.tar.gz | tar -x
 
 install -Dm644 -t "$DESTDIR/usr/share/lua/cassowary" cassowary.lua-$VERSION/cassowary/init.lua

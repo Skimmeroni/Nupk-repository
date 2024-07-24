@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d mpfr-$VERSION.tar.xz | tar -x
+xz -cd mpfr-$VERSION.tar.xz | tar -x
 cd mpfr-$VERSION
 
 ./configure \

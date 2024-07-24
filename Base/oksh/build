@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d oksh-$VERSION.tar.gz | tar -x
+gzip -cd oksh-$VERSION.tar.gz | tar -x
 cd oksh-$VERSION
 
 ./configure \

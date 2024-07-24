@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d v$VERSION.tar.gz | tar -x
+gzip -cd v$VERSION.tar.gz | tar -x
 cd setuptools-$VERSION
 
 # Useful trick for boostrapping setuptools

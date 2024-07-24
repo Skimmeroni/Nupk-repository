@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d lpeg-$VERSION.tar.gz | tar -x
+gzip -cd lpeg-$VERSION.tar.gz | tar -x
 cd lpeg-$VERSION
 
 patch -p1 < ../both-static-and-dynamic.patch

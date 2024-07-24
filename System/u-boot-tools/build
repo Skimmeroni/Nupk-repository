@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d u-boot-v$VERSION.tar.gz | tar -x
+gzip -cd u-boot-v$VERSION.tar.gz | tar -x
 cd u-boot-v$VERSION
 
 sed -i 's/hostprogs-$(CONFIG_TOOLS_MKEFICAPSULE) += mkeficapsule//g' tools/Makefile

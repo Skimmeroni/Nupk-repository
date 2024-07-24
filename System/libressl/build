@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d libressl-$VERSION.tar.gz | tar -x
+gzip -cd libressl-$VERSION.tar.gz | tar -x
 cd libressl-$VERSION
 
 ./configure \

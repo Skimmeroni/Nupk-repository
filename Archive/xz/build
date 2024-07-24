@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d xz-$VERSION.tar.gz | tar -x
+gzip -cd xz-$VERSION.tar.gz | tar -x
 cd xz-$VERSION
 
 ./configure \

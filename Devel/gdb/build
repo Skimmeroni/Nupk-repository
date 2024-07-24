@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d gdb-$VERSION.tar.xz | tar -x
+xz -cd gdb-$VERSION.tar.xz | tar -x
 cd gdb-$VERSION
 
 ./configure \

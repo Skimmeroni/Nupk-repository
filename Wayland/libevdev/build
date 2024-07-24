@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-xz -d libevdev-$VERSION.tar.xz | tar -x
+xz -cd libevdev-$VERSION.tar.xz | tar -x
 cd libevdev-$VERSION
 
 ./configure --prefix=/usr

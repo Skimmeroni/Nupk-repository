@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00.tar.gz | tar -x
+gzip -cd sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00.tar.gz | tar -x
 cd sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00
 
 export CPPFLAGS="$CPPFLAGS -DSQLITE_ENABLE_FTS3"

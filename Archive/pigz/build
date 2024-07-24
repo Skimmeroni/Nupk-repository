@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-gzip -d pigz-$VERSION.tar.gz | tar -x
+gzip -cd pigz-$VERSION.tar.gz | tar -x
 cd pigz-$VERSION
 
 $CC -c pigz.c -DNOZOPFLI
