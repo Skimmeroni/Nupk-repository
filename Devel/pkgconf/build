@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf pkgconf-$VERSION.tar.xz
+xz -d pkgconf-$VERSION.tar.xz | tar -x
 cd pkgconf-$VERSION
 
 ./configure \

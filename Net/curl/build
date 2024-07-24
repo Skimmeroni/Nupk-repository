@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf curl-$VERSION.tar.xz
+xz -d curl-$VERSION.tar.xz | tar -x
 cd curl-$VERSION
 
 ./configure \

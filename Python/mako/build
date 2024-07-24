@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf Mako-$VERSION.tar.gz
+gzip -d Mako-$VERSION.tar.gz | tar -x
 cd Mako-$VERSION
 
 python setup.py build

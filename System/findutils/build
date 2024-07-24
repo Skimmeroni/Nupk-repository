@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf findutils-$VERSION.tar.xz
+xz -d findutils-$VERSION.tar.xz | tar -x
 cd findutils-$VERSION
 
 ./configure --prefix=/usr

@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf v$VERSION.tar.gz
+gzip -d v$VERSION.tar.gz | tar -x
 
 mkdir -p "$DESTDIR/usr/share/lua" 
 cp -r fluent-lua-$VERSION/fluent "$DESTDIR/usr/share/lua"

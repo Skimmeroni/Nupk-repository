@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf libedit-$VERSION.tar.gz
+gzip -d libedit-$VERSION.tar.gz | tar -x
 cd libedit-$VERSION
 
 patch -p1 < ../fix-missing-header.patch

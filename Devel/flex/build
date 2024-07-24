@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf flex-$VERSION.tar.gz
+gzip -d flex-$VERSION.tar.gz | tar -x
 cd flex-$VERSION
 
 ./configure \

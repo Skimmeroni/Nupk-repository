@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf libX11-$VERSION.tar.xz
+xz -d libX11-$VERSION.tar.xz | tar -x
 cd libX11-$VERSION
 
 patch -p1 < ../compose-only.patch

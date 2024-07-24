@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf bsdutils-$VERSION.tar.xz
+xz -d bsdutils-$VERSION.tar.xz | tar -x
 cd bsdutils-$VERSION/src/sed
 
 cp ../../compat/strlcat.c .

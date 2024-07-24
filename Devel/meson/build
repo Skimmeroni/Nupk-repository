@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf $VERSION.tar.gz
+gzip -d $VERSION.tar.gz | tar -x
 cd meson-$VERSION
 
 python setup.py build

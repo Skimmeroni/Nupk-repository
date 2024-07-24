@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf bison-$VERSION.tar.xz
+xz -d bison-$VERSION.tar.xz | tar -x
 cd bison-$VERSION
 
 ./configure \

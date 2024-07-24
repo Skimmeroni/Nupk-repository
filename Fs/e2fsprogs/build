@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf e2fsprogs-$VERSION.tar.xz
+xz -d e2fsprogs-$VERSION.tar.xz | tar -x
 cd e2fsprogs-$VERSION
 
 ./configure \

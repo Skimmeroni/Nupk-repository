@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf wlroots-$VERSION.tar.gz
+gzip -d wlroots-$VERSION.tar.gz | tar -x
 cd wlroots-$VERSION
 
 meson setup \

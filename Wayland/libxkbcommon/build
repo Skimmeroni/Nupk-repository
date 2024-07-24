@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf libxkbcommon-$VERSION.tar.xz
+xz -d libxkbcommon-$VERSION.tar.xz | tar -x
 cd libxkbcommon-$VERSION
 
 meson setup \

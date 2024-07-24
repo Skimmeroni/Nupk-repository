@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf pixman-$VERSION.tar.xz
+xz -d pixman-$VERSION.tar.xz | tar -x
 cd pixman-$VERSION
 
 meson setup \

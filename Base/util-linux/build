@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf util-linux-$VERSION.tar.xz
+xz -d util-linux-$VERSION.tar.xz | tar -x
 cd util-linux-$VERSION
 
 ./configure \

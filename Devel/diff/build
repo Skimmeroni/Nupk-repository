@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf v$VERSION.tar.gz
+gzip -d v$VERSION.tar.gz | tar -x
 cd ccore-$VERSION/src/openbsd/diff
 cp ../compat.h .
 

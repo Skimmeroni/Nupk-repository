@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf m4-$VERSION.tar.xz
+xz -d m4-$VERSION.tar.xz | tar -x
 cd m4-$VERSION
 
 ./configure \

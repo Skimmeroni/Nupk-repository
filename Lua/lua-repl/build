@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf $VERSION.tar.gz
+gzip -d $VERSION.tar.gz | tar -x
 
 mkdir -p "$DESTDIR/usr/share/lua" 
 install -Dm755 lua-repl-$VERSION/rep.lua "$DESTDIR/usr/bin/rep.lua" 

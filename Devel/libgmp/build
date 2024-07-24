@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf gmp-$VERSION.tar.xz
+xz -d gmp-$VERSION.tar.xz | tar -x
 cd gmp-$VERSION
 
 ./configure \

@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf make-$VERSION.tar.gz
+gzip -d make-$VERSION.tar.gz | tar -x
 cd make-$VERSION
 
 export LDFLAGS="$LDFLAGS -static"

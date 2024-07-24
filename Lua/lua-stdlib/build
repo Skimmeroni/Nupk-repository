@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf release-v$VERSION.tar.gz
+gzip -d release-v$VERSION.tar.gz | tar -x
 
 install -Dm644 lua-stdlib-release-v$VERSION/lib/std.lua "$DESTDIR/usr/share/lua/std.lua"
 cp -r          lua-stdlib-release-v$VERSION/lib/std     "$DESTDIR/usr/share/lua"

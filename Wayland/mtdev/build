@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf mtdev-$VERSION.tar.bz2
+bzip2 -d mtdev-$VERSION.tar.bz2 | tar -x
 cd mtdev-$VERSION
 
 ./configure --prefix=/usr

@@ -8,7 +8,7 @@ install -Dm755 cdefs.h "$DESTDIR/usr/include/sys/cdefs.h"
 install -Dm755 queue.h "$DESTDIR/usr/include/sys/queue.h"
 install -Dm755 tree.h  "$DESTDIR/usr/include/sys/tree.h"
 
-tar -xf musl-$VERSION.tar.gz
+gzip -d musl-$VERSION.tar.gz | tar -x
 cd musl-$VERSION
 
 ./configure \

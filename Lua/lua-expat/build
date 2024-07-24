@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf $VERSION.tar.gz
+gzip -d $VERSION.tar.gz | tar -x
 cd luaexpat-$VERSION
 
 patch -p1 < ../both-static-and-dynamic.patch

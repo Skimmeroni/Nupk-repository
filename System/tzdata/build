@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-tar -xf $VERSION.tar.gz
+gzip -d $VERSION.tar.gz | tar -x
 cd tz-$VERSION
 
 sed -i 's|sbin|bin|g' Makefile
