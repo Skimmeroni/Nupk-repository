@@ -1,0 +1,7 @@
+::sysinit:/lib/init/rc.boot
+::restart:/bin/init
+::shutdown:/lib/init/rc.shutdown
+::respawn:runsvdir -P /var/service
+
+tty1::respawn:/bin/getty 38400 tty1
+tty2::respawn:/bin/getty 38400 tty2

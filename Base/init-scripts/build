@@ -11,6 +11,8 @@ install -Dm755 lib/init/rc.boot      "$DESTDIR/usr/lib/init/rc.boot"
 install -Dm755 lib/init/rc.shutdown  "$DESTDIR/usr/lib/init/rc.shutdown"
 install -Dm755 kpow                  "$DESTDIR/usr/bin/kpow"
 
+install -Dm644 ../inittab "$DESTDIR/etc/inittab"
+
 strip --strip-unneeded "$DESTDIR/usr/bin/kpow"
 
 su
