@@ -51,11 +51,6 @@ rm "$DESTDIR/usr/share/man/man1/find.1"
 rm "$DESTDIR/usr/bin/grep"
 rm "$DESTDIR/usr/share/man/man1/grep.1"
 
-# tar might be usable (requires investigation)
-
-rm "$DESTDIR/usr/bin/tar"
-rm "$DESTDIR/usr/share/man/man1/tar.1"
-
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
 su

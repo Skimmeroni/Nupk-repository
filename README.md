@@ -33,9 +33,9 @@ Of course, you are free to fork the repo and change it as you please.
 At the very least, you'll need:
 
 awk, bc, binutils, bison, bzip2, ca-certificates, curl, dhcpcd, diff,
-findutils, flex, gcc, git, grep, init-scripts, iproute2, libarchive,
-libedit, libgmp, libmpc, libmpfr, libressl, linux-headers, m4, make,
-mdevd, mime-types, musl, nextvi, nupk, oksh, patch, perl, pigz, runit,
-sbase, sed, skalibs, skeleton, tzdata, ubase, util-linux, xz, zlib
+findutils, flex, gcc, git, grep, init-scripts, iproute2, libedit, libgmp,
+libmpc, libmpfr, libressl, linux-headers, m4, make, mdevd, mime-types,
+musl, nextvi, nupk, oksh, patch, perl, pigz, runit, sbase, sed, skalibs,
+skeleton, tzdata, ubase, util-linux, xz, zlib
 
 You should also build and install a (linux?) kernel and a bootloader.
