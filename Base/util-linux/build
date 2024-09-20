@@ -8,7 +8,6 @@ cd util-linux-$VERSION
 	--libdir=/usr/lib \
 	--bindir=/usr/bin \
 	--sbindir=/usr/bin \
-	--enable-static-programs=mount,umount \
 	--enable-usrdir-path \
 	--enable-fs-paths-default=/usr/bin \
 	--disable-all-programs \
