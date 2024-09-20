@@ -17,8 +17,6 @@ cd util-linux-$VERSION
 	--enable-fsck \
 	--enable-wipefs \
 	--enable-mkfs \
-	--enable-mount \
-	--enable-mountpoint \
 	--enable-libsmartcols \
 	--enable-libblkid \
 	--enable-libmount \
