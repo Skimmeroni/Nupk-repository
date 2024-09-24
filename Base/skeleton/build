@@ -45,10 +45,10 @@ mkdir -m 1777 \
 ln -sf usr/bin "$DESTDIR/bin"
 ln -sf usr/lib "$DESTDIR/lib"
 
-ln -sf spool/mail        "$DESTDIR/var/mail"
-ln -sf ../run            "$DESTDIR/var/run"
-ln -sf ../run/lock       "$DESTDIR/var/lock"
-ln -sf /proc/self/mounts "$DESTDIR/etc/mtab"
+ln -sf spool/mail          "$DESTDIR/var/mail"
+ln -sf ../run              "$DESTDIR/var/run"
+ln -sf ../run/lock         "$DESTDIR/var/lock"
+ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
 
 su
 chown -R root:root $DESTDIR
