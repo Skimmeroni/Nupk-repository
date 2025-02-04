@@ -4,9 +4,9 @@ cd nextvi.git
 
 export CFLAGS="$CFLAGS -static" 
 
-./build.sh build
+CC=cc ./cbuild.sh
 
-install -Dm755 -t "$DESTDIR/usr/bin" vi
+install -Dm755 vi "$DESTDIR/usr/bin/vi"
 strip --strip-unneeded "$DESTDIR/usr/bin/vi"
 
 su
