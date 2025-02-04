@@ -34,22 +34,28 @@ rm "$DESTDIR/usr/share/man/man1/strings.1"
 rm "$DESTDIR/usr/bin/xargs"
 rm "$DESTDIR/usr/share/man/man1/xargs.1"
 
-# sed lacks the -i option, which is omnipresent in configure scripts :(
+# tar is already provided by libarchive
+
+rm "$DESTDIR/usr/bin/tar"
+rm "$DESTDIR/usr/share/man/man1/tar.1"
+
+# sed lacks support for the -i flag, which is everywhere. One way
+# forward would be to patch sed to integrate this flag, but it's
+# a daunting task
 
 rm "$DESTDIR/usr/bin/sed"
 rm "$DESTDIR/usr/share/man/man1/sed.1"
 
-# compiling the Linux kernel requires find to support -printf
-# note: Busybox find also does not support -printf
-
-rm "$DESTDIR/usr/bin/find"
-rm "$DESTDIR/usr/share/man/man1/find.1"
-
-# grep lacks many options found in configure scripts, like -o
-# it's also quite slow
+# grep is much, much slower than GNU grep
 
 rm "$DESTDIR/usr/bin/grep"
 rm "$DESTDIR/usr/share/man/man1/grep.1"
+
+# compiling the Linux kernel requires find to support -printf.
+# Only GNU find does; both Busybox find and OpenBSD find do not
+
+rm "$DESTDIR/usr/bin/find"
+rm "$DESTDIR/usr/share/man/man1/find.1"
 
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
