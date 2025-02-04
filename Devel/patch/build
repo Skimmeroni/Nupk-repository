@@ -7,8 +7,8 @@ cp ../compat.h .
 $CC -c *.c
 $CC -static *.o -o patch
 
-install -Dm755 -t "$DESTDIR/usr/bin" patch
-install -Dm644 -t "$DESTDIR/usr/share/man/man1" patch.1
+install -Dm755 patch "$DESTDIR/usr/bin/patch"
+install -Dm644 patch "$DESTDIR/usr/share/man/man1/patch.1"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/patch"
 

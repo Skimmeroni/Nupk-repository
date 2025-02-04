@@ -7,8 +7,8 @@ cp ../compat.h .
 $CC -c *.c
 $CC -static *.o -o diff
 
-install -Dm755 -t "$DESTDIR/usr/bin" diff
-install -Dm644 -t "$DESTDIR/usr/share/man/man1" diff.1
+install -Dm755 diff "$DESTDIR/usr/bin/diff"
+install -Dm644 diff.1 "$DESTDIR/usr/share/man/man1/diff.1"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/diff"
 
