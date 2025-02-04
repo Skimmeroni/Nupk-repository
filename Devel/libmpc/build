@@ -5,7 +5,7 @@ cd mpc-$VERSION
 
 ./configure \
 	--prefix=/usr \
-	--enable-shared \
+	--enable-shared
 
 make
 make DESTDIR="$DESTDIR" install

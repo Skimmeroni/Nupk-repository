@@ -27,8 +27,6 @@ make configure-host
 make tooldir=/usr
 make tooldir=/usr DESTDIR="$DESTDIR" install-strip
 
-ln -sf ld.bfd "$DESTDIR/usr/bin/ld"
-
 rm -rf "$DESTDIR/usr/share/info"
 find $DESTDIR -type f -name '*.la' -delete
 

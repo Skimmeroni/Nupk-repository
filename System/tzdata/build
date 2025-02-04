@@ -10,6 +10,7 @@ make DESTDIR="$DESTDIR" install
 
 rm -rf "$DESTDIR/etc"
 rm -rf "$DESTDIR/usr/share/man/man3"
+rmdir "$DESTDIR/usr/var"
 
 for t in africa asia australasia europe northamerica southamerica
 do
