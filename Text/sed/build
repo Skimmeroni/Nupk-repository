@@ -1,21 +1,28 @@
 #!/bin/sh -e
 
-xz -cd sed-$VERSION.tar.xz | tar -x
-cd sed-$VERSION
+gzip -cd bsdutils-$VERSION.tar.gz | tar -x
+cd bsdutils-$VERSION/src/sed
+cp ../../include/compat.h .
 
-./configure \
-	--prefix=/usr \
-	--bindir=/usr/bin \
-	--mandir=/usr/share/man \
-	--infodir=/usr/share/info \
-	--disable-i18n \
-	--disable-nls
+# To be investigated
+patch -p1 < ../../../add-missing-typedefs.patch
 
-make
-make DESTDIR="$DESTDIR" install-strip
+# Unneeded define
+sed -i 's|__FBSDID("$FreeBSD$");||g' *.c
+sed -i 's|__FBSDID("$FreeBSD$");||g' *.h
 
-rm -rf "$DESTDIR/usr/share/info"
-rmdir "$DESTDIR/usr/var"
+# Defines taken from the meson.build itself
+$CC -c compile.c
+$CC -c main.c
+$CC -c misc.c
+$CC -D'_XOPEN_SOURCE' -D'DEFFILEMODE=(S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)' -c process.c
+
+$CC -static *.o -o sed
+
+install -Dm755 sed "$DESTDIR/usr/bin/sed"
+install -Dm644 sed "$DESTDIR/usr/share/man/man1/sed.1"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/sed"
 
 su
 chown -R root:root $DESTDIR

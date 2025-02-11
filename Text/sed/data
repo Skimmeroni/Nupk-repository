@@ -1,9 +1,10 @@
 #!/bin/sh -e
 
 DEPENDENCIES=""
-INFO="GNU stream editor"
+INFO="Stream editor"
 PRETTY_NAME="sed"
-SOURCES="https://ftp.gnu.org/pub/gnu/sed/sed-$VERSION.tar.xz"
-MAJOR="4"
-MINOR="9"
+SOURCES="https://github.com/dcantrell/bsdutils/releases/download/v$VERSION/bsdutils-$VERSION.tar.xz"
+SOURCES="$SOURCES patches/add-missing-typedefs.patch"
+MAJOR="13"
+MINOR="1"
 VERSION="$MAJOR.$MINOR"
