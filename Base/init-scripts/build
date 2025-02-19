@@ -1,18 +1,22 @@
 #!/bin/sh -e
 
 cd init-scripts.git
- 
-patch -p1 < ../unkissify.patch
- 
-$CC -o kpow bin/kpow.c -static
- 
-install -Dm755 lib/init/rc.lib       "$DESTDIR/usr/lib/init/rc.lib"
-install -Dm755 lib/init/rc.boot      "$DESTDIR/usr/lib/init/rc.boot"
-install -Dm755 lib/init/rc.shutdown  "$DESTDIR/usr/lib/init/rc.shutdown"
-install -Dm755 kpow                  "$DESTDIR/usr/bin/kpow"
 
-install -Dm644 ../inittab "$DESTDIR/etc/inittab"
+patch -p1 < ../support-ubase.patch
 
+sed -i 's|:-KISS||g' lib/init/rc.boot
+sed -i 's| to KISS||g' lib/init/rc.boot
+sed -i 's|=>|!!|g' lib/init/rc.lib
+ 
+install -Dm755 lib/init/rc.lib      "$DESTDIR/usr/lib/init/rc.lib"
+install -Dm755 lib/init/rc.boot     "$DESTDIR/usr/lib/init/rc.boot"
+install -Dm755 lib/init/rc.shutdown "$DESTDIR/usr/lib/init/rc.shutdown"
+
+install -Dm644 etc/inittab "$DESTDIR/etc/inittab"
+install -Dm644 etc/rc.conf "$DESTDIR/etc/rc.conf"
+
+$CC -static -o kpow bin/kpow.c
+install -Dm755 kpow    "$DESTDIR/usr/bin/kpow"
 strip --strip-unneeded "$DESTDIR/usr/bin/kpow"
 
 su

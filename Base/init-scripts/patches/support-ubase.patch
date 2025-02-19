@@ -1,0 +1,39 @@
+--- a/lib/init/rc.shutdown
++++ b/lib/init/rc.shutdown
+@@ -21,10 +21,10 @@
+ }
+ 
+ log "Sending TERM signal to all processes..."; {
+-    kill -s TERM -1
++    killall5 -o 1 -s TERM
+     log "Sending KILL signal to all processes..."
+     sleep 2
+-    kill -s KILL -1
++    killall5 -o 1 -s KILL
+ }
+ 
+ log "Unmounting filesystems and disabling swap..."; {
+@@ -32,15 +32,14 @@
+ 
+     # Skip unmounting pseudo filesystems as they may be
+     # needed below for encryption and user shutdown scripts.
+-    #
+-    # The '-t' flag is a part of the LSB standard and is
+-    # supported by busybox, toybox, util-linux, FreeBSD,
+-    # NetBSD, OpenBSD and others.
+-    #
+-    # This flag is unsupported by ubase and I consider this
+-    # a ubase issue. ubase only supports Linux and this
+-    # flag is a part of the Linux standard base.
+-    umount -rat nosysfs,proc,devtmpfs,tmpfs
++
++    while IFS='' read -r line
++    do
++        case $(echo $line | awk '{print $3}') in
++            sysfs|proc|devtmpfs|tmpfs) ;;
++            *) umount -r $(echo $line | awk '{print $2}') ;;
++        esac
++    done < /etc/mtab
+ }
+ 
+ log "Remounting rootfs as read-only"; {
