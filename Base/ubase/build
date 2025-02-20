@@ -2,6 +2,14 @@
 
 cd ubase.git
 
+# Redundant
+sed -i 's|dd\\|\\|g' Makefile
+sed -i 's|dd\.1\\|\\|g' Makefile
+sed -i 's|mknod\\|\\|g' Makefile
+sed -i 's|mknod\.1\\|\\|g' Makefile
+sed -i 's|clear\\|\\|g' Makefile
+sed -i 's|clear\.1\\|\\|g' Makefile
+
 make \
 	PREFIX=/usr \
 	CFLAGS="$CFLAGS -static" \
@@ -13,13 +21,6 @@ make \
 	LDFLAGS="$LDFLAGS -static" \
 	DESTDIR="$DESTDIR" \
 	install
-
-# dd and mknod already present in sbase
-
-rm "$DESTDIR/usr/bin/dd"
-rm "$DESTDIR/usr/bin/mknod"
-rm "$DESTDIR/usr/share/man/man1/dd.1"
-rm "$DESTDIR/usr/share/man/man1/mknod.1"
 
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 

@@ -9,10 +9,6 @@ make PREFIX=/usr DESTDIR="$DESTDIR" install
 ln -sf libterminfo.so "$DESTDIR/usr/lib/libtinfo.so"
 ln -sf libterminfo.a  "$DESTDIR/usr/lib/libtinfo.a"
 
-# Remove duplicate
-rm "$DESTDIR/usr/bin/clear"
-rm "$DESTDIR/usr/share/man/man1/clear.1"
-
 rm -rf "$DESTDIR/usr/share/man/man3"
 
 find "$DESTDIR/usr/bin"       -type f -exec strip --strip-unneeded {} \;
