@@ -4,6 +4,19 @@ cd sbase.git
 
 patch -p1 < ../install-add-GNU-s-extension.patch
 
+# Lacks printf support
+sed -i 's|find\\|\\|g' Makefile
+# Much slower than GNU grep
+sed -i 's|grep\\|\\|g' Makefile
+# Lacks -i flag (how ironic!)
+sed -i 's|sed\\|\\|g' Makefile
+# Redundant
+sed -i 's|xargs\\|\\|g' Makefile
+# Redundant
+sed -i 's|tar\\|\\|g' Makefile
+# Redundant
+sed -i 's|strings\\|\\|g' Makefile
+
 make \
 	PREFIX=/usr \
 	CFLAGS="$CFLAGS -static" \
@@ -23,39 +36,6 @@ ln -sf /run/runit/supervise.cron "$DESTDIR/etc/sv/cron/supervise"
 
 mv "$DESTDIR/usr/bin/xinstall"              "$DESTDIR/usr/bin/install"
 mv "$DESTDIR/usr/share/man/man1/xinstall.1" "$DESTDIR/usr/share/man/man1/install.1"
-
-# strings is already provided by binutils
-
-rm "$DESTDIR/usr/bin/strings"
-rm "$DESTDIR/usr/share/man/man1/strings.1"
-
-# xargs is already provided by findutils
-
-rm "$DESTDIR/usr/bin/xargs"
-rm "$DESTDIR/usr/share/man/man1/xargs.1"
-
-# tar is already provided by libarchive
-
-rm "$DESTDIR/usr/bin/tar"
-rm "$DESTDIR/usr/share/man/man1/tar.1"
-
-# sed lacks support for the -i flag, which is everywhere. One way
-# forward would be to patch sed to integrate this flag, but it's
-# a daunting task
-
-rm "$DESTDIR/usr/bin/sed"
-rm "$DESTDIR/usr/share/man/man1/sed.1"
-
-# grep is much, much slower than GNU grep
-
-rm "$DESTDIR/usr/bin/grep"
-rm "$DESTDIR/usr/share/man/man1/grep.1"
-
-# compiling the Linux kernel requires find to support -printf.
-# Only GNU find does; both Busybox find and OpenBSD find do not
-
-rm "$DESTDIR/usr/bin/find"
-rm "$DESTDIR/usr/share/man/man1/find.1"
 
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
