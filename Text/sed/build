@@ -1,27 +1,12 @@
 #!/bin/sh -e
 
-gzip -cd bsdutils-$VERSION.tar.gz | tar -x
-cd bsdutils-$VERSION/src/sed
-cp ../../include/compat.h .
+gzip -cd toybox-$VERSION.tar.gz | tar -x
+cd toybox-$VERSION
 
-# To be investigated
-patch -p1 < ../../../add-missing-typedefs.patch
+make defconfig
 
-# Unneeded define
-sed -i 's|__FBSDID("$FreeBSD$");||g' *.c
-sed -i 's|__FBSDID("$FreeBSD$");||g' *.h
-
-# Defines taken from the meson.build itself
-$CC -c compile.c
-$CC -c main.c
-$CC -c misc.c
-$CC -D'_XOPEN_SOURCE' -D'DEFFILEMODE=(S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)' -c process.c
-
-$CC -static *.o -o sed
-
+CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" make sed
 install -Dm755 sed "$DESTDIR/usr/bin/sed"
-install -Dm644 sed "$DESTDIR/usr/share/man/man1/sed.1"
-
 strip --strip-unneeded "$DESTDIR/usr/bin/sed"
 
 su

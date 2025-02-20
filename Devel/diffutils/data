@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 DEPENDENCIES=""
-INFO="Stream editor"
-PRETTY_NAME="sed"
+INFO="Compare files and apply patches"
+PRETTY_NAME="diffutils"
 SOURCES="https://landley.net/toybox/downloads/toybox-$VERSION.tar.gz"
 MAJOR="0"
 MINOR="8"

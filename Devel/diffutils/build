@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+gzip -cd toybox-$VERSION.tar.gz | tar -x
+cd toybox-$VERSION
+
+make defconfig
+
+CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" make diff
+install -Dm755 diff "$DESTDIR/usr/bin/diff"
+strip --strip-unneeded "$DESTDIR/usr/bin/diff"
+
+CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" make patch
+install -Dm755 patch "$DESTDIR/usr/bin/patch"
+strip --strip-unneeded "$DESTDIR/usr/bin/patch"
+
+su
+chown -R root:root $DESTDIR
+tar -c $DESTDIR/* | gzip2 > diffutils@$VERSION.tar.gz
+exit

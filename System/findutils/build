@@ -1,15 +1,17 @@
 #!/bin/sh -e
 
-xz -cd findutils-$VERSION.tar.xz | tar -x
-cd findutils-$VERSION
+gzip -cd toybox-$VERSION.tar.gz | tar -x
+cd toybox-$VERSION
 
-./configure --prefix=/usr
+make defconfig
 
-make
-make DESTDIR="$DESTDIR" install-strip
+CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" make find
+install -Dm755 find "$DESTDIR/usr/bin/find"
+strip --strip-unneeded "$DESTDIR/usr/bin/find"
 
-rm -rf "$DESTDIR/usr/share/info"
-rm -rf "$DESTDIR/usr/share/locale"
+CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" make xargs
+install -Dm755 xargs "$DESTDIR/usr/bin/xargs"
+strip --strip-unneeded "$DESTDIR/usr/bin/xargs"
 
 su
 chown -R root:root $DESTDIR
