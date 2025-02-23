@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DEPENDENCIES="linux-headers"
+INFO="A number of standard command line tools"
+PRETTY_NAME="toybox"
+SOURCES="https://landley.net/toybox/downloads/toybox-$VERSION.tar.gz"
+SOURCES="$SOURCES files/configuration"
+MAJOR="0"
+MINOR="8"
+PATCH="12"
+VERSION="$MAJOR.$MINOR.$PATCH"
