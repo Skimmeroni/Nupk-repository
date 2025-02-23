@@ -3,6 +3,8 @@
 gzip -cd toybox-$VERSION.tar.gz | tar -x
 cd toybox-$VERSION
 
+sed -i 's|egrep|grep -E|g' scripts/*.sh
+
 mv ../configuration .config
 make oldconfig
 make CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" change
