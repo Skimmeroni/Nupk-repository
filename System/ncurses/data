@@ -2,7 +2,7 @@
 
 DEPENDENCIES=""
 INFO="Console display library"
-PRETTY_NAME="ncurses"
+PRETTY_NAME="netbsd-curses"
 SOURCES="https://github.com/sabotage-linux/netbsd-curses/archive/refs/tags/v$VERSION.tar.gz"
 MAJOR="0"
 MINOR="3"
