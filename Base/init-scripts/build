@@ -12,7 +12,6 @@ install -Dm755 lib/init/rc.lib      "$DESTDIR/usr/lib/init/rc.lib"
 install -Dm755 lib/init/rc.boot     "$DESTDIR/usr/lib/init/rc.boot"
 install -Dm755 lib/init/rc.shutdown "$DESTDIR/usr/lib/init/rc.shutdown"
 
-install -Dm644 etc/inittab "$DESTDIR/etc/inittab"
 install -Dm644 etc/rc.conf "$DESTDIR/etc/rc.conf"
 
 $CC -static -o kpow bin/kpow.c
