@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="lua"
-INFO=""
-PRETTY_NAME="lua-cliargs"
-SOURCES="https://github.com/amireh/lua_cliargs/archive/refs/tags/v$VERSION.tar.gz"
-MAJOR="3"
-MINOR="0-2"
-VERSION="$MAJOR.$MINOR"

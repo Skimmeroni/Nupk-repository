@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="lua lpeg"
-INFO=""
-PRETTY_NAME="lua-epnf"
-SOURCES="https://github.com/siffiejoe/lua-luaepnf/archive/refs/tags/v$VERSION.tar.gz"
-MAJOR="0"
-MINOR="3"
-VERSION="$MAJOR.$MINOR"
