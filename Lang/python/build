@@ -61,5 +61,6 @@ find "$DESTDIR/usr/lib" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > python@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../python@$VERSION.tar.gz
 exit

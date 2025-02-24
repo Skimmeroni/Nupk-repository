@@ -33,5 +33,6 @@ rmdir "$DESTDIR/usr/sbin"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > util-linux@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../util-linux@$VERSION.tar.gz
 exit

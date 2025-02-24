@@ -37,5 +37,6 @@ ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > skeleton@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../skeleton@$VERSION.tar.gz
 exit

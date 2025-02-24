@@ -21,5 +21,6 @@ rm -rf "$DESTDIR/usr/include"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > mdevd@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../mdevd@$VERSION.tar.gz
 exit

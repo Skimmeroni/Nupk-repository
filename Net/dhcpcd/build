@@ -24,5 +24,6 @@ rm -rf "$DESTDIR/var"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > dhcpcd@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../dhcpcd@$VERSION.tar.gz
 exit

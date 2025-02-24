@@ -28,5 +28,6 @@ strip --strip-unneeded "$DESTDIR/usr/lib/libnetlink.a"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > iproute2@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../iproute2@$VERSION.tar.gz
 exit

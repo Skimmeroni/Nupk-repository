@@ -12,5 +12,6 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > mtdev@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../mtdev@$VERSION.tar.gz
 exit

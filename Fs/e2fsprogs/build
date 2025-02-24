@@ -29,5 +29,6 @@ rmdir "$DESTDIR/usr/share/info"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > e2fsprogs@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../e2fsprogs@$VERSION.tar.gz
 exit

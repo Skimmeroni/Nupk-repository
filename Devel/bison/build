@@ -17,5 +17,6 @@ rm -rf "$DESTDIR/usr/share/aclocal"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > bison@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../bison@$VERSION.tar.gz
 exit

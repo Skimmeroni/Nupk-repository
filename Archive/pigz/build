@@ -14,5 +14,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/pigz"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > pigz@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../pigz@$VERSION.tar.gz
 exit

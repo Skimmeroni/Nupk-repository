@@ -21,5 +21,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/wayland-scanner"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > wayland@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../wayland@$VERSION.tar.gz
 exit

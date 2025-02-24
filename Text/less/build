@@ -10,5 +10,6 @@ make DESTDIR="$DESTDIR" install-strip
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > less@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../less@$VERSION.tar.gz
 exit

@@ -32,5 +32,6 @@ ln -sf /run/runit/supervise.sshd "$DESTDIR/etc/sv/sshd/supervise"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > openssh@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../openssh@$VERSION.tar.gz
 exit

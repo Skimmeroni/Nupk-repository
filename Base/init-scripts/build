@@ -20,5 +20,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/kpow"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > init-scripts@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../init-scripts@$VERSION.tar.gz
 exit

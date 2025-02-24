@@ -16,5 +16,6 @@ rm -rf "$DESTDIR/usr/share/info"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > gdb@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../gdb@$VERSION.tar.gz
 exit

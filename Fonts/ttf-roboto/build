@@ -8,5 +8,6 @@ cp build/*.ttf "$DESTDIR/usr/share/fonts/TTF"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > ttf-roboto@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../ttf-roboto@$VERSION.tar.gz
 exit

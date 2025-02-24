@@ -13,5 +13,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/muon"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > muon@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../muon@$VERSION.tar.gz
 exit

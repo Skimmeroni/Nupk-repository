@@ -57,5 +57,6 @@ fi
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > gcc@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../gcc@$VERSION.tar.gz
 exit

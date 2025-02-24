@@ -4,5 +4,6 @@ install -Dm644 cacert-$VERSION.pem "$DESTDIR/etc/ssl/cert.pem"
 
 su
 chown -R root:root $DESTDIR
-tar -c $DESTDIR/* | gzip2 > ca-certificates@$VERSION.tar.gz
+cd $DESTDIR
+tar -c * | gzip > ../ca-certificates@$VERSION.tar.gz
 exit
