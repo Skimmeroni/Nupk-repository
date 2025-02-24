@@ -13,6 +13,9 @@ cd util-linux-$VERSION
 	--disable-all-programs \
 	--disable-bash-completion \
 	--disable-makeinstall-chown \
+	--enable-libmount \
+	--enable-libblkid \
+	--enable-libsmartcols \
 	--enable-fsck \
 	--enable-wipefs \
 	--enable-mkfs \
