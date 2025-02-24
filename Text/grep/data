@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES=""
-INFO="GNU regular expression matcher"
-PRETTY_NAME="grep"
-SOURCES="https://ftp.gnu.org/gnu/grep/grep-$VERSION.tar.xz"
-MAJOR="3"
-MINOR="11"
-VERSION="$MAJOR.$MINOR"

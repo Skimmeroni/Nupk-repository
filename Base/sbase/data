@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES=""
-INFO="Collection of UNIX tools"
-PRETTY_NAME="sbase"
-SOURCES="git://git.suckless.org/sbase"
-SOURCES="$SOURCES files/cron.run"
-SOURCES="$SOURCES patches/install-add-GNU-s-extension.patch"
-VERSION="git"
