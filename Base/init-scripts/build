@@ -2,7 +2,7 @@
 
 cd init-scripts.git
 
-patch -p1 < ../support-ubase.patch
+patch -p1 < ../support-toybox.patch
 
 sed -i 's|:-KISS||g' lib/init/rc.boot
 sed -i 's| to KISS||g' lib/init/rc.boot

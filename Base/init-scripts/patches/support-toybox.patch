@@ -1,0 +1,34 @@
+--- a/lib/init/rc.boot
++++ b/lib/init/rc.boot
+@@ -69,10 +69,6 @@
+     mount -a || sos
+ }
+ 
+-log "Enabling swap..."; {
+-    swapon -a || sos
+-}
+-
+ log "Seeding random..."; {
+     random_seed load
+ }
+--- a/lib/init/rc.shutdown
++++ b/lib/init/rc.shutdown
+@@ -21,15 +21,13 @@
+ }
+ 
+ log "Sending TERM signal to all processes..."; {
+-    kill -s TERM -1
++    killall5 -o 1 -s TERM
+     log "Sending KILL signal to all processes..."
+     sleep 2
+-    kill -s KILL -1
++    killall5 -o 1 -s KILL
+ }
+ 
+-log "Unmounting filesystems and disabling swap..."; {
+-    swapoff -a
+-
++log "Unmounting filesystems"; {
+     # Skip unmounting pseudo filesystems as they may be
+     # needed below for encryption and user shutdown scripts.
+     #
