@@ -1,0 +1,20 @@
+--- a/include/libnetlink.h
++++ b/include/libnetlink.h
+@@ -2,6 +2,7 @@
+ #ifndef __LIBNETLINK_H__
+ #define __LIBNETLINK_H__ 1
+ 
++#include <endian.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <asm/types.h>
+--- a/ip/iplink.c
++++ b/ip/iplink.c
+@@ -5,6 +5,7 @@
+  * Authors:	Alexey Kuznetsov, <kuznet@ms2.inr.ac.ru>
+  */
+ 
++#include <limits.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
