@@ -2,7 +2,7 @@
 
 DEPENDENCIES="libmpfr"
 INFO=""
-PRETTY_NAME="libmpc"
+PRETTY_NAME="libmpc-unclassified"
 SOURCES="https://ftp.gnu.org/gnu/mpc/mpc-$VERSION.tar.gz"
 MAJOR="1"
 MINOR="3"

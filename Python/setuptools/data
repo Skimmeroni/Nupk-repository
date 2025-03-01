@@ -2,7 +2,7 @@
 
 DEPENDENCIES="python"
 INFO=""
-PRETTY_NAME="python-setuptools"
+PRETTY_NAME="python:setuptools"
 SOURCES="https://github.com/pypa/setuptools/archive/refs/tags/v$VERSION.tar.gz"
 MAJOR="70"
 MINOR="0"

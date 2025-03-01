@@ -2,7 +2,7 @@
 
 DEPENDENCIES=""
 INFO="Linux headers"
-PRETTY_NAME="linux-headers"
+PRETTY_NAME="linux"
 SOURCES="https://mirrors.edge.kernel.org/pub/linux/kernel/v$MAJOR.x/linux-$VERSION.tar.xz"
 MAJOR="6"
 MINOR="13"

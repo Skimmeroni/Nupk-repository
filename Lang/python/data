@@ -2,7 +2,7 @@
 
 DEPENDENCIES="bzip2 expat libedit libffi libressl sqlite tzdata zlib"
 INFO="An interpreted, interactive, object-oriented programming language"
-PRETTY_NAME="python3"
+PRETTY_NAME="python"
 SOURCES="https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz"
 MAJOR="3"
 MINOR="12"

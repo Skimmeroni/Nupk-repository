@@ -2,7 +2,7 @@
 
 DEPENDENCIES="python"
 INFO=""
-PRETTY_NAME="python-markupsafe"
+PRETTY_NAME="python:markupsafe"
 SOURCES="https://github.com/pallets/markupsafe/archive/refs/tags/$VERSION.tar.gz"
 MAJOR="2"
 MINOR="1"
