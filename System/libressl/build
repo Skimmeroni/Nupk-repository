@@ -12,6 +12,7 @@ make
 make DESTDIR="$DESTDIR" install-strip
 
 rm -rf "$DESTDIR/usr/share/man"
+# rm -rf "$DESTDIR/usr/etc"
 find $DESTDIR -type f -name '*.la' -delete
 
 install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"
