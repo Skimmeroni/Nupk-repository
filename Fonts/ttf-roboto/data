@@ -2,7 +2,7 @@
 
 DEPENDENCIES=""
 INFO=""
-PRETTY_NAME="ttf-roboto"
+PRETTY_NAME="fonts:roboto"
 SOURCES="https://github.com/googlefonts/roboto/releases/download/v$VERSION/roboto-android.zip"
 MAJOR="2"
 MINOR="138"

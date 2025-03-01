@@ -2,7 +2,7 @@
 
 DEPENDENCIES=""
 INFO=""
-PRETTY_NAME="ttf-gentium-plus"
+PRETTY_NAME="fonts:gentium-plus"
 SOURCES="https://software.sil.org/downloads/r/gentium/GentiumPlus-$VERSION.zip"
 MAJOR="6"
 MINOR="200"
