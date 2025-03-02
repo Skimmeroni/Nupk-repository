@@ -3,6 +3,8 @@
 xz -cd git-$VERSION.tar.xz | tar -x
 cd git-$VERSION
 
+export LDFLAGS="$LDFLAGS -static"
+
 cat > config.mak << EOF
 NO_GETTEXT=YesPlease
 NO_SVN_TESTS=YesPlease
@@ -28,7 +30,7 @@ make LIBS="$(curl-config --static-libs) libgit.a reftable/libreftable.a xdiff/li
 make DESTDIR="$DESTDIR" install
 
 mkdir -p "$DESTDIR/usr/share/man"
-tar -xf ../git-manpages-$VERSION.tar.xz -C "$DESTDIR/usr/share/man"
+xz -cd ../git-manpages-$VERSION.tar.xz | tar -x -C "$DESTDIR/usr/share/man"
 
 su
 chown -R root:root $DESTDIR
