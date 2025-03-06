@@ -3,12 +3,15 @@
 gzip -cd v$VERSION.tar.gz | tar -x
 cd dhcpcd-$VERSION
 
+# To do: enable priviledge separation
 ./configure \
+	--dbdir=/var/lib/dhcpcd \
 	--prefix=/usr \
 	--sbindir=/usr/bin \
 	--sysconfdir=/etc \
 	--rundir=/run \
 	--libexecdir=/usr/lib/dhcpcd \
+	--disable-privsep \
 	--without-udev \
 	--without-openssl
 
@@ -19,8 +22,6 @@ install -Dm755 ../dhcpcd.run "$DESTDIR/etc/sv/dhcpcd/run"
 ln -sf /run/runit/supervise.dhcpcd "$DESTDIR/etc/sv/dhcpcd/supervise"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/dhcpcd"
-
-rm -rf "$DESTDIR/var"
 
 su
 chown -R root:root $DESTDIR
