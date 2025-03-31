@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+PRETTY_NAME=libudev-zero
+MAJOR=1
+MINOR=0
+PATCH=3
+VERSION=1.0.3
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://github.com/illiliti/libudev-zero/archive/.tar.gz
 gzip -cd $VERSION.tar.gz | tar -x
 cd libudev-zero-$VERSION
 

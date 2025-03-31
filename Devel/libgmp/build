@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=gmp
+MAJOR=6
+MINOR=3
+PATCH=0
+VERSION=6.3.0
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://gmplib.org/download/gmp/gmp-$VERSION.tar.xz
+
 xz -cd gmp-$VERSION.tar.xz | tar -x
 cd gmp-$VERSION
 

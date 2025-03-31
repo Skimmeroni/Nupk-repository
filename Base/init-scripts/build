@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+PRETTY_NAME=init-scripts
+MAJOR=
+MINOR=
+PATCH=
+VERSION=git
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+git clone https://codeberg.org/kiss-community/init.git
 cd init-scripts.git
 
 patch -p1 < ../support-toybox.patch

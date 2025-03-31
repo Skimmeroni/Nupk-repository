@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="zlib"
-INFO="Tools necessary to build programs"
-PRETTY_NAME="binutils"
-SOURCES="https://ftp.gnu.org/gnu/binutils/binutils-$VERSION.tar.xz"
-MAJOR="2"
-MINOR="44"
-VERSION="$MAJOR.$MINOR"

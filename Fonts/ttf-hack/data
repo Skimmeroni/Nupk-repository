@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES=""
-INFO=""
-PRETTY_NAME="fonts:hack"
-SOURCES="https://github.com/source-foundry/Hack/releases/download/v$VERSION/Hack-v$VERSION-ttf.tar.gz"
-MAJOR="3"
-MINOR="003"
-VERSION="$MAJOR.$MINOR"

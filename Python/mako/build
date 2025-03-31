@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=python:mako
+MAJOR=1
+MINOR=3
+PATCH=5
+VERSION=1.3.5
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://files.pythonhosted.org/packages/source/M/Mako/Mako-$VERSION.tar.gz
+
 gzip -cd Mako-$VERSION.tar.gz | tar -x
 cd Mako-$VERSION
 

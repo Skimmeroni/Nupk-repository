@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=libarchive
+MAJOR=3
+MINOR=7
+PATCH=7
+VERSION=3.7.7
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://libarchive.org/downloads/libarchive-$VERSION.tar.xz
+
 xz -cd libarchive-$VERSION.tar.xz | tar -x
 cd libarchive-$VERSION
 

@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=fonts:gentium-plus
+MAJOR=6
+MINOR=200
+PATCH=
+VERSION=6.200
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://software.sil.org/downloads/r/gentium/GentiumPlus-$VERSION.zip
+
 mkdir build
 unzip -d build GentiumPlus-$VERSION.zip
 

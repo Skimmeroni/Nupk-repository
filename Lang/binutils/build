@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=binutils
+MAJOR=2
+MINOR=44
+PATCH=
+VERSION=2.44
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/binutils/binutils-$VERSION.tar.xz
+
 tar -xf binutils-$VERSION.tar.xz
 cd binutils-$VERSION
 

@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=less
+MAJOR=
+MINOR=
+PATCH=
+VERSION=643
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing http://www.greenwoodsoftware.com/less/less-$VERSION.tar.gz
+
 gzip -cd less-$VERSION.tar.gz | tar -x
 cd less-$VERSION
 

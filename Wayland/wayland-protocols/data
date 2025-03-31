@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="meson wayland"
-INFO=""
-PRETTY_NAME="wayland-protocols"
-SOURCES="https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/$VERSION/downloads/wayland-protocols-$VERSION.tar.xz"
-MAJOR="1"
-MINOR="36"
-VERSION="$MAJOR.$MINOR"

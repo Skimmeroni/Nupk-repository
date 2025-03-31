@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=mpfr
+MAJOR=4
+MINOR=2
+PATCH=1
+VERSION=4.2.1
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://www.mpfr.org/mpfr-current/mpfr-$VERSION.tar.xz
+
 xz -cd mpfr-$VERSION.tar.xz | tar -x
 cd mpfr-$VERSION
 

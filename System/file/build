@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=file
+MAJOR=5
+MINOR=45
+PATCH=
+VERSION=5.45
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://astron.com/pub/file/file-$VERSION.tar.gz
+
 gzip -cd file-$VERSION.tar.gz | tar -x
 cd file-$VERSION
 

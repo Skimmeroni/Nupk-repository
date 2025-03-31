@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+PRETTY_NAME=nupk
+MAJOR=
+MINOR=
+PATCH=
+VERSION=git
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+git clone https://github.com/Skimmeroni/Nupk.git
 install -Dm755 -t "$DESTDIR/usr/bin" nupk.git/nupk
 
 su

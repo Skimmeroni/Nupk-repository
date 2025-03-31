@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES=""
-INFO="Hardware identification and configuration data"
-PRETTY_NAME="hwdata"
-SOURCES="https://github.com/vcrhonek/hwdata/archive/refs/tags/v$VERSION.tar.gz"
-MAJOR="0"
-MINOR="382"
-VERSION="$MAJOR.$MINOR"

@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=gdb
+MAJOR=14
+MINOR=1
+PATCH=
+VERSION=14.1
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/gdb/gdb-$VERSION.tar.xz
+
 xz -cd gdb-$VERSION.tar.xz | tar -x
 cd gdb-$VERSION
 

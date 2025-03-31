@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=wlroots
+MAJOR=0
+MINOR=17
+PATCH=3
+VERSION=0.17.3
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/wlroots/wlroots/-/archive//wlroots-$VERSION.tar.gz
+
 gzip -cd wlroots-$VERSION.tar.gz | tar -x
 cd wlroots-$VERSION
 

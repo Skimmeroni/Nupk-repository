@@ -1,7 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES=""
-INFO=""
-PRETTY_NAME="-"
-SOURCES=""
-VERSION="0"

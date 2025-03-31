@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+PRETTY_NAME=runit
+MAJOR=
+MINOR=
+PATCH=
+VERSION=git
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+git clone https://github.com/void-linux/runit.git
 cd runit.git/src
 
 patch -p1 < ../../use-char-const-instead-of-const-char-const-pointer.patch

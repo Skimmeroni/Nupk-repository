@@ -1,7 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="ncurses"
-INFO="Excellent text file viewer"
-PRETTY_NAME="less"
-SOURCES="http://www.greenwoodsoftware.com/less/less-$VERSION.tar.gz"
-VERSION="643"

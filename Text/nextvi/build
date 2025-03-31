@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+PRETTY_NAME=vi
+MAJOR=
+MINOR=
+PATCH=
+VERSION=git
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+git clone https://github.com/kyx0r/nextvi.git
 cd nextvi.git
 
 export CFLAGS="$CFLAGS -static" 

@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=pixman
+MAJOR=0
+MINOR=43
+PATCH=4
+VERSION=0.43.4
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://x.org/releases/individual/lib/pixman-$VERSION.tar.xz
+
 xz -cd pixman-$VERSION.tar.xz | tar -x
 cd pixman-$VERSION
 

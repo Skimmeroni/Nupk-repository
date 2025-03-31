@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=libdisplay-info
+MAJOR=0
+MINOR=1
+PATCH=1
+VERSION=0.1.1
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive//libdisplay-info-$VERSION.tar.gz
+
 gzip -cd libdisplay-info-$VERSION.tar.gz | tar -x
 cd libdisplay-info-$VERSION
 

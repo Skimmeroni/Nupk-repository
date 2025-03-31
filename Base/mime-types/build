@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+PRETTY_NAME=mime-types
+MAJOR=
+MINOR=
+PATCH=
+VERSION=0
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
 grep -v '#' mime.types > mime-processed
 install -Dm644 mime-processed "$DESTDIR/etc/mime.types"
 

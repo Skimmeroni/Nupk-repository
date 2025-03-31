@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="libgmp libmpfr linux-headers"
-INFO=""
-PRETTY_NAME="gdb"
-SOURCES="https://ftp.gnu.org/gnu/gdb/gdb-$VERSION.tar.xz"
-MAJOR="14"
-MINOR="1"
-VERSION="$MAJOR.$MINOR"

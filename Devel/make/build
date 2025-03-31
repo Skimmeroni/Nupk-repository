@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=make
+MAJOR=4
+MINOR=4
+PATCH=1
+VERSION=4.4.1
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/make/make-$VERSION.tar.gz
+
 gzip -cd make-$VERSION.tar.gz | tar -x
 cd make-$VERSION
 

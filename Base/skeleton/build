@@ -1,5 +1,14 @@
 #!/bin/sh -e
 
+PRETTY_NAME=-
+MAJOR=
+MINOR=
+PATCH=
+VERSION=0
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
 mkdir -m 755 \
 	"$DESTDIR/boot" \
 	"$DESTDIR/dev" \

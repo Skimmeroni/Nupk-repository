@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+PRETTY_NAME=xz
+MAJOR=5
+MINOR=6
+PATCH=4
+VERSION=5.6.4
+
+mkdir temporary-builddir
+DESTDIR=temporary-builddir
+
+curl --location --remote-name --skip-existing https://tukaani.org/xz/xz-$VERSION.tar.gz
+
 gzip -cd xz-$VERSION.tar.gz | tar -x
 cd xz-$VERSION
 

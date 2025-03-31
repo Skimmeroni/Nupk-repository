@@ -1,7 +1,0 @@
-#!/bin/sh -e
-
-DEPENDENCIES="curl pkgconf scdoc"
-INFO="Meson-compatible build system"
-PRETTY_NAME="muon"
-SOURCES="https://git.sr.ht/~lattis/muon"
-VERSION="git"
