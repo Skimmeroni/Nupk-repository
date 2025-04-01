@@ -29,6 +29,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../libgmp@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../libgmp@$VERSION.tar.gz
 exit

@@ -29,6 +29,5 @@ rm -rf "$DESTDIR/usr/share/man/man3"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../libedit@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../libedit@$VERSION.tar.gz
 exit

@@ -24,6 +24,5 @@ make install
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../hwdata@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../hwdata@$VERSION.tar.gz
 exit

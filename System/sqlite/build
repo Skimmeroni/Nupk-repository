@@ -35,6 +35,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../sqlite@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../sqlite@$VERSION.tar.gz
 exit

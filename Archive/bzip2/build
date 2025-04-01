@@ -41,6 +41,5 @@ ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR.$MINOR"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../bzip2@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../bzip2@$VERSION.tar.gz
 exit

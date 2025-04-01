@@ -24,6 +24,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../libevdev@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../libevdev@$VERSION.tar.gz
 exit

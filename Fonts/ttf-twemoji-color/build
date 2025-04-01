@@ -19,6 +19,5 @@ install -Dm644 LICENSE-CC-BY.txt "$DESTDIR/usr/share/LICENSES/ttf-twemoji-color.
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../ttf-twemoji-color@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../ttf-twemoji-color@$VERSION.tar.gz
 exit

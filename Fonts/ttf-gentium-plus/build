@@ -21,6 +21,5 @@ install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-gentium-plus.license"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../ttf-gentium-plus@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../ttf-gentium-plus@$VERSION.tar.gz
 exit

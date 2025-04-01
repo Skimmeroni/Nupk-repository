@@ -36,6 +36,5 @@ find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \; -exec chmod 7
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../mandoc@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../mandoc@$VERSION.tar.gz
 exit

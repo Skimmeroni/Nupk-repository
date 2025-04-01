@@ -22,6 +22,5 @@ find "$DESTDIR/usr/lib" -type f -name '*.so' -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../markupsafe@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../markupsafe@$VERSION.tar.gz
 exit

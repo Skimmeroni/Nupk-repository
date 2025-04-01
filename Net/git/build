@@ -46,6 +46,5 @@ xz -cd ../git-manpages-$VERSION.tar.xz | tar -x -C "$DESTDIR/usr/share/man"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../git@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../git@$VERSION.tar.gz
 exit

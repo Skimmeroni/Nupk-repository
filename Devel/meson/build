@@ -23,6 +23,5 @@ rm -rf "$DESTDIR/usr/share/polkit-1"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../meson@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../meson@$VERSION.tar.gz
 exit

@@ -31,6 +31,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../flex@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../flex@$VERSION.tar.gz
 exit

@@ -28,6 +28,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../pkgconf@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../pkgconf@$VERSION.tar.gz
 exit

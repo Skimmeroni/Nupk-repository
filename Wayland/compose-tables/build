@@ -29,6 +29,5 @@ make -C nls install
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../compose-tables@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz
 exit

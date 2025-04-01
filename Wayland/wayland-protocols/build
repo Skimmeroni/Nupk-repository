@@ -26,6 +26,5 @@ meson -C build install -d "$DESTDIR"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../wayland-protocols@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../wayland-protocols@$VERSION.tar.gz
 exit

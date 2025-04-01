@@ -27,6 +27,5 @@ find "$DESTDIR" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../ncurses@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../ncurses@$VERSION.tar.gz
 exit

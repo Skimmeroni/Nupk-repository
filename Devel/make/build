@@ -28,6 +28,5 @@ rm -rf "$DESTDIR/usr/share/info"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../make@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../make@$VERSION.tar.gz
 exit

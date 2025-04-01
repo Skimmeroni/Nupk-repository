@@ -63,6 +63,5 @@ find "$DESTDIR/usr/lib" -type f -exec chmod 644 {} \;
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../perl@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../perl@$VERSION.tar.gz
 exit

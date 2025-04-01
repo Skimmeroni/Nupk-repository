@@ -23,6 +23,5 @@ python setup.py install \
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../setuptools@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../setuptools@$VERSION.tar.gz
 exit

@@ -29,6 +29,5 @@ ln -sf oksh "$DESTDIR/usr/bin/sh"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../oksh@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../oksh@$VERSION.tar.gz
 exit

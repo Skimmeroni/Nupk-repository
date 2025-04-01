@@ -15,6 +15,5 @@ install -Dm644 mime-processed "$DESTDIR/etc/mime.types"
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../mime-types@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../mime-types@$VERSION.tar.gz
 exit

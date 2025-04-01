@@ -30,6 +30,5 @@ done
 
 su
 chown -R root:root $DESTDIR
-cd $DESTDIR
-tar -c * | gzip > ../toybox@$VERSION.tar.gz
+tar -c -C $DESTDIR . | gzip > ../toybox@$VERSION.tar.gz
 exit
