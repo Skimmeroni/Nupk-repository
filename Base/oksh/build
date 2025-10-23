@@ -2,9 +2,9 @@
 
 PRETTY_NAME=oksh
 MAJOR=7
-MINOR=6
+MINOR=7
 PATCH=
-VERSION=7.6
+VERSION=7.7
 
 mkdir temporary-builddir
 DESTDIR=temporary-builddir
@@ -18,12 +18,12 @@ cd oksh-$VERSION
 	--prefix=/usr \
 	--bindir=/usr/bin \
 	--mandir=/usr/share/man \
-	--disable-curses \
+	--enable-curses \
 	--enable-static \
 	--strip
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR=$DESTDIR install
 
 ln -sf oksh "$DESTDIR/usr/bin/sh"
 
