@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
 PRETTY_NAME=bc-gh
-MAJOR=6
-MINOR=7
-PATCH=5
-VERSION=6.7.5
+MAJOR=7
+MINOR=0
+PATCH=3
+VERSION=7.0.3
 
 mkdir temporary-builddir
 DESTDIR=temporary-builddir
@@ -22,7 +22,7 @@ cd bc-$VERSION
 	--disable-problematic-tests
 
 make
-make install
+make DESTDIR=$DESTDIR install
 
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
