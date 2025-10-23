@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
 PRETTY_NAME=libedit
-MAJOR=20230828-3
+MAJOR=20251016-3
 MINOR=1
 PATCH=
-VERSION=20230828-3.1
+VERSION=20251016-3.1
 
 mkdir temporary-builddir
 DESTDIR=temporary-builddir
@@ -14,15 +14,13 @@ curl --location --remote-name --skip-existing https://www.thrysoee.dk/editline/l
 gzip -cd libedit-$VERSION.tar.gz | tar -x
 cd libedit-$VERSION
 
-patch -p1 < ../fix-missing-header.patch
-
 ./configure \
 	--prefix=/usr \
 	--enable-static \
 	--enable-fast-install
 
 make
-make install
+make DESTDIR=$DESTDIR install
 
 find $DESTDIR -type f -name '*.la' -delete
 rm -rf "$DESTDIR/usr/share/man/man3"
