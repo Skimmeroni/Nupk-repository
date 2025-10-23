@@ -7,7 +7,7 @@ PATCH=7
 VERSION=1.8.7
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://x.org/releases/individual/lib/libX11-$VERSION.tar.xz
 
@@ -29,5 +29,5 @@ make -C nls install
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz
 exit

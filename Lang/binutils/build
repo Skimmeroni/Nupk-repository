@@ -7,7 +7,7 @@ PATCH=
 VERSION=2.44
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/binutils/binutils-$VERSION.tar.xz
 
@@ -36,12 +36,12 @@ cd binutils-$VERSION
 
 make configure-host
 make tooldir=/usr
-make tooldir=/usr DESTDIR="$DESTDIR" install-strip
+make tooldir=/usr DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../binutils@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../binutils@$VERSION.tar.gz
 exit

@@ -7,7 +7,7 @@ PATCH=3
 VERSION=6.13.3
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/kernel/v.x/linux-$VERSION.tar.xz
 
@@ -20,5 +20,5 @@ find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../linux-headers@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../linux-headers@$VERSION.tar.gz
 exit

@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 git clone https://codeberg.org/kiss-community/init.git
 cd init-scripts.git
@@ -30,5 +30,5 @@ strip --strip-unneeded "$DESTDIR/usr/bin/kpow"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../init-scripts@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../init-scripts@$VERSION.tar.gz
 exit

@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 git clone https://github.com/kyx0r/nextvi.git
 cd nextvi.git
@@ -21,5 +21,5 @@ strip --strip-unneeded "$DESTDIR/usr/bin/vi"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../nextvi@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../nextvi@$VERSION.tar.gz
 exit

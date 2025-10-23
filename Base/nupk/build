@@ -7,12 +7,12 @@ PATCH=
 VERSION=git
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 git clone https://github.com/Skimmeroni/Nupk.git
 install -Dm755 -t "$DESTDIR/usr/bin" nupk.git/nupk
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../nupk@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../nupk@$VERSION.tar.gz
 exit

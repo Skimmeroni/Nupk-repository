@@ -7,7 +7,7 @@ PATCH=
 VERSION=0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 mkdir -m 755 \
 	"$DESTDIR/boot" \
@@ -46,5 +46,5 @@ ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../skeleton@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../skeleton@$VERSION.tar.gz
 exit

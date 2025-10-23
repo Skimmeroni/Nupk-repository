@@ -7,7 +7,7 @@ PATCH=
 VERSION=643
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing http://www.greenwoodsoftware.com/less/less-$VERSION.tar.gz
 
@@ -17,9 +17,9 @@ cd less-$VERSION
 ./configure --prefix=/usr
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../less@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../less@$VERSION.tar.gz
 exit

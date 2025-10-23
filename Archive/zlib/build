@@ -7,7 +7,7 @@ PATCH=1
 VERSION=1.3.1
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://zlib.net/fossils/zlib-$VERSION.tar.gz
 
@@ -17,7 +17,7 @@ cd zlib-$VERSION
 ./configure --prefix=/usr
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR=$DESTDIR install
 
 find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
@@ -27,5 +27,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../zlib@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../zlib@$VERSION.tar.gz
 exit

@@ -7,7 +7,7 @@ PATCH=7
 VERSION=3.7.7
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://libarchive.org/downloads/libarchive-$VERSION.tar.xz
 
@@ -28,7 +28,7 @@ cd libarchive-$VERSION
 	--enable-static
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/man/man3"
 find $DESTDIR -type f -name '*.la' -delete
@@ -41,5 +41,5 @@ ln -sf bsdunzip "$DESTDIR/usr/bin/unzip"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../libarchive@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../libarchive@$VERSION.tar.gz
 exit

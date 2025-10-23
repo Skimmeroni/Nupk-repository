@@ -7,7 +7,7 @@ PATCH=4
 VERSION=2.40.4
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v./util-linux-$VERSION.tar.xz
 
@@ -37,7 +37,7 @@ cd util-linux-$VERSION
 	--without-python
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/man/man3"
 find $DESTDIR -type f -name '*.la' -delete
@@ -47,5 +47,5 @@ rmdir "$DESTDIR/usr/sbin"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../util-linux@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../util-linux@$VERSION.tar.gz
 exit

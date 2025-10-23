@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 git clone https://github.com/void-linux/runit.git
 cd runit.git/src
@@ -39,5 +39,5 @@ ln -sf /usr/lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../runit@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../runit@$VERSION.tar.gz
 exit

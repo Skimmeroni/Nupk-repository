@@ -7,7 +7,7 @@ PATCH=0
 VERSION=14.2.0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://gcc.gnu.org/pub/gcc/releases/gcc-/gcc-$VERSION.tar.xz
 
@@ -49,7 +49,7 @@ cd "gcc-$VERSION/builderoni"
 	--build="$(cc -dumpmachine)"
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 rm -rf "$DESTDIR/usr/share/man/man7"
@@ -68,5 +68,5 @@ fi
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../gcc@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../gcc@$VERSION.tar.gz
 exit

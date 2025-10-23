@@ -7,7 +7,7 @@ PATCH=0
 VERSION=4.0.0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$VERSION.tar.gz
 
@@ -20,7 +20,7 @@ cd libressl-$VERSION
 	--disable-tests
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/man"
 # rm -rf "$DESTDIR/usr/etc"
@@ -30,5 +30,5 @@ install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../libressl@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../libressl@$VERSION.tar.gz
 exit

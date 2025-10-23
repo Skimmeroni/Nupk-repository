@@ -7,7 +7,7 @@ PATCH=19
 VERSION=1.4.19
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/m4/m4-$VERSION.tar.xz
 
@@ -21,11 +21,11 @@ cd m4-$VERSION
 	--without-packager
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../m4@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../m4@$VERSION.tar.gz
 exit

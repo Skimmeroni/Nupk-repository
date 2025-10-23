@@ -7,7 +7,7 @@ PATCH=0
 VERSION=6.3.0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://gmplib.org/download/gmp/gmp-$VERSION.tar.xz
 
@@ -22,12 +22,12 @@ cd gmp-$VERSION
 	--with-pic
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR=$DESTDIR install
 
 rm -rf "$DESTDIR/usr/share"
 find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../libgmp@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../libgmp@$VERSION.tar.gz
 exit

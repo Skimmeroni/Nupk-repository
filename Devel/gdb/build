@@ -7,7 +7,7 @@ PATCH=
 VERSION=14.1
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/gdb/gdb-$VERSION.tar.xz
 
@@ -20,12 +20,12 @@ cd gdb-$VERSION
 	--disable-nls
 
 make
-make -C gdb DESTDIR="$DESTDIR" install-strip
-make -C gdbserver DESTDIR="$DESTDIR" install-strip
+make -C gdb DESTDIR=$DESTDIR install-strip
+make -C gdbserver DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../gdb@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../gdb@$VERSION.tar.gz
 exit

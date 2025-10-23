@@ -7,7 +7,7 @@ PATCH=p1
 VERSION=9.7p1
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-$VERSION.tar.gz
 
@@ -32,12 +32,12 @@ cd openssh-$VERSION
 	--disable-security-key
 
 make
-make DESTDIR="$DESTDIR" install
+make DESTDIR=$DESTDIR install
 
 install -Dm755 ../sshd.run "$DESTDIR/etc/sv/sshd/run" 
 ln -sf /run/runit/supervise.sshd "$DESTDIR/etc/sv/sshd/supervise"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../openssh@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../openssh@$VERSION.tar.gz
 exit

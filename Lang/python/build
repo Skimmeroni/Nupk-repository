@@ -7,7 +7,7 @@ PATCH=2
 VERSION=3.12.2
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://www.python.org/ftp/python//Python-$VERSION.tar.xz
 
@@ -72,5 +72,5 @@ find "$DESTDIR/usr/lib" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../python@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../python@$VERSION.tar.gz
 exit

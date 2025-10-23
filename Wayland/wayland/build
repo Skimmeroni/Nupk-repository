@@ -7,7 +7,7 @@ PATCH=0
 VERSION=1.22.0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/wayland/wayland/-/releases//downloads/wayland-$VERSION.tar.xz
 
@@ -32,5 +32,5 @@ strip --strip-unneeded "$DESTDIR/usr/bin/wayland-scanner"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../wayland@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../wayland@$VERSION.tar.gz
 exit

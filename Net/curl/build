@@ -7,7 +7,7 @@ PATCH=1
 VERSION=8.12.1
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://curl.haxx.se/download/curl-$VERSION.tar.xz
 
@@ -33,7 +33,7 @@ cd curl-$VERSION
 	--without-zstd
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share"
 
@@ -41,5 +41,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../curl@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../curl@$VERSION.tar.gz
 exit

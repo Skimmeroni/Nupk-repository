@@ -7,7 +7,7 @@ PATCH=
 VERSION=5.45
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://astron.com/pub/file/file-$VERSION.tar.gz
 
@@ -31,5 +31,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../file@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../file@$VERSION.tar.gz
 exit

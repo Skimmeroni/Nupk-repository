@@ -7,7 +7,7 @@ PATCH=2
 VERSION=10.2.2
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://github.com/NetworkConfiguration/dhcpcd/archive/refs/tags/v.tar.gz
 gzip -cd v$VERSION.tar.gz | tar -x
@@ -26,7 +26,7 @@ cd dhcpcd-$VERSION
 	--without-openssl
 
 make
-make DESTDIR="$DESTDIR" BINMODE=755 install
+make DESTDIR=$DESTDIR BINMODE=755 install
 
 install -Dm755 ../dhcpcd.run "$DESTDIR/etc/sv/dhcpcd/run"
 ln -sf /run/runit/supervise.dhcpcd "$DESTDIR/etc/sv/dhcpcd/supervise"
@@ -35,5 +35,5 @@ strip --strip-unneeded "$DESTDIR/usr/bin/dhcpcd"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../dhcpcd@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../dhcpcd@$VERSION.tar.gz
 exit

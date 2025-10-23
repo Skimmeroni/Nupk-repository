@@ -7,12 +7,12 @@ PATCH=31
 VERSION=2024-12-31
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://curl.se/ca/cacert-.pem
 install -Dm644 cacert-$VERSION.pem "$DESTDIR/etc/ssl/cert.pem"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../ca-certificates@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../ca-certificates@$VERSION.tar.gz
 exit

@@ -7,7 +7,7 @@ PATCH=
 VERSION=0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
 grep -v '#' mime.types > mime-processed
@@ -15,5 +15,5 @@ install -Dm644 mime-processed "$DESTDIR/etc/mime.types"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../mime-types@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../mime-types@$VERSION.tar.gz
 exit

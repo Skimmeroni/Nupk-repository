@@ -7,7 +7,7 @@ PATCH=7
 VERSION=1.1.7
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://bitmath.org/code/mtdev/mtdev-.tar.bz2
 bzip2 -cd mtdev-$VERSION.tar.bz2 | tar -x
@@ -16,11 +16,11 @@ cd mtdev-$VERSION
 ./configure --prefix=/usr
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../mtdev@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../mtdev@$VERSION.tar.gz
 exit

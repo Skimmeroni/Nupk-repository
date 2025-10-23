@@ -7,7 +7,7 @@ PATCH=0
 VERSION=2.3.0
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://distfiles.ariadne.space/pkgconf/pkgconf-$VERSION.tar.xz
 
@@ -19,7 +19,7 @@ cd pkgconf-$VERSION
 	--sysconfdir=/etc
 	
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 ln -s pkgconf "$DESTDIR/usr/bin/pkg-config"
 
@@ -28,5 +28,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../pkgconf@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../pkgconf@$VERSION.tar.gz
 exit

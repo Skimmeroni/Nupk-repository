@@ -7,7 +7,7 @@ PATCH=
 VERSION=1.36
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases//downloads/wayland-protocols-$VERSION.tar.xz
 
@@ -26,5 +26,5 @@ meson -C build install -d "$DESTDIR"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../wayland-protocols@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../wayland-protocols@$VERSION.tar.gz
 exit

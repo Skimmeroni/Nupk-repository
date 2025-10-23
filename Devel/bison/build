@@ -7,7 +7,7 @@ PATCH=2
 VERSION=3.8.2
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/bison/bison-$VERSION.tar.xz
 
@@ -20,7 +20,7 @@ cd bison-$VERSION
 	--without-libtextstyle-prefix
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 rm -rf "$DESTDIR/usr/share/doc"
@@ -28,5 +28,5 @@ rm -rf "$DESTDIR/usr/share/aclocal"
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../bison@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../bison@$VERSION.tar.gz
 exit

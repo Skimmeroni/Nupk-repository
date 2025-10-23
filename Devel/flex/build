@@ -7,7 +7,7 @@ PATCH=4
 VERSION=2.6.4
 
 mkdir temporary-builddir
-DESTDIR=temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
 
 curl --location --remote-name --skip-existing https://github.com/westes/flex/releases/download/v/flex-$VERSION.tar.gz
 
@@ -20,7 +20,7 @@ cd flex-$VERSION
 	ac_cv_func_realloc_0_nonnull=yes
 
 make
-make DESTDIR="$DESTDIR" install-strip
+make DESTDIR=$DESTDIR install-strip
 
 ln -sf flex "$DESTDIR/usr/bin/lex"
 
@@ -31,5 +31,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 su
 chown -R root:root $DESTDIR
-tar -c -C $DESTDIR . | gzip > ../flex@$VERSION.tar.gz
+tar -zcC $DESTDIR . | gzip > ../flex@$VERSION.tar.gz
 exit
