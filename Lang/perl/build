@@ -2,9 +2,9 @@
 
 PRETTY_NAME=perl
 MAJOR=5
-MINOR=36
-PATCH=3
-VERSION=5.36.3
+MINOR=40
+PATCH=1
+VERSION=5.40.1
 
 mkdir temporary-builddir
 DESTDIR=temporary-builddir
@@ -46,7 +46,7 @@ export CFLAGS="$CFLAGS -DNO_POSIX_2008_LOCALE -D_GNU_SOURCE"
     -Dd_static_inline
 
 make
-make install
+make DESTDIR=$DESTDIR install
 
 # Remove all unneeded files.
 find "$DESTDIR" -name \*.pod       -exec rm -f {} +
