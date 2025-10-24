@@ -45,7 +45,5 @@ find $DESTDIR -type f -name '*.la' -delete
 # For some reason, this directory is created anyway
 rmdir "$DESTDIR/usr/sbin"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../util-linux@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../util-linux@$VERSION.tar.gz"

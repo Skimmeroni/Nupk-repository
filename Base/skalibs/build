@@ -24,7 +24,5 @@ make DESTDIR=$DESTDIR install
 find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../skalibs@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../skalibs@$VERSION.tar.gz"

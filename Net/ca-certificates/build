@@ -12,7 +12,5 @@ DESTDIR="$PWD/temporary-builddir"
 curl --location --remote-name --skip-existing https://curl.se/ca/cacert-.pem
 install -Dm644 cacert-$VERSION.pem "$DESTDIR/etc/ssl/cert.pem"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../ca-certificates@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../ca-certificates@$VERSION.tar.gz"

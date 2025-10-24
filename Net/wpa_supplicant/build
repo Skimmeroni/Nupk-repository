@@ -34,7 +34,5 @@ mkdir -p $DESTDIR/usr/share/man/man8
 cp -f doc/docbook/*.5 $DESTDIR/usr/share/man/man5
 cp -f doc/docbook/*.8 $DESTDIR/usr/share/man/man8
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../../wpa_supplicant@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../../wpa_supplicant@$VERSION.tar.gz"

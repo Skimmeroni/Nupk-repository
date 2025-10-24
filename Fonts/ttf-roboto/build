@@ -16,7 +16,5 @@ unzip -d build roboto-android.zip
 mkdir -p "$DESTDIR/usr/share/fonts/TTF"
 cp build/*.ttf "$DESTDIR/usr/share/fonts/TTF"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../ttf-roboto@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../ttf-roboto@$VERSION.tar.gz"

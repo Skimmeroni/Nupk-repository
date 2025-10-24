@@ -19,7 +19,5 @@ cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
 
 install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-gentium-plus.license"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../ttf-gentium-plus@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../ttf-gentium-plus@$VERSION.tar.gz"

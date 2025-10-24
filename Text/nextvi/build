@@ -19,7 +19,5 @@ CC=cc ./cbuild.sh
 install -Dm755 vi "$DESTDIR/usr/bin/vi"
 strip --strip-unneeded "$DESTDIR/usr/bin/vi"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../nextvi@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../nextvi@$VERSION.tar.gz"

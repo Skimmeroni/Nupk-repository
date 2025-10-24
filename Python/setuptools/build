@@ -21,7 +21,5 @@ python setup.py install \
 	--prefix=/usr \
 	--root="$DESTDIR"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../setuptools@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../setuptools@$VERSION.tar.gz"

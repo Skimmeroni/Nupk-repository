@@ -18,7 +18,5 @@ make HOSTCC="$CC" headers
 
 find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../linux-headers@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../linux-headers@$VERSION.tar.gz"

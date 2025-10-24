@@ -17,7 +17,5 @@ cd chibi-scheme-$VERSION
 make PREFIX=/usr
 make PREFIX=/usr DESTDIR=$DESTDIR install
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../chibi-scheme@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../chibi-scheme@$VERSION.tar.gz"

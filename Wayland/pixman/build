@@ -30,7 +30,5 @@ meson -C build install -d "$DESTDIR"
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../pixman@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../pixman@$VERSION.tar.gz"

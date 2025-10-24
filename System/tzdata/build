@@ -33,7 +33,5 @@ done
 strip --strip-unneeded "$DESTDIR/usr/bin/zic"
 strip --strip-unneeded "$DESTDIR/usr/bin/zdump"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../tzdata@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../tzdata@$VERSION.tar.gz"

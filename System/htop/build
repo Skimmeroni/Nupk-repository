@@ -22,7 +22,5 @@ cd htop-$VERSION
 make
 make DESTDIR=$DESTDIR install-strip
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../htop@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../htop@$VERSION.tar.gz"

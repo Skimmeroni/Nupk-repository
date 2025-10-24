@@ -31,7 +31,5 @@ install -Dm644 LICENSE $DESTDIR/usr/share/LICENSES/opendoas.license
 strip --strip-unneeded $DESTDIR/usr/bin/doas
 chmod u+s $DESTDIR/usr/bin/doas
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../opendoas@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../opendoas@$VERSION.tar.gz"

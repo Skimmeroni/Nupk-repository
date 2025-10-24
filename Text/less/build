@@ -19,7 +19,5 @@ cd less-$VERSION
 make
 make DESTDIR=$DESTDIR install-strip
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../less@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../less@$VERSION.tar.gz"

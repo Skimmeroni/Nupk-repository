@@ -61,7 +61,5 @@ rm -rf "$DESTDIR/usr/share/man/man3"
 # Fix permissions.
 find "$DESTDIR/usr/lib" -type f -exec chmod 644 {} \;
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../perl@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../perl@$VERSION.tar.gz"

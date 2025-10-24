@@ -70,7 +70,5 @@ strip --strip-unneeded "$DESTDIR/usr/bin/python3"
 find "$DESTDIR/usr/lib" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../python@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../python@$VERSION.tar.gz"

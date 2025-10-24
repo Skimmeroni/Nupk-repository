@@ -18,7 +18,5 @@ make PREFIX=/usr PCDIR=/usr/lib/pkgconfig install
 
 strip --strip-unneeded "$DESTDIR/usr/bin/scdoc"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../scdoc@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../scdoc@$VERSION.tar.gz"

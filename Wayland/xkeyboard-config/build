@@ -29,7 +29,5 @@ meson -C build install -d "$DESTDIR"
 mkdir -p "$DESTDIR/usr/lib"
 mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib/pkgconfig"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../xkeyboard-config@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../xkeyboard-config@$VERSION.tar.gz"

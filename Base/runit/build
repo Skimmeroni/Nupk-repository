@@ -37,7 +37,5 @@ ln -sf runit-init                "$DESTDIR/usr/bin/init"
 ln -sf /usr/lib/init/rc.boot     "$DESTDIR/etc/runit/1"
 ln -sf /usr/lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../runit@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../runit@$VERSION.tar.gz"

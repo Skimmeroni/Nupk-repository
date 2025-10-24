@@ -12,7 +12,5 @@ DESTDIR="$PWD/temporary-builddir"
 git clone https://github.com/Skimmeroni/Nupk.git
 install -Dm755 -t "$DESTDIR/usr/bin" nupk.git/nupk
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../nupk@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../nupk@$VERSION.tar.gz"

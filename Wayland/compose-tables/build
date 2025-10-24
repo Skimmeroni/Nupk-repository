@@ -27,7 +27,5 @@ patch -p1 < ../compose-only.patch
 make -C nls
 make -C nls install
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz"

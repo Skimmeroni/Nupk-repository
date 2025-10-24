@@ -44,7 +44,5 @@ make DESTDIR=$DESTDIR install
 mkdir -p "$DESTDIR/usr/share/man"
 xz -cd ../git-manpages-$VERSION.tar.xz | tar -x -C "$DESTDIR/usr/share/man"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../git@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../git@$VERSION.tar.gz"

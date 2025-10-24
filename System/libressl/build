@@ -28,7 +28,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../libressl@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../libressl@$VERSION.tar.gz"

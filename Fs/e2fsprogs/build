@@ -38,7 +38,5 @@ make DESTDIR=$DESTDIR install-strip
 
 rmdir "$DESTDIR/usr/share/info"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../e2fsprogs@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../e2fsprogs@$VERSION.tar.gz"

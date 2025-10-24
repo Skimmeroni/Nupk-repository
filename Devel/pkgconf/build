@@ -26,7 +26,5 @@ ln -s pkgconf "$DESTDIR/usr/bin/pkg-config"
 rm -rf "$DESTDIR/usr/share/doc"
 find $DESTDIR -type f -name '*.la' -delete
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../pkgconf@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../pkgconf@$VERSION.tar.gz"

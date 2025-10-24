@@ -22,7 +22,5 @@ cd hwdata-$VERSION
 make
 make install
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../hwdata@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../hwdata@$VERSION.tar.gz"

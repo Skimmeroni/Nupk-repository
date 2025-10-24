@@ -23,7 +23,5 @@ install -Dm644 pigz "$DESTDIR/usr/share/man/man1/pigz.1"
 ln -sf pigz "$DESTDIR/usr/bin/gzip"
 strip --strip-unneeded "$DESTDIR/usr/bin/pigz"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../pigz@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../pigz@$VERSION.tar.gz"

@@ -41,7 +41,5 @@ make tooldir=/usr DESTDIR=$DESTDIR install-strip
 rm -rf "$DESTDIR/usr/share/info"
 find $DESTDIR -type f -name '*.la' -delete
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../binutils@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../binutils@$VERSION.tar.gz"

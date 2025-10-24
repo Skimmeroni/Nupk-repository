@@ -19,7 +19,5 @@ install -Dm755 tree $DESTDIR/usr/bin/tree
 install -Dm644 doc/tree.1 $DESTDIR/usr/share/man/man/tree.1
 strip --strip-unneeded $DESTDIR/usr/bin/tree
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../tree@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../tree@$VERSION.tar.gz"

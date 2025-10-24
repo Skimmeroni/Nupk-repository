@@ -37,7 +37,5 @@ make DESTDIR=$DESTDIR install
 install -Dm755 ../sshd.run "$DESTDIR/etc/sv/sshd/run" 
 ln -sf /run/runit/supervise.sshd "$DESTDIR/etc/sv/sshd/supervise"
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../openssh@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../openssh@$VERSION.tar.gz"

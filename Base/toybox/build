@@ -28,7 +28,5 @@ do
 	install -Dm755 change/$i "$DESTDIR/usr/bin/$i"
 done
 
-su
-chown -R root:root $DESTDIR
-tar -zcC $DESTDIR . | gzip > ../toybox@$VERSION.tar.gz
-exit
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../toybox@$VERSION.tar.gz"
