@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+PRETTY_NAME=chibi-scheme
+MAJOR=0
+MINOR=11
+PATCH=0
+VERSION=0.11.0
+
+mkdir temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
+
+curl --location --remote-name --skip-existing http://synthcode.com/scheme/chibi/chibi-scheme-$VERSION.tgz
+
+tar -xf chibi-scheme-$VERSION.tgz
+cd chibi-scheme-$VERSION
+
+make PREFIX=/usr
+make PREFIX=/usr DESTDIR=$DESTDIR install
+
+su
+chown -R root:root $DESTDIR
+tar -zcC $DESTDIR . | gzip > ../chibi-scheme@$VERSION.tar.gz
+exit
