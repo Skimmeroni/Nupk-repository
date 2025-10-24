@@ -30,9 +30,9 @@ EOF
 ./configure
 
 make
-make base-install
+make DESTDIR=$DESTDIR base-install
 
-find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \; -exec chmod 755 {} \;
+find "$DESTDIR/usr/bin" -type f -exec chmod 755 {} \; -exec strip --strip-unneeded {} \;
 
 su
 chown -R root:root $DESTDIR
