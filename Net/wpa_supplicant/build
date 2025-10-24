@@ -1,0 +1,40 @@
+#!/bin/sh -e
+
+PRETTY_NAME=wpa_supplicant
+MAJOR=2
+MINOR=11
+PATCH=
+VERSION=2.11
+
+mkdir temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
+
+curl --location --remote-name --skip-existing https://w1.fi/releases/wpa_supplicant-$VERSION.tar.gz
+
+gzip -cd wpa_supplicant-$VERSION.tar.gz | tar -x
+cd wpa_supplicant-$VERSION/wpa_supplicant
+
+cp defconfig .config
+sed -i 's|CONFIG_CTRL_IFACE_DBUS_NEW=y|#CONFIG_CTRL_IFACE_DBUS_NEW=n|g' .config
+sed -i 's|CONFIG_CTRL_IFACE_DBUS_INTRO=y|#CONFIG_CTRL_IFACE_DBUS_INTRO=n|g' .config
+sed -i "s|#CFLAGS += -I$<path to libnl include files>|CFLAGS += $(pkgconf --cflags libnl-3.0)|g" .config
+sed -i "s|#LIBS += -L$<path to libnl library files>|LIBS += $(pkgconf --libs libnl-3.0)|g" .config
+
+sed -i 's|LIBDIR ?= /usr/local/lib|LIBDIR = /usr/lib|g' Makefile
+sed -i 's|INCDIR ?= /usr/local/include|INCDIR = /usr/include|g' Makefile
+sed -i 's|BINDIR ?= /usr/local/bin|BINDIR = /usr/bin|g' Makefile
+
+make
+make DESTDIR=$DESTDIR install
+
+find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
+
+mkdir -p $DESTDIR/usr/share/man/man5
+mkdir -p $DESTDIR/usr/share/man/man8
+cp -f doc/docbook/*.5 $DESTDIR/usr/share/man/man5
+cp -f doc/docbook/*.8 $DESTDIR/usr/share/man/man8
+
+su
+chown -R root:root $DESTDIR
+tar -zcC $DESTDIR . | gzip > ../../wpa_supplicant@$VERSION.tar.gz
+exit
