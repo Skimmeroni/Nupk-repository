@@ -2,9 +2,9 @@
 
 PRETTY_NAME=file
 MAJOR=5
-MINOR=45
+MINOR=46
 PATCH=
-VERSION=5.45
+VERSION=5.46
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -18,13 +18,14 @@ cd file-$VERSION
 	--prefix=/usr \
 	--enable-fsect-man5 \
 	--enable-static \
-	--enable-zlib \
 	--disable-bzlib \
+	--disable-lzlib \
 	--disable-xzlib \
+	--disable-zlib \
 	--disable-libseccomp
 
 make
-make install-strip
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/man/man3"
 find $DESTDIR -type f -name '*.la' -delete
