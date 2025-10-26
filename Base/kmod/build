@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+PRETTY_NAME=kmod
+MAJOR=34
+MINOR=2
+PATCH=
+VERSION=34.2
+
+mkdir temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
+
+curl --location --remote-name --skip-existing https://kernel.org/pub/linux/utils/kernel/kmod/kmod-$VERSION.tar.xz
+
+xz -cd kmod-$VERSION.tar.xz | tar -x
+cd kmod-$VERSION
+
+# Long options are a GNU thing
+sed -i 's|--force --relative|-fr|g' Makefile.am
+sed -i 's|--force --relative|-fr|g' Makefile.in
+
+./configure \
+	--prefix=/usr \
+	--sbindir=/usr/bin \
+	--sysconfdir=/etc \
+	--without-xz \
+	--without-zlib \
+	--without-zstd \
+	--disable-manpages
+
+make
+make DESTDIR=$DESTDIR install-strip
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../kmod@$VERSION.tar.gz"
