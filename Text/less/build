@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
 PRETTY_NAME=less
-MAJOR=
-MINOR=
-PATCH=
-VERSION=643
+MAJOR=6
+MINOR=6
+PATCH=8
+VERSION=668
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
