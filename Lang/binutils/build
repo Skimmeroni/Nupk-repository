@@ -2,9 +2,9 @@
 
 PRETTY_NAME=binutils
 MAJOR=2
-MINOR=44
+MINOR=45
 PATCH=
-VERSION=2.44
+VERSION=2.45
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
