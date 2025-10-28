@@ -2,9 +2,9 @@
 
 PRETTY_NAME=pkgconf
 MAJOR=2
-MINOR=3
+MINOR=5
 PATCH=0
-VERSION=2.3.0
+VERSION=2.5.1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
