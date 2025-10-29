@@ -2,9 +2,9 @@
 
 PRETTY_NAME=libarchive
 MAJOR=3
-MINOR=7
-PATCH=7
-VERSION=3.7.7
+MINOR=8
+PATCH=2
+VERSION=3.8.2
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
