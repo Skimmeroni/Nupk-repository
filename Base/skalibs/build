@@ -3,8 +3,8 @@
 PRETTY_NAME=skalibs
 MAJOR=2
 MINOR=14
-PATCH=3
-VERSION=2.14.3.0
+PATCH=4
+VERSION=2.14.4.0
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
