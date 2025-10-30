@@ -2,9 +2,9 @@
 
 PRETTY_NAME=iproute2
 MAJOR=6
-MINOR=12
+MINOR=16
 PATCH=0
-VERSION=6.12.0
+VERSION=6.16.0
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -13,8 +13,6 @@ curl --location --remote-name --skip-existing https://www.kernel.org/pub/linux/u
 
 xz -cd iproute2-$VERSION.tar.xz | tar -x
 cd iproute2-$VERSION
-
-patch -p1 < ../fix-missing-includes.patch
 
 sed -i 's/CC := gcc/CC ?= gcc/g' Makefile
 
