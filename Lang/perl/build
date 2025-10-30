@@ -2,14 +2,14 @@
 
 PRETTY_NAME=perl
 MAJOR=5
-MINOR=40
-PATCH=1
-VERSION=5.40.1
+MINOR=42
+PATCH=0
+VERSION=5.42.0
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://www.cpan.org/src/.0/perl-$VERSION.tar.gz
+curl --location --remote-name --skip-existing https://www.cpan.org/src/$MAJOR.0/perl-$VERSION.tar.gz
 
 tar -xf perl-$VERSION.tar.gz
 cd perl-$VERSION
