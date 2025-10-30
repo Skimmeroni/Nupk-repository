@@ -2,14 +2,14 @@
 
 PRETTY_NAME=sqlite
 MAJOR=3
-MINOR=45
-PATCH=3
-VERSION=3.45.3
+MINOR=50
+PATCH=4
+VERSION=3.50.4
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://sqlite.org/2024/sqlite-autoconf-$VERSION.tar.gz
+curl --location --remote-name --skip-existing https://sqlite.org/2025/sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00.tar.gz
 
 gzip -cd sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00.tar.gz | tar -x
 cd sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00
@@ -29,9 +29,13 @@ export CPPFLAGS="$CPPFLAGS -DSQLITE_ENABLE_COLUMN_METADATA"
 	--disable-readline
 
 make
-make DESTDIR=$DESTDIR install-strip
+make DESTDIR=$DESTDIR install
 
 find $DESTDIR -type f -name '*.la' -delete
+
+strip --strip-unneeded "$DESTDIR/usr/bin/sqlite3"
+find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../sqlite@$VERSION.tar.gz"
