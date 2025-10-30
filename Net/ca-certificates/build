@@ -1,16 +1,17 @@
 #!/bin/sh -e
 
 PRETTY_NAME=ca-certificates
-MAJOR=2024
-MINOR=12
-PATCH=31
-VERSION=2024-12-31
+MAJOR=2025
+MINOR=09
+PATCH=09
+VERSION=2025-09-09
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://curl.se/ca/cacert-.pem
+curl --location --remote-name --skip-existing https://curl.se/ca/cacert-$VERSION.pem
+
 install -Dm644 cacert-$VERSION.pem "$DESTDIR/etc/ssl/cert.pem"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../ca-certificates@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ca-certificates@$VERSION.tar.gz"
