@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
 PRETTY_NAME=openssh
-MAJOR=9
-MINOR=7
+MAJOR=10
+MINOR=2
 PATCH=p1
-VERSION=9.7p1
+VERSION=10.2p1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
