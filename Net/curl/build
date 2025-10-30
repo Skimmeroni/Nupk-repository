@@ -2,9 +2,9 @@
 
 PRETTY_NAME=curl
 MAJOR=8
-MINOR=12
-PATCH=1
-VERSION=8.12.1
+MINOR=16
+PATCH=0
+VERSION=8.16.0
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -17,9 +17,9 @@ cd curl-$VERSION
 ./configure \
 	--prefix=/usr \
 	--enable-ipv6 \
-	--enable-unix-sockets \
+	--enable-manual \
 	--enable-symbol-hiding \
-	--disable-manual \
+	--enable-unix-sockets \
 	--disable-docs \
 	--disable-ldap \
 	--disable-ares \
