@@ -2,9 +2,9 @@
 
 PRETTY_NAME=git
 MAJOR=2
-MINOR=48
-PATCH=1
-VERSION=2.48.1
+MINOR=51
+PATCH=2
+VERSION=2.51.2
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -43,6 +43,8 @@ make DESTDIR=$DESTDIR install
 
 mkdir -p "$DESTDIR/usr/share/man"
 xz -cd ../git-manpages-$VERSION.tar.xz | tar -x -C "$DESTDIR/usr/share/man"
+
+rm -rf "$DESTDIR/usr/share/bash-completion"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../git@$VERSION.tar.gz"
