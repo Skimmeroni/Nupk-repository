@@ -2,9 +2,9 @@
 
 PRETTY_NAME=libressl
 MAJOR=4
-MINOR=0
-PATCH=0
-VERSION=4.0.0
+MINOR=2
+PATCH=1
+VERSION=4.2.1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -23,7 +23,6 @@ make
 make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/man"
-# rm -rf "$DESTDIR/usr/etc"
 find $DESTDIR -type f -name '*.la' -delete
 
 install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/libressl.license"
