@@ -2,28 +2,32 @@
 
 PRETTY_NAME=libffi
 MAJOR=3
-MINOR=4
-PATCH=6
-VERSION=3.4.6
+MINOR=5
+PATCH=2
+VERSION=3.5.2
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://github.com/libffi/libffi/releases/download/v/libffi-$VERSION.tar.gz
+curl --location --remote-name --skip-existing https://github.com/libffi/libffi/releases/download/v$VERSION/libffi-$VERSION.tar.gz
 
 gzip -cd libffi-$VERSION.tar.gz | tar -x
 cd libffi-$VERSION
 
-./configure \
-    --prefix=/usr \
-    --disable-exec-static-tramp \
-    --with-pic
+./configure --prefix=/usr
 
 make
-make install-strip
+make DESTDIR=$DESTDIR install-strip
 
-rm -rf "$DESTDIR/usr/share"
+rm -rf $DESTDIR/usr/share
 find $DESTDIR -type f -name '*.la' -delete
+
+if [ -d "$DESTDIR/usr/lib64" ]
+then
+	mv $DESTDIR/usr/lib64/* $DESTDIR/usr/lib
+	rmdir $DESTDIR/usr/lib64
+	sed -i 's|lib64|lib|g' $DESTDIR/usr/lib/pkgconfig/libffi.pc
+fi
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../libffi@$VERSION.tar.gz"
