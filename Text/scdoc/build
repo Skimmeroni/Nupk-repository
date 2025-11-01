@@ -9,12 +9,13 @@ VERSION=1.11.3
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://git.sr.ht/~sircmpwn/scdoc/archive/.tar.gz
+curl --location --remote-name --skip-existing https://git.sr.ht/~sircmpwn/scdoc/archive/$VERSION.tar.gz
+
 gzip -cd $VERSION.tar.gz | tar -x
 cd scdoc-$VERSION
 
-make PREFIX=/usr
-make PREFIX=/usr PCDIR=/usr/lib/pkgconfig install
+make PREFIX=/usr PCDIR=/usr/lib/pkgconfig
+make PREFIX=/usr PCDIR=/usr/lib/pkgconfig DESTDIR=$DESTDIR install
 
 strip --strip-unneeded "$DESTDIR/usr/bin/scdoc"
 
