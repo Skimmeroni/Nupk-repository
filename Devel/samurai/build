@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=samurai
+PRETTY_NAME=samurai-build-tool
 MAJOR=1
 MINOR=2
 PATCH=

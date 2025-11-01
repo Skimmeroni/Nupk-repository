@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=wpa_supplicant
+PRETTY_NAME=wpa-supplicant
 MAJOR=2
 MINOR=11
 PATCH=

@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=cpipes
+PRETTY_NAME=pipes.c
 MAJOR=1
 MINOR=2
 PATCH=1

@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=tree
+PRETTY_NAME=unix-tree-pt-br
 MAJOR=2
 MINOR=2
 PATCH=1
