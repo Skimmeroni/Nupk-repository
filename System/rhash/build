@@ -25,7 +25,7 @@ cd RHash-$VERSION
 	--extra-ldflags=$LDFLAGS
 
 make
-make DESTDIR=$DESTDIR install
+make DESTDIR=$DESTDIR install install-pkg-config
 make -C librhash DESTDIR=$DESTDIR install-lib-headers install-so-link
 
 install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/rhash.license"
