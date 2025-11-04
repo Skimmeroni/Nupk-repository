@@ -22,13 +22,20 @@ sed -i 's|--force --relative|-fr|g' Makefile.in
 	--prefix=/usr \
 	--sbindir=/usr/bin \
 	--sysconfdir=/etc \
+	--with-noarch-pkgconfigdir=/usr/lib/pkgconfig \
+	--without-bashcompletiondir \
+	--without-fishcompletiondir \
+	--without-zshcompletiondir \
 	--without-xz \
 	--without-zlib \
 	--without-zstd \
-	--disable-manpages
+	--without-openssl \
+	--enable-manpages
 
 make
 make DESTDIR=$DESTDIR install-strip
+
+find $DESTDIR -type f -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../kmod@$VERSION.tar.gz"
