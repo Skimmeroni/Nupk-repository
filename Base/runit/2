@@ -1,8 +1,9 @@
 #!/bin/sh
 
-PATH=/usr/bin
+#PATH=/usr/bin
 
 while :; do /usr/bin/getty 38400 tty1 2>&1 ; done &
 while :; do /usr/bin/getty 38400 tty2 2>&1 ; done &
 
+/usr/bin/modprobe brcmfmac feature_disable=0x282000
 exec /usr/bin/runsvdir -P /var/service
