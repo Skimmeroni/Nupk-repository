@@ -26,5 +26,8 @@ muon setup \
 ninja -C build
 muon -C build install -d $DESTDIR
 
+find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../jsoncpp@$VERSION.tar.gz"
