@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=gumbo
+PRETTY_NAME=gumbo-parser
 MAJOR=0
 MINOR=13
 PATCH=1
