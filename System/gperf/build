@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+PRETTY_NAME=gperf
+MAJOR=3
+MINOR=3
+PATCH=
+VERSION=3.3
+
+mkdir temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
+
+curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/gperf/gperf-$VERSION.tar.gz
+
+gzip -cd gperf-$VERSION.tar.gz | tar -x
+cd gperf-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR=$DESTDIR install
+
+strip --strip-unneeded $DESTDIR/usr/bin/gperf
+rm -rf "$DESTDIR/usr/share/doc"
+rm -rf "$DESTDIR/usr/share/info"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../gperf@$VERSION.tar.gz"
