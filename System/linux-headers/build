@@ -16,7 +16,13 @@ cd linux-$VERSION
 
 make HOSTCC="$CC" headers
 
-find usr/include -name \*.h -type f -exec install -Dm644 {} $DESTDIR/{} \;
+# Similar to KISS, avoids depending on rsync.
+# There's probably a better way to do it
+
+for header in $(find usr/include -name '*.h' -type f)
+do
+	install -Dm644 $header $DESTDIR/$header
+done
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../linux-headers@$VERSION.tar.gz"
