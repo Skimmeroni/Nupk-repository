@@ -2,9 +2,9 @@
 
 PRETTY_NAME=linux
 MAJOR=6
-MINOR=14
+MINOR=15
 PATCH=1
-VERSION=6.14.1
+VERSION=6.15.1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
