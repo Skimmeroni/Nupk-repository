@@ -14,10 +14,6 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/cai
 gzip -cd cairo-$VERSION.tar.gz | tar -x
 cd cairo-$VERSION
 
-# TODO: glib is disabled only temporarely until glib is packaged
-# It is necessary to build pango, which is a requirement for GTK,
-# hence it has to be included anyway
-
 muon setup \
 	-D prefix=/usr \
 	-D default_library=both \
@@ -25,7 +21,7 @@ muon setup \
 	-D freetype=enabled \
 	-D png=enabled \
 	-D zlib=enabled \
-	-D glib=disabled \
+	-D glib=enabled \
 	-D gtk_doc=false \
 	-D gtk2-utils=disabled \
 	-D spectre=disabled \
