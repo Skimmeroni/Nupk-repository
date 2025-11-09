@@ -26,11 +26,12 @@ cd freetype-$VERSION
 # is built. Moreover, muon is kind of hit and miss.
 # This is to be investigated
 
-if [ $(pkg-config --exists harfbuzz) ]
+pkg-config --exists harfbuzz
+if [ $? == 0 ]
 then
-	HARFBUZZ_AT_HOME="enabled"
+	HARFBUZZ_AT_HOME=enabled
 else
-	HARFBUZZ_AT_HOME="disabled"
+	HARFBUZZ_AT_HOME=disabled
 fi
 
 muon setup \
