@@ -2,39 +2,37 @@
 
 PRETTY_NAME=libxkbcommon
 MAJOR=1
-MINOR=7
+MINOR=13
 PATCH=0
-VERSION=1.7.0
+VERSION=1.13.0
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://xkbcommon.org/download/libxkbcommon-$VERSION.tar.xz
+curl --location --remote-name --skip-existing https://github.com/xkbcommon/libxkbcommon/archive/refs/tags/xkbcommon-$VERSION.tar.gz
 
-xz -cd libxkbcommon-$VERSION.tar.xz | tar -x
-cd libxkbcommon-$VERSION
+gzip -cd xkbcommon-$VERSION.tar.gz | tar -x
+cd libxkbcommon-xkbcommon-$VERSION
 
-meson setup \
-	-Dprefix=/usr \
-	-Dlibdir=/usr/lib \
-	-Dlibexecdir=/usr/lib \
-	-Dbuildtype=release \
-	-Ddefault_library=both \
-	-Denable-docs=false \
-	-Denable-wayland=true \
-	-Denable-x11=false \
-	-Denable-xkbregistry=false \
+muon setup \
+	-D prefix=/usr \
+	-D libdir=/usr/lib \
+	-D libexecdir=/usr/lib \
+	-D buildtype=release \
+	-D default_library=both \
+	-D enable-docs=false \
+	-D enable-tools=false \
+	-D enable-wayland=true \
+	-D enable-x11=false \
+	-D enable-bash-completion=false \
+	-D enable-xkbregistry=false \
 	build
 
-meson -C build compile
-meson -C build install -d "$DESTDIR"
+ninja -C build
+muon -C build install -d "$DESTDIR"
 
-rm -rf "$DESTDIR/usr/share/bash-completion"
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib/xkbcommon" -type f     -exec strip --strip-unneeded {} \;
-strip --strip-unneeded "$DESTDIR/usr/bin/xkbcli"
+find $DESTDIR -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find $DESTDIR -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../libxkbcommon@$VERSION.tar.gz"
