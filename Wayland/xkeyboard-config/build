@@ -2,9 +2,9 @@
 
 PRETTY_NAME=xkeyboard-config
 MAJOR=2
-MINOR=41
+MINOR=46
 PATCH=
-VERSION=2.41
+VERSION=2.46
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -14,20 +14,19 @@ curl --location --remote-name --skip-existing https://x.org/releases/individual/
 xz -cd xkeyboard-config-$VERSION.tar.xz | tar -x
 cd xkeyboard-config-$VERSION
 
+# Install to /usr/lib/pkgconfig instead of /usr/share/pkgconfig
+patch -p1 < ../install-pkg-config-to-lib.patch
+
 sed -i "s/subdir('po')//g" meson.build
 
-meson setup \
-	-Dprefix=/usr \
-	-Dbuildtype=release \
-	-Dxkb-base=/usr/share/X11/xkb \
-	-Dcompat-rules=true \
+muon setup \
+	-D prefix=/usr \
+	-D buildtype=release \
+	-D compat-rules=true \
 	build
 
-meson -C build compile
-meson -C build install -d "$DESTDIR"
-
-mkdir -p "$DESTDIR/usr/lib"
-mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib/pkgconfig"
+ninja -C build
+muon -C build install -d "$DESTDIR"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../xkeyboard-config@$VERSION.tar.gz"

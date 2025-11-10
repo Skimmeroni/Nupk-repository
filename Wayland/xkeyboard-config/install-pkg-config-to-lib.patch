@@ -1,0 +1,17 @@
+--- a/meson.build
++++ b/meson.build
+@@ -6,6 +6,7 @@
+ xkc_version = meson.project_version().split('.')
+ xkc_version_major = xkc_version[0]
+ dir_data         = join_paths(get_option('prefix'), get_option('datadir'))
++lib_data         = join_paths(get_option('prefix'), get_option('libdir'))
+ dir_xkb_base     = join_paths(dir_data, f'xkeyboard-config-@xkc_version_major@')
+ dir_xkb_base_x11 = join_paths(dir_data, 'X11', 'xkb')
+ dir_xkb_rules    = join_paths(dir_xkb_base, 'rules')
+@@ -12,5 +13,5 @@
+ dir_man7         = join_paths(get_option('prefix'), get_option('mandir'), 'man7')
+-dir_pkgconfig    = join_paths(dir_data, 'pkgconfig')
++dir_pkgconfig    = join_paths(lib_data, 'pkgconfig')
+ 
+ i18n = import('i18n')
+ 
