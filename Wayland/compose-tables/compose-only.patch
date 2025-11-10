@@ -1,8 +1,6 @@
-diff --git a/configure b/configure
-index 68fb781..dccee41 100755
 --- a/configure
 +++ b/configure
-@@ -22250,37 +22250,6 @@ printf "%s\n" "#define USE_POLL 1" >>confdefs.h
+@@ -23313,38 +23313,8 @@
  fi
  
  
@@ -11,15 +9,16 @@ index 68fb781..dccee41 100755
 -#
 -{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking keysym definitions" >&5
 -printf %s "checking keysym definitions... " >&6; }
--
+ 
 -# Check whether --with-keysymdefdir was given.
 -if test ${with_keysymdefdir+y}
 -then :
 -  withval=$with_keysymdefdir; KEYSYMDEFDIR=$withval
--else $as_nop
--  KEYSYMDEFDIR=`$PKG_CONFIG --variable=includedir xproto`/X11
+-else case e in #(
+-  e) KEYSYMDEFDIR=`$PKG_CONFIG --variable=includedir xproto`/X11 ;;
+-esac
 -fi
--
+ 
 -
 -if test ! -d "$KEYSYMDEFDIR"; then
 -	as_fn_error $? "$KEYSYMDEFDIR doesn't exist or isn't a directory" "$LINENO" 5
@@ -40,13 +39,13 @@ index 68fb781..dccee41 100755
  # Check whether --enable-xcms was given.
  if test ${enable_xcms+y}
  then :
-@@ -22848,43 +22817,6 @@ printf "%s\n" "#define X11_LIBDIR \"$ax_define_dir\"" >>confdefs.h
+@@ -23923,46 +23893,9 @@
  
  
  pkg_failed=no
 -{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for X11" >&5
 -printf %s "checking for X11... " >&6; }
--
+ 
 -if test -n "$X11_CFLAGS"; then
 -    pkg_cv_X11_CFLAGS="$X11_CFLAGS"
 - elif test -n "$PKG_CONFIG"; then
@@ -83,4 +82,7 @@ index 68fb781..dccee41 100755
 -fi
  
  
- 
+-
+ if test $pkg_failed = yes; then
+    	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ printf "%s\n" "no" >&6; }

@@ -1,10 +1,14 @@
 #!/bin/sh -e
 
+# Taken one to one from KISS, with the compose-only patch slightly modified
+# It would be interesting to bypass the config entirely and install
+# tables straight away
+
 PRETTY_NAME=libx11
 MAJOR=1
 MINOR=8
-PATCH=7
-VERSION=1.8.7
+PATCH=12
+VERSION=1.8.12
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -21,11 +25,10 @@ patch -p1 < ../compose-only.patch
 	--disable-specs \
 	--disable-xkb \
 	--without-fop \
-	--without-xmlto \
-	--with-keysymdefdir="/usr/include/X11"
+	--without-xmlto
 
 make -C nls
-make -C nls install
+make DESTDIR=$DESTDIR -C nls install
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz"
