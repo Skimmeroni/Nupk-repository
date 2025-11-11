@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+PRETTY_NAME=python:gpep517
+MAJOR=19
+MINOR=
+PATCH=
+VERSION=19
+
+mkdir temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
+
+curl --location --remote-name --skip-existing https://github.com/mgorny/gpep517/archive/v$VERSION/gpep517-v$VERSION.tar.gz
+
+gzip -cd gpep517-v$VERSION.tar.gz | tar -x
+cd gpep517-$VERSION
+
+PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v[0]}.{v[1]}")')
+TARGET_DIRECTORY=$DESTDIR/usr/lib/python$PYTHON_VERSION/site-packages
+mkdir -p $TARGET_DIRECTORY
+
+python -m compileall gpep517
+mv gpep517 $TARGET_DIRECTORY
+
+# Script taken from Gentoo
+
+install -Dm755 ../gpep517 $DESTDIR/usr/bin/gpep517
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../gpep517@$VERSION.tar.gz"
