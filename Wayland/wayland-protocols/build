@@ -2,27 +2,27 @@
 
 PRETTY_NAME=wayland-protocols
 MAJOR=1
-MINOR=36
+MINOR=45
 PATCH=
-VERSION=1.36
+VERSION=1.45
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases//downloads/wayland-protocols-$VERSION.tar.xz
+curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/$VERSION/downloads/wayland-protocols-$VERSION.tar.xz
 
 xz -cd wayland-protocols-$VERSION.tar.xz | tar -x
 cd wayland-protocols-$VERSION
 
-meson setup \
-	-Dprefix=/usr \
-	-Ddatadir=lib \
-	-Dbuildtype=release \
-	-Dtests=false \
+muon setup \
+	-D prefix=/usr \
+	-D datadir=lib \
+	-D buildtype=release \
+	-D tests=false \
 	build
 
-meson -C build compile
-meson -C build install -d "$DESTDIR"
+ninja -C build
+muon -C build install -d "$DESTDIR"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../wayland-protocols@$VERSION.tar.gz"
