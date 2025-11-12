@@ -17,6 +17,9 @@ cd cmake-$VERSION
 # From LFS: always use lib, never use lib64
 sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
 
+# Since cmake takes ages to build, it is reasonable to skip
+# the bootstrap phase if it is installed already. It makes
+# (should make?) no difference anyway
 if [ -z $(command -v cmake) ]
 then
 	echo "CMake was not found, starting bootstrap phase..."

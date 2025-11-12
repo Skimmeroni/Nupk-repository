@@ -19,7 +19,6 @@ cd libpng-$VERSION
 
 gzip -cd ../libpng-$VERSION-apng.patch.gz | patch -p1
 
-# Proper architecture-dependent optimizations are detected automatically
 ./configure \
 	--prefix=/usr \
 	--enable-shared \

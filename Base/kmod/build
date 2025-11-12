@@ -18,6 +18,7 @@ cd kmod-$VERSION
 sed -i 's|--force --relative|-fr|g' Makefile.am
 sed -i 's|--force --relative|-fr|g' Makefile.in
 
+# TODO: for the love of God, switch to muon
 ./configure \
 	--prefix=/usr \
 	--sbindir=/usr/bin \
