@@ -2,25 +2,29 @@
 
 PRETTY_NAME=seatd
 MAJOR=0
-MINOR=8
-PATCH=0
-VERSION=0.8.0
+MINOR=9
+PATCH=1
+VERSION=0.9.1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
 
-curl --location --remote-name --skip-existing https://git.sr.ht/~kennylevinsen/seatd/archive/.tar.gz
+curl --location --remote-name --skip-existing https://git.sr.ht/~kennylevinsen/seatd/archive/$VERSION.tar.gz
+
 gzip -cd $VERSION.tar.gz | tar -x
 cd seatd-$VERSION
 
-meson setup \
-    -Dprefix=/usr \
-    -Ddefault_library=both \
-    -Dbuildtype=release \
+muon setup \
+    -D prefix=/usr \
+    -D default_library=both \
+    -D buildtype=release \
+    -D man-pages=enabled \
+    -D libseat-builtin=enabled \
+    -D server=enabled \
     build
 
-meson -C build compile
-meson -C build install -d "$DESTDIR"
+ninja -C build
+muon -C build install -d "$DESTDIR"
 
 install -Dm755 ../seatd.run "$DESTDIR/etc/sv/seatd/run"
 ln -sf /run/runit/supervise.seatd "$DESTDIR/etc/sv/seatd/supervise"
