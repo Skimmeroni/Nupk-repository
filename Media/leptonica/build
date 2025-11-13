@@ -25,7 +25,7 @@ cd leptonica-$VERSION
 	--with-libwebp \
 	--with-libwebpmux \
 	--with-zlib \
-	--without-libtiff \
+	--with-libtiff \
 	--without-libopenjpeg
 
 make
