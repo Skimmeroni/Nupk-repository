@@ -2,9 +2,9 @@
 
 PRETTY_NAME=ca-certificates
 MAJOR=2025
-MINOR=09
-PATCH=09
-VERSION=2025-09-09
+MINOR=11
+PATCH=04
+VERSION=2025-11-04
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
