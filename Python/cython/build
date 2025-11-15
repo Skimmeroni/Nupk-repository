@@ -2,9 +2,9 @@
 
 PRETTY_NAME=python:cython
 MAJOR=3
-MINOR=1
-PATCH=2
-VERSION=3.1.2
+MINOR=2
+PATCH=1
+VERSION=3.2.1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
