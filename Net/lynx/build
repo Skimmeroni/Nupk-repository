@@ -17,9 +17,10 @@ cd lynx$VERSION
 ./configure \
 	--prefix=/usr \
 	--sysconfdir=/etc/lynx \
-	--with-bzlib \
-	--with-ssl \
-	--with-zlib
+	--disable-dired \
+	--without-bzlib \
+	--without-zlib \
+	--with-ssl
 
 make
 make DESTDIR=$DESTDIR install
