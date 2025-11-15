@@ -2,9 +2,9 @@
 
 PRETTY_NAME=hwdata
 MAJOR=0
-MINOR=400
+MINOR=401
 PATCH=
-VERSION=0.400
+VERSION=0.401
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
