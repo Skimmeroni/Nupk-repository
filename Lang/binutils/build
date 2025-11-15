@@ -3,8 +3,8 @@
 PRETTY_NAME=binutils
 MAJOR=2
 MINOR=45
-PATCH=
-VERSION=2.45
+PATCH=1
+VERSION=2.45.1
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
@@ -17,7 +17,6 @@ cd binutils-$VERSION
 ./configure \
 	--prefix=/usr \
 	--with-lib-path=/usr/lib \
-	--enable-deterministic-archives \
 	--enable-ld=default \
 	--enable-plugins \
 	--disable-jansson \
