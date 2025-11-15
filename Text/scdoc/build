@@ -3,8 +3,8 @@
 PRETTY_NAME=scdoc
 MAJOR=1
 MINOR=11
-PATCH=3
-VERSION=1.11.3
+PATCH=4
+VERSION=1.11.4
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
