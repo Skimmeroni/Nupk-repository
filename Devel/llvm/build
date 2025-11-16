@@ -17,8 +17,6 @@ mv cmake-$VERSION.src cmake
 xz -cd llvm-$VERSION.src.tar.xz | tar -x
 cd llvm-$VERSION.src
 
-#export CXXFLAGS="$CXXFLAGS -D_LIBCPP_HAS_MUSL_LIBC"
-
 # For convenience, only native target is built.
 # May or may not be what you want
 # TODO: lto?
@@ -41,8 +39,6 @@ cmake -B build \
 	-D LLVM_ENABLE_ZLIB=ON \
 	-D LLVM_ENABLE_LTO=OFF \
 	-D LLVM_ENABLE_ZSTD=OFF \
-	-D LLVM_BUILD_TOOLS=OFF \
-	-D LLVM_BUILD_UTILS=OFF \
 	-W no-dev -G Ninja
 
 cmake --build build
