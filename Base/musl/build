@@ -55,10 +55,6 @@ ln -sf libc.so "$DESTDIR/usr/lib/ld-musl-$ARCH.so.1"
 strip --strip-unneeded "$DESTDIR/usr/bin/getent"
 strip --strip-unneeded "$DESTDIR/usr/bin/getconf"
 
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.o'   -type f -exec strip --strip-unneeded {} \;
-
 cat > "$DESTDIR/usr/bin/ldd" << EOF
 #!/bin/sh
 exec /lib/ld-musl-$ARCH.so.1 --list "\$@"
