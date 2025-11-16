@@ -25,7 +25,8 @@ cmake -B build \
 	-D DISABLE_ARCHIVE=ON \
 	-D DISABLE_CURL=ON \
 	-D ENABLE_NATIVE=ON \
-	-D GRAPHICS_DISABLED=ON
+	-D GRAPHICS_DISABLED=ON \
+	-G Ninja
 
 cmake --build build
 DESTDIR=$DESTDIR cmake --install build --strip

@@ -43,7 +43,8 @@ else
 		-D CMAKE_USE_SYSTEM_LIBRARIES=ON \
 		-D CMake_ENABLE_DEBUGGER=OFF \
 		-D BUILD_TESTING=OFF \
-		-D BUILD_QtDialog=OFF
+		-D BUILD_QtDialog=OFF \
+		-G Ninja
 	
 	cmake --build build
 	DESTDIR=$DESTDIR cmake --install build

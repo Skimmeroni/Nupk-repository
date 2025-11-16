@@ -34,7 +34,8 @@ cmake -B build \
 	-D SWIPL_PACKAGES_TERM=ON \
 	-D SWIPL_PACKAGES_TIPC=OFF \
 	-D SWIPL_PACKAGES_GUI=OFF \
-	-D SWIPL_PACKAGES_YAML=OFF
+	-D SWIPL_PACKAGES_YAML=OFF \
+	-G Ninja
 
 cmake --build   build
 DESTDIR=$DESTDIR cmake --install build --strip

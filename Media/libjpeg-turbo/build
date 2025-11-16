@@ -22,7 +22,8 @@ cmake -B build \
 	-D ENABLE_SHARED=ON \
 	-D WITH_JAVA=OFF \
 	-D WITH_TESTS=OFF \
-	-D WITH_TOOLS=OFF
+	-D WITH_TOOLS=OFF \
+	-G Ninja
 
 cmake --build build
 DESTDIR=$DESTDIR cmake --install build --strip
