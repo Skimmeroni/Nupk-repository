@@ -6,8 +6,8 @@ MINOR=12
 PATCH=0
 VERSION=3.12.0
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl --location --remote-name --skip-existing https://files.pythonhosted.org/packages/source/f/flit/flit-$VERSION.tar.gz
 
@@ -25,3 +25,6 @@ rm -rf $DESTDIR/usr/lib/python$PYTHON_VERSION/site-packages/flit_core-$VERSION.d
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../flit_core@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

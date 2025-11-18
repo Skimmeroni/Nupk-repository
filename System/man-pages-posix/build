@@ -6,8 +6,8 @@ MINOR=a
 PATCH=
 VERSION=2017a
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/man-pages-posix/man-pages-posix-$MAJOR-$MINOR.tar.xz
 
@@ -36,3 +36,6 @@ done
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../man-pages-posix@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -6,8 +6,8 @@ MINOR=
 PATCH=
 VERSION=git
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types | grep -v '#' - > mime.types
 
@@ -15,3 +15,6 @@ install -Dm644 mime.types "$DESTDIR/etc/mime.types"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > mime-types@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

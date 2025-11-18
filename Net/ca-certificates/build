@@ -6,8 +6,8 @@ MINOR=11
 PATCH=04
 VERSION=2025-11-04
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl --location --remote-name --skip-existing https://curl.se/ca/cacert-$VERSION.pem
 
@@ -15,3 +15,6 @@ install -Dm644 cacert-$VERSION.pem "$DESTDIR/etc/ssl/cert.pem"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ca-certificates@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

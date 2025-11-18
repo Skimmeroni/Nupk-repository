@@ -6,11 +6,14 @@ MINOR=
 PATCH=
 VERSION=git
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 git clone https://github.com/Skimmeroni/Nupk.git
 install -Dm755 -t "$DESTDIR/usr/bin" nupk.git/nupk
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../nupk@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

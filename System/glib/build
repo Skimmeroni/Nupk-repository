@@ -6,8 +6,8 @@ MINOR=87
 PATCH=0
 VERSION=2.87.0
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl --location --remote-name --skip-existing https://download.gnome.org/sources/glib/$MAJOR.$MINOR/glib-$VERSION.tar.xz
 
@@ -44,3 +44,6 @@ find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../glib@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

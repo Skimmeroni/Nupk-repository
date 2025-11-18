@@ -6,8 +6,8 @@ MINOR=
 PATCH=
 VERSION=git
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 mkdir -m 755 \
 	"$DESTDIR/boot" \
@@ -46,3 +46,6 @@ ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../skeleton@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

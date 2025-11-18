@@ -6,8 +6,8 @@ MINOR=003
 PATCH=
 VERSION=3.003
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl --location --remote-name --skip-existing https://github.com/source-foundry/Hack/releases/download/v/Hack-v-ttf.tar.gz
 gzip -cd Hack-v$VERSION-ttf.tar.gz | tar -x
@@ -17,3 +17,6 @@ cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../ttf-hack@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -6,8 +6,8 @@ MINOR=2
 PATCH=
 VERSION=1.2
 
-mkdir temporary-builddir
-DESTDIR="$PWD/temporary-builddir"
+mkdir temporary-distdir
+DESTDIR="$PWD/temporary-distdir"
 
 curl --location --remote-name https://github.com/michaelforney/samurai/releases/download/$VERSION/samurai-$VERSION.tar.gz
 
@@ -24,3 +24,6 @@ ln -sf samu.1 $DESTDIR/usr/share/man/man1/ninja.1
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../samurai@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
