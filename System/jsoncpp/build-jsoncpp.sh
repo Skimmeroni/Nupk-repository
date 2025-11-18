@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+PRETTY_NAME=jsoncpp
+MAJOR=1
+MINOR=9
+PATCH=6
+VERSION=1.9.6
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/open-source-parsers/jsoncpp/archive/$VERSION/jsoncpp-$VERSION.tar.gz
+
+gzip -cd jsoncpp-$VERSION.tar.gz | tar -x
+cd jsoncpp-$VERSION
+
+# Muon does not support the cmake module (yet)
+patch -p1 < ../bypass-cmake-module.patch
+
+muon setup \
+	-D tests=false \
+	-D default_library=both \
+	-D prefix=/usr \
+	build
+
+ninja -C build
+muon -C build install -d $DESTDIR
+
+find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../jsoncpp@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

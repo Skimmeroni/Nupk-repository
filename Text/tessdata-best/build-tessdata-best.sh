@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+PRETTY_NAME=tessdata-best
+MAJOR=4
+MINOR=1
+PATCH=0
+VERSION=4.1.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/tesseract-ocr/tessdata_best/archive/refs/tags/$VERSION.tar.gz
+
+gzip -cd $VERSION.tar.gz | tar -x
+
+# Adjust to one's accord
+LANGUAGES="eng ita fra spa rus"
+
+for l in $LANGUAGES
+do
+	install -Dm644 tessdata_best-$VERSION/$l.traineddata $DESTDIR/usr/share/tessdata/$l.traineddata
+done
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > tesseract-data@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

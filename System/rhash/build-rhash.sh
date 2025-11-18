@@ -1,0 +1,43 @@
+#!/bin/sh -e
+
+PRETTY_NAME=rhash
+MAJOR=1
+MINOR=4
+PATCH=6
+VERSION=1.4.6
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/rhash/RHash/archive/refs/tags/v$VERSION.tar.gz
+
+gzip -cd v$VERSION.tar.gz | tar -x
+cd RHash-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--enable-lib-static \
+	--enable-lib-shared \
+	--enable-openssl \
+	--disable-gettext \
+	--extra-cflags=$CFLAGS \
+	--extra-ldflags=$LDFLAGS
+
+make
+make DESTDIR=$DESTDIR install install-pkg-config
+make -C librhash DESTDIR=$DESTDIR install-lib-headers install-so-link
+
+install -Dm644 COPYING "$DESTDIR/usr/share/LICENSES/rhash.license"
+
+find $DESTDIR/usr/bin       -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../rhash@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -1,0 +1,39 @@
+#!/bin/sh -e
+
+PRETTY_NAME=pixman
+MAJOR=0
+MINOR=46
+PATCH=4
+VERSION=0.46.4
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://x.org/releases/individual/lib/pixman-$VERSION.tar.xz
+
+xz -cd pixman-$VERSION.tar.xz | tar -x
+cd pixman-$VERSION
+
+muon setup \
+	-D prefix=/usr \
+	-D buildtype=release \
+	-D default_library=both \
+	-D gtk=disabled \
+	-D tests=disabled \
+	-D libpng=disabled \
+	-D demos=disabled \
+	build
+
+ninja -C build
+muon -C build install -d "$DESTDIR"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../pixman@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

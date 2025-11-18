@@ -1,0 +1,51 @@
+#!/bin/sh -e
+
+PRETTY_NAME=glib
+MAJOR=2
+MINOR=87
+PATCH=0
+VERSION=2.87.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://download.gnome.org/sources/glib/$MAJOR.$MINOR/glib-$VERSION.tar.xz
+
+xz -cd glib-$VERSION.tar.xz | tar -x
+cd glib-$VERSION
+
+# Prevents muon from failing
+rm subprojects/gvdb.wrap
+
+muon setup \
+	-D prefix=/usr \
+	-D default_library=both \
+	-D buildtype=release \
+	-D libmount=disabled \
+	-D sysprof=disabled \
+	-D man-pages=disabled \
+	-D documentation=false \
+	-D tests=false \
+	-D installed_tests=false \
+	-D nls=disabled \
+	-D libelf=disabled \
+	-D introspection=disabled \
+	build
+
+ninja -C build
+muon -C build install -d $DESTDIR
+
+rm -rf $DESTDIR/usr/share/gdb
+rm -rf $DESTDIR/usr/share/gettext
+
+#find $DESTDIR/usr/bin      -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../glib@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -1,0 +1,39 @@
+#!/bin/sh -e
+
+PRETTY_NAME=mdevd
+MAJOR=0
+MINOR=1
+PATCH=7
+VERSION=0.1.7.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/skarnet/mdevd/archive/refs/tags/v$VERSION.tar.gz
+
+gzip -cd v$VERSION.tar.gz | tar -x
+cd mdevd-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--enable-static-libc
+
+make
+make DESTDIR=$DESTDIR install
+
+install -Dm644 ../mdev.conf "$DESTDIR/etc/mdev.conf"
+install -Dm755 ../mdevd.run  "$DESTDIR/etc/sv/mdevd/run"
+ln -sf /run/runit/supervise.mdevd "$DESTDIR/etc/sv/mdevd/supervise"
+
+strip --strip-unneeded "$DESTDIR/usr/bin/mdevd"
+strip --strip-unneeded "$DESTDIR/usr/bin/mdevd-coldplug"
+
+rm -rf "$DESTDIR/usr/include"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../mdevd@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

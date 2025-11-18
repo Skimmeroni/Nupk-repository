@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+PRETTY_NAME=wlroots
+MAJOR=0
+MINOR=17
+PATCH=3
+VERSION=0.17.3
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/wlroots/wlroots/-/archive//wlroots-$VERSION.tar.gz
+
+gzip -cd wlroots-$VERSION.tar.gz | tar -x
+cd wlroots-$VERSION
+
+meson setup \
+	-Dprefix=/usr \
+	-Ddefault_library=both \
+	-Dexamples=false \
+	-Dbackends=libinput,drm \
+	-Dxcb-errors=disabled \
+	-Drenderers=gles2 \
+	build
+
+meson -C build compile
+meson -C build install -d "$DESTDIR"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../wlroots@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

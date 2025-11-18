@@ -1,0 +1,53 @@
+#!/bin/sh -e
+
+PRETTY_NAME=-
+MAJOR=
+MINOR=
+PATCH=
+VERSION=git
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+mkdir -m 755 \
+	"$DESTDIR/boot" \
+	"$DESTDIR/dev" \
+	"$DESTDIR/etc" \
+	"$DESTDIR/home" \
+	"$DESTDIR/mnt" \
+	"$DESTDIR/run" \
+	"$DESTDIR/usr" \
+	"$DESTDIR/usr/bin" \
+	"$DESTDIR/usr/include" \
+	"$DESTDIR/usr/lib" \
+	"$DESTDIR/usr/share" \
+	"$DESTDIR/var" \
+	"$DESTDIR/var/cache" \
+	"$DESTDIR/var/log" \
+	"$DESTDIR/var/lib" \
+	"$DESTDIR/var/empty" \
+	"$DESTDIR/var/service"
+
+mkdir -m 555 \
+	"$DESTDIR/proc" \
+	"$DESTDIR/sys"
+
+mkdir -m 0750 "$DESTDIR/root"
+
+mkdir -m 1777 \
+	"$DESTDIR/tmp" \
+	"$DESTDIR/var/tmp"
+
+ln -sf usr/bin             "$DESTDIR/bin"
+ln -sf usr/lib             "$DESTDIR/lib"
+ln -sf ../run              "$DESTDIR/var/run"
+ln -sf ../run/lock         "$DESTDIR/var/lock"
+ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../skeleton@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

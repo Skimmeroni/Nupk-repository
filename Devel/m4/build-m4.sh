@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+PRETTY_NAME=m4
+MAJOR=1
+MINOR=4
+PATCH=20
+VERSION=1.4.20
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/m4/m4-$VERSION.tar.xz
+
+xz -cd m4-$VERSION.tar.xz | tar -x
+cd m4-$VERSION
+
+./configure --prefix=/usr --disable-nls
+
+make
+make DESTDIR=$DESTDIR install-strip
+
+rm -rf "$DESTDIR/usr/share/info"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../m4@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

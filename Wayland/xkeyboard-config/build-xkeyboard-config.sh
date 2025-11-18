@@ -1,0 +1,37 @@
+#!/bin/sh -e
+
+PRETTY_NAME=xkeyboard-config
+MAJOR=2
+MINOR=46
+PATCH=
+VERSION=2.46
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://x.org/releases/individual/data/xkeyboard-config/xkeyboard-config-$VERSION.tar.xz
+
+xz -cd xkeyboard-config-$VERSION.tar.xz | tar -x
+cd xkeyboard-config-$VERSION
+
+# Install to /usr/lib/pkgconfig instead of /usr/share/pkgconfig
+patch -p1 < ../install-pkg-config-to-lib.patch
+
+sed -i "s/subdir('po')//g" meson.build
+
+muon setup \
+	-D prefix=/usr \
+	-D buildtype=release \
+	-D compat-rules=true \
+	build
+
+ninja -C build
+muon -C build install -d "$DESTDIR"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../xkeyboard-config@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

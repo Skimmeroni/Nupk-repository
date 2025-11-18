@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+PRETTY_NAME=libglvnd
+MAJOR=1
+MINOR=7
+PATCH=0
+VERSION=1.7.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/glvnd/libglvnd/-/archive/v$VERSION/libglvnd-v$VERSION.tar.gz
+
+gzip -cd libglvnd-v$VERSION.tar.gz | tar -x
+cd libglvnd-v$VERSION
+
+patch -p1 < ../bypass-failing-check-for-muon.patch
+
+# Again, default_library=both doesn't actually do anything
+muon setup \
+	-D prefix=/usr \
+	-D buildtype=release \
+	-D default_library=both \
+	build
+
+ninja -C build
+muon -C build install -d "$DESTDIR"
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../libglvnd@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

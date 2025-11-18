@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+PRETTY_NAME=unix-tree-pt-br
+MAJOR=2
+MINOR=2
+PATCH=1
+VERSION=2.2.1
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://gitlab.com/OldManProgrammer/unix-tree/-/archive/$VERSION/unix-tree-$VERSION.tar.gz
+
+gzip -cd unix-tree-$VERSION.tar.gz | tar -x
+cd unix-tree-$VERSION
+
+make
+install -Dm755 tree $DESTDIR/usr/bin/tree
+install -Dm644 doc/tree.1 $DESTDIR/usr/share/man/man1/tree.1
+strip --strip-unneeded $DESTDIR/usr/bin/tree
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../tree@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

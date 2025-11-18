@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+PRETTY_NAME=libuv
+MAJOR=1
+MINOR=51
+PATCH=0
+VERSION=1.51.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://www.github.com/libuv/libuv/archive/refs/tags/v$VERSION.tar.gz
+
+gzip -cd v$VERSION.tar.gz | tar -x
+cd libuv-$VERSION
+
+sh autogen.sh
+./configure --prefix=/usr
+make
+make DESTDIR=$DESTDIR install-strip
+
+find $DESTDIR -type f -name '*.la' -delete
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../libuv@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

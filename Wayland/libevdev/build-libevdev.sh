@@ -1,0 +1,40 @@
+#!/bin/sh -e
+
+PRETTY_NAME=libevdev
+MAJOR=1
+MINOR=13
+PATCH=5
+VERSION=1.13.5
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://freedesktop.org/software/libevdev/libevdev-$VERSION.tar.xz
+
+xz -cd libevdev-$VERSION.tar.xz | tar -x
+cd libevdev-$VERSION
+
+muon setup \
+	-D prefix=/usr \
+	-D default_library=both \
+	-D buildtype=release \
+	-D documentation=disabled \
+	-D tests=disabled \
+	-D tools=disabled \
+	build
+
+ninja -C build
+muon -C build install -d "$DESTDIR"
+
+rm -rf $DESTDIR/usr/share
+
+find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
+find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../libevdev@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

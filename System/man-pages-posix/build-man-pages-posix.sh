@@ -1,0 +1,43 @@
+#!/bin/sh -e
+
+PRETTY_NAME=man-pages-posix
+MAJOR=2017
+MINOR=a
+PATCH=
+VERSION=2017a
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/man-pages-posix/man-pages-posix-$MAJOR-$MINOR.tar.xz
+
+xz -cd man-pages-posix-$VERSION.tar.xz | tar -x
+cd man-pages-posix-$MAJOR
+
+mkdir -p $DESTDIR/usr/share/man
+
+for j in 0 1 3
+do
+	mv man${j}p $DESTDIR/usr/share/man/man$j
+	for i in $DESTDIR/usr/share/man/man${j}/*.${j}p
+	do
+		mv $i ${i%.${j}p}.$j	
+	done
+done
+
+# Useful trick: remove manpages of absent utilities
+for i in $DESTDIR/usr/share/man/man1/*.1
+do
+	if [ ! "$(command -v $(basename ${i%.1}))" ]
+	then
+		rm $i
+	fi
+done
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../man-pages-posix@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

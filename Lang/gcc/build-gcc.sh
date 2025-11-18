@@ -1,0 +1,75 @@
+#!/bin/sh -e
+
+PRETTY_NAME=gcc
+MAJOR=15
+MINOR=2
+PATCH=0
+VERSION=15.2.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://gcc.gnu.org/pub/gcc/releases/gcc-$VERSION/gcc-$VERSION.tar.xz
+
+xz -cd gcc-$VERSION.tar.xz | tar -x
+mkdir -p "gcc-$VERSION/builderoni"
+cd "gcc-$VERSION/builderoni"
+
+../configure \
+	libat_cv_have_ifunc=no \
+	--prefix=/usr \
+	--libexecdir=/usr/lib \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info \
+	--disable-multilib \
+	--disable-lto \
+	--disable-symvers \
+	--disable-libmpx \
+	--disable-libmudflap \
+	--disable-libsanitizer \
+	--disable-werror \
+	--disable-fixed-point \
+	--disable-nls \
+	--disable-bootstrap \
+	--enable-checking=release \
+	--enable-__cxa_atexit \
+	--enable-default-pie \
+	--enable-default-ssp \
+	--enable-shared \
+	--enable-host-shared \
+	--enable-threads \
+	--enable-tls \
+	--enable-initfini-array \
+	--enable-languages=c,c++,fortran \
+	--without-included-gettext \
+	--without-isl \
+	--without-zstd \
+	--with-gcc-major-version-only \
+	--with-system-zlib \
+	--build="$(cc -dumpmachine)"
+
+make
+make DESTDIR=$DESTDIR install-strip
+
+rm -rf "$DESTDIR/usr/share/info"
+rm -rf "$DESTDIR/usr/share/man/man7"
+find $DESTDIR -type f -name '*.la' -delete
+
+ln -sf gcc "$DESTDIR/usr/bin/cc"
+
+# POSIX compliance (?)
+install -Dm755 ../../c99 "$DESTDIR/usr/bin/c99"
+
+if [ -d "$DESTDIR/usr/lib64" ]
+then
+	cp -r  "$DESTDIR/usr/lib64/"* "$DESTDIR/usr/lib"
+	rm -rf "$DESTDIR/usr/lib64"
+fi
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../../gcc@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

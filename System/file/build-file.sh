@@ -1,0 +1,39 @@
+#!/bin/sh -e
+
+PRETTY_NAME=file
+MAJOR=5
+MINOR=46
+PATCH=
+VERSION=5.46
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://astron.com/pub/file/file-$VERSION.tar.gz
+
+gzip -cd file-$VERSION.tar.gz | tar -x
+cd file-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--enable-fsect-man5 \
+	--enable-static \
+	--disable-bzlib \
+	--disable-lzlib \
+	--disable-xzlib \
+	--disable-zlib \
+	--disable-libseccomp
+
+make
+make DESTDIR=$DESTDIR install-strip
+
+rm -rf "$DESTDIR/usr/share/man/man3"
+find $DESTDIR -type f -name '*.la' -delete
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../file@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

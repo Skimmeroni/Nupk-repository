@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+PRETTY_NAME=libnl
+MAJOR=3
+MINOR=11
+PATCH=0
+VERSION=3.11.0
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/thom311/libnl/releases/download/libnl$MAJOR\_$MINOR\_$PATCH/libnl-$VERSION.tar.gz
+
+gzip -cd libnl-$VERSION.tar.gz | tar -x
+cd libnl-$VERSION
+
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--disable-cli \
+	--disable-debug
+
+make
+make DESTDIR=$DESTDIR install-strip
+
+find $DESTDIR -type f -name '*.la' -delete
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../libnl@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+PRETTY_NAME=fonts:hack
+MAJOR=3
+MINOR=003
+PATCH=
+VERSION=3.003
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/source-foundry/Hack/releases/download/v/Hack-v-ttf.tar.gz
+gzip -cd Hack-v$VERSION-ttf.tar.gz | tar -x
+
+mkdir -p "$DESTDIR/usr/share/fonts/TTF"
+cp ttf/*.ttf "$DESTDIR/usr/share/fonts/TTF"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../ttf-hack@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -1,0 +1,32 @@
+#!/bin/sh -e
+
+PRETTY_NAME=gperf
+MAJOR=3
+MINOR=3
+PATCH=
+VERSION=3.3
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/gperf/gperf-$VERSION.tar.gz
+
+gzip -cd gperf-$VERSION.tar.gz | tar -x
+cd gperf-$VERSION
+
+./configure --prefix=/usr
+
+make
+make DESTDIR=$DESTDIR install
+
+strip --strip-unneeded $DESTDIR/usr/bin/gperf
+rm -rf "$DESTDIR/usr/share/doc"
+rm -rf "$DESTDIR/usr/share/info"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../gperf@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
