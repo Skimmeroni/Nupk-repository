@@ -17,7 +17,8 @@ gzip -cd cmake-$VERSION.tar.gz | tar -x
 cd cmake-$VERSION
 
 # From LFS: always use lib, never use lib64
-sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
+sed '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake > Modules/GNUInstallDirs.cmake.new
+mv Modules/GNUInstallDirs.cmake.new Modules/GNUInstallDirs.cmake
 
 # Since cmake takes ages to build, it is reasonable to skip
 # the bootstrap phase if it is installed already. It makes

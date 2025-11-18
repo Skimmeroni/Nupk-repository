@@ -17,8 +17,10 @@ xz -cd kmod-$VERSION.tar.xz | tar -x
 cd kmod-$VERSION
 
 # Long options are a GNU thing
-sed -i 's|--force --relative|-fr|g' Makefile.am
-sed -i 's|--force --relative|-fr|g' Makefile.in
+sed 's|--force --relative|-fr|g' Makefile.am > Makefile.am.new
+mv Makefile.am.new Makefile.am
+sed 's|--force --relative|-fr|g' Makefile.in > Makefile.in.new
+mv Makefile.in.new Makefile.in
 
 # TODO: for the love of God, switch to muon
 ./configure \

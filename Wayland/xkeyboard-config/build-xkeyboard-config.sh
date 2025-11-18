@@ -19,7 +19,8 @@ cd xkeyboard-config-$VERSION
 # Install to /usr/lib/pkgconfig instead of /usr/share/pkgconfig
 patch -p1 < ../install-pkg-config-to-lib.patch
 
-sed -i "s/subdir('po')//g" meson.build
+sed "s/subdir('po')//g" meson.build > meson.build.new
+mv meson.build.new meson.build
 
 muon setup \
 	-D prefix=/usr \

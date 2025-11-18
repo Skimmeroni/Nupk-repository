@@ -18,8 +18,10 @@ cd mandoc-$VERSION
 
 patch -p1 < ../mandoc-no-warn.patch
 
-sed -i 's/"more -s"/"less"/g' main.c
-sed -i "s/CC=.*/CC=$CC/" configure
+sed 's/"more -s"/"less"/g' main.c > main.c.new
+mv main.c.new main.c
+sed "s/CC=.*/CC=$CC/" configure > configure.new
+mv configure.new configure
 
 cat > configure.local << EOF
 PREFIX=/usr

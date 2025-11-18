@@ -16,8 +16,9 @@ cd runit.git/src
 
 patch -p1 < ../../use-char-const-instead-of-const-char-const-pointer.patch
 
-sed -i 's|/sbin/runit|/usr/bin/runit|g'                runit.h
-sed -i 's|/etc/runit/ctrlaltdel|/usr/bin/ctrlaltdel|g' runit.h
+sed -e 's|/sbin/runit|/usr/bin/runit|g' \
+    -e 's|/etc/runit/ctrlaltdel|/usr/bin/ctrlaltdel|g' runit.h > runit.h.new
+mv runit.h.new runit.h
 
 echo "$CC $CFLAGS -D_GNU_SOURCE -Wno-implicit -static" > conf-cc
 echo "$CC $CFLAGS -static -Wl,-z -Wl,noexecstac"       > conf-ld

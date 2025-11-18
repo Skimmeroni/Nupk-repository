@@ -16,7 +16,8 @@ curl --location --remote-name --skip-existing https://github.com/eggert/tz/archi
 gzip -cd $VERSION.tar.gz | tar -x
 cd tz-$VERSION
 
-sed -i 's|sbin|bin|g' Makefile
+sed 's|sbin|bin|g' Makefile > Makefile.new
+mv Makefile.new Makefile
 
 make
 make DESTDIR=$DESTDIR install

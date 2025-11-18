@@ -28,7 +28,8 @@ if [ -d "$DESTDIR/usr/lib64" ]
 then
 	mv $DESTDIR/usr/lib64/* $DESTDIR/usr/lib
 	rmdir $DESTDIR/usr/lib64
-	sed -i 's|lib64|lib|g' $DESTDIR/usr/lib/pkgconfig/libffi.pc
+	sed 's|lib64|lib|g' $DESTDIR/usr/lib/pkgconfig/libffi.pc > $DESTDIR/usr/lib/pkgconfig/libffi.pc.new
+	mv $DESTDIR/usr/lib/pkgconfig/libffi.pc.new $DESTDIR/usr/lib/pkgconfig/libffi.pc
 fi
 
 doas chown -R root:root $DESTDIR

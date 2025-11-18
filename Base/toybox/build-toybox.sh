@@ -16,6 +16,7 @@ curl --location --remote-name --skip-existing https://landley.net/toybox/downloa
 gzip -cd toybox-$VERSION.tar.gz | tar -x
 cd toybox-$VERSION
 
+# TODO: avoid using sed -i
 sed -i 's|egrep|grep -E|g' scripts/*.sh
 
 mv ../configuration .config

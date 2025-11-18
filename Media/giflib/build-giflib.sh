@@ -17,7 +17,8 @@ gzip -cd giflib-$VERSION.tar.gz | tar -x
 cd giflib-$VERSION
 
 # From Gentoo: prevent a dependency on ImageMagick
-sed -i -e '/$(MAKE) -C doc/d' Makefile
+sed '/$(MAKE) -C doc/d' Makefile > Makefile.new
+mv Makefile.new Makefile
 
 make PREFIX=/usr CFLAGS="$CFLAGS -std=gnu99 -fPIC"
 make PREFIX=/usr CFLAGS="$CFLAGS -std=gnu99 -fPIC" DESTDIR=$DESTDIR install

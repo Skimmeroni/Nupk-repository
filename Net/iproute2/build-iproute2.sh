@@ -16,7 +16,8 @@ curl --location --remote-name --skip-existing https://www.kernel.org/pub/linux/u
 xz -cd iproute2-$VERSION.tar.xz | tar -x
 cd iproute2-$VERSION
 
-sed -i 's/CC := gcc/CC ?= gcc/g' Makefile
+sed 's/CC := gcc/CC ?= gcc/g' Makefile > Makefile.new
+mv Makefile.new Makefile
 
 ./configure --include_dir /usr/include
 

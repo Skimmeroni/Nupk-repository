@@ -23,14 +23,16 @@ patch -p1 < ../wpa_supplicant-2.11-libressl.patch
 cd wpa_supplicant
 
 cp defconfig .config
-sed -i 's|CONFIG_CTRL_IFACE_DBUS_NEW=y|#CONFIG_CTRL_IFACE_DBUS_NEW=n|g' .config
-sed -i 's|CONFIG_CTRL_IFACE_DBUS_INTRO=y|#CONFIG_CTRL_IFACE_DBUS_INTRO=n|g' .config
-sed -i "s|#CFLAGS += -I$<path to libnl include files>|CFLAGS += $(pkgconf --cflags libnl-3.0)|g" .config
-sed -i "s|#LIBS += -L$<path to libnl library files>|LIBS += $(pkgconf --libs libnl-3.0)|g" .config
+sed -e 's|CONFIG_CTRL_IFACE_DBUS_NEW=y|#CONFIG_CTRL_IFACE_DBUS_NEW=n|g' \
+    -e 's|CONFIG_CTRL_IFACE_DBUS_INTRO=y|#CONFIG_CTRL_IFACE_DBUS_INTRO=n|g' \
+    -e "s|#CFLAGS += -I$<path to libnl include files>|CFLAGS += $(pkgconf --cflags libnl-3.0)|g" \
+    -e "s|#LIBS += -L$<path to libnl library files>|LIBS += $(pkgconf --libs libnl-3.0)|g" .config > .config.new
+mv .config.new .config
 
-sed -i 's|LIBDIR ?= /usr/local/lib|LIBDIR = /usr/lib|g' Makefile
-sed -i 's|INCDIR ?= /usr/local/include|INCDIR = /usr/include|g' Makefile
-sed -i 's|BINDIR ?= /usr/local/sbin|BINDIR = /usr/bin|g' Makefile
+sed -e 's|LIBDIR ?= /usr/local/lib|LIBDIR = /usr/lib|g' \
+    -e 's|INCDIR ?= /usr/local/include|INCDIR = /usr/include|g' \
+    -e 's|BINDIR ?= /usr/local/sbin|BINDIR = /usr/bin|g' Makefile > Makefile.new
+mv Makefile.new Makefile
 
 make
 make DESTDIR=$DESTDIR install
