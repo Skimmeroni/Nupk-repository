@@ -6,6 +6,8 @@ MINOR=b
 PATCH=
 VERSION=2025b
 
+if [ ! -f $0 ]; then return; fi
+
 mkdir temporary-distdir
 DESTDIR="$PWD/temporary-distdir"
 
