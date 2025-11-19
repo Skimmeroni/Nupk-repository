@@ -1,0 +1,15 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+has_rtti=@LLVM_HAS_RTTI@
+
+Name: LLVM
+Description: LLVM compiler infrastructure
+URL: https://llvm.org
+Version: @LLVM_VERSION@
+Requires:
+Requires.private: zlib
+Libs: -L${libdir} @LLVM_LIBS@
+Libs.private: -lstdc++ @LLVM_LIBS_LINK_STATIC@
+Cflags: -I${includedir} @LLVM_CFLAGS@

@@ -28,8 +28,7 @@ make INSTALL_TOP="$DESTDIR/usr" \
      INSTALL_DATA="cp -P" \
      install
 
-sed "s|%VERSION%|$VERSION|" ../lua.pc > ../lua.pc.new
-mv ../lua.pc.new ../lua.pc
+sed "s|@VERSION@|$VERSION|" ../lua.pc.stub > ../lua.pc
 install -Dm644 -t "$DESTDIR/usr/lib/pkgconfig" ../lua.pc
 
 strip --strip-unneeded $DESTDIR/usr/bin/lua

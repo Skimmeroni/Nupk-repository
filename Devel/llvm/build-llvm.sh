@@ -46,6 +46,16 @@ cmake -B build \
 cmake --build build
 DESTDIR=$DESTDIR cmake --install build --strip
 
+# Sligthly edited from KISS to clean up messy paths, not exactly reliable
+# Useful to build mesa, for example
+# TODO: grep -o is a GNU thing and should be avoided
+sed -e "s#@LLVM_HAS_RTTI@#$(build/bin/llvm-config --has-rtti)#g" \
+    -e "s#@LLVM_VERSION@#$(build/bin/llvm-config --version)#g" \
+    -e "s#@LLVM_LIBS@#$(build/bin/llvm-config --libs | grep -o '\-l.*')#g" \
+    -e "s#@LLVM_LIBS_LINK_STATIC@#$(build/bin/llvm-config --libs --link-static | grep -o '\-l.*')#g" \
+    -e "s#@LLVM_CFLAGS@#$(build/bin/llvm-config --cflags | grep -o '\-D.*')#g" ../llvm.pc.stub > ../llvm.pc
+install -Dm644 ../llvm.pc $DESTDIR/usr/lib/pkgconfig/llvm.pc
+
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../llvm@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
