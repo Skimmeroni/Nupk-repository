@@ -1,0 +1,2 @@
+#!/bin/sh
+exec consolation --no-daemon --set-profile=flat --set-speed=1 2>&1
