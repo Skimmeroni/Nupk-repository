@@ -3,8 +3,8 @@
 PRETTY_NAME=libarchive
 MAJOR=3
 MINOR=8
-PATCH=2
-VERSION=3.8.2
+PATCH=3
+VERSION=3.8.3
 
 if [ ! -f $0 ]; then return; fi
 
