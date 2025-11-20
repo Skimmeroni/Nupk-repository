@@ -3,8 +3,8 @@
 PRETTY_NAME=python:pyyaml
 MAJOR=6
 MINOR=0
-PATCH=2
-VERSION=6.0.2
+PATCH=3
+VERSION=6.0.3
 
 if [ ! -f $0 ]; then return; fi
 
