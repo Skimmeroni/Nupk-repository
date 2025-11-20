@@ -2,9 +2,9 @@
 
 PRETTY_NAME=cmake
 MAJOR=4
-MINOR=1
-PATCH=2
-VERSION=4.1.2
+MINOR=2
+PATCH=0
+VERSION=4.2.0
 
 if [ ! -f $0 ]; then return; fi
 
@@ -43,6 +43,7 @@ else
 
 	cmake -B build \
 		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release \
 		-D CMAKE_USE_SYSTEM_LIBRARIES=ON \
 		-D CMake_ENABLE_DEBUGGER=OFF \
 		-D BUILD_TESTING=OFF \
