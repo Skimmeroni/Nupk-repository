@@ -21,13 +21,13 @@ muon setup \
     -D default_library=both \
     -D buildtype=release \
     -D man-pages=enabled \
-    -D libseat-builtin=enabled \
     -D server=enabled \
     build
 
 ninja -C build
 muon -C build install -d "$DESTDIR"
 
+chmod u+s $DESTDIR/usr/bin/seatd-launch
 install -Dm755 ../seatd.run "$DESTDIR/etc/sv/seatd/run"
 ln -sf /run/runit/supervise.seatd "$DESTDIR/etc/sv/seatd/supervise"
 
