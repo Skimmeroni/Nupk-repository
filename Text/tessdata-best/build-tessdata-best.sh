@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=tessdata-best
+PRETTY_NAME=tesseract-ocr-data
 MAJOR=4
 MINOR=1
 PATCH=0
