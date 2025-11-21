@@ -27,7 +27,7 @@ do
 	done
 done
 
-# Useful trick: remove manpages of absent utilities
+# Useful trick: remove manpages of stuff you don't have
 for i in $DESTDIR/usr/share/man/man1/*.1
 do
 	if [ ! "$(command -v $(basename ${i%.1}))" ]
@@ -35,6 +35,23 @@ do
 		rm $i
 	fi
 done
+
+# Already present in gcc/binutils
+$DESTDIR/usr/share/man/man1/ar.1
+$DESTDIR/usr/share/man/man1/nm.1
+$DESTDIR/usr/share/man/man1/strings.1
+$DESTDIR/usr/share/man/man1/strip.1
+# Already present in bc
+$DESTDIR/usr/share/man/man1/bc.1
+# Already present in file
+$DESTDIR/usr/share/man/man1/file.1
+# Already present in m4
+$DESTDIR/usr/share/man/man1/m4.1
+# Already present in mandoc
+$DESTDIR/usr/share/man/man1/man.1
+# Already present in ncurses
+$DESTDIR/usr/share/man/man1/tabs.1
+$DESTDIR/usr/share/man/man1/tput.1
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../man-pages-posix@$VERSION.tar.gz"
