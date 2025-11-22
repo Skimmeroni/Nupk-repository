@@ -1,0 +1,26 @@
+#!/bin/sh -e
+
+PRETTY_NAME=fonts:jetbrains-mono
+MAJOR=2
+MINOR=304
+PATCH=
+VERSION=2.304
+
+if [ ! -f $0 ]; then return; fi
+
+mkdir temporary-destdir
+DESTDIR="$PWD/temporary-destdir"
+
+curl --location --remote-name --skip-existing https://github.com/JetBrains/JetBrainsMono/releases/download/v$VERSION/JetBrainsMono-$VERSION.zip
+
+unzip JetBrainsMono-$VERSION.zip
+
+find fonts/ttf      -type f -name '*.ttf'   -exec install -Dm644 -t $DESTDIR/usr/share/fonts/TTF   {} \;
+find fonts/webfonts -type f -name '*.woff2' -exec install -Dm644 -t $DESTDIR/usr/share/fonts/WOFF2 {} \;
+install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-jetbrains-mono.license"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ttf-jetbrains-mono@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
