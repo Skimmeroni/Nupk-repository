@@ -1,10 +1,10 @@
 #!/bin/sh -e
 
-PRETTY_NAME=libutf8proc
+PRETTY_NAME=utf8proc
 MAJOR=2
 MINOR=11
-PATCH=1
-VERSION=2.11.1
+PATCH=2
+VERSION=2.11.2
 
 mkdir temporary-builddir
 DESTDIR="$PWD/temporary-builddir"
