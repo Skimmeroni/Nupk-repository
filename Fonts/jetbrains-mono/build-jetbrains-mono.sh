@@ -17,10 +17,10 @@ unzip JetBrainsMono-$VERSION.zip
 
 find fonts/ttf      -type f -name '*.ttf'   -exec install -Dm644 -t $DESTDIR/usr/share/fonts/TTF   {} \;
 find fonts/webfonts -type f -name '*.woff2' -exec install -Dm644 -t $DESTDIR/usr/share/fonts/WOFF2 {} \;
-install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-jetbrains-mono.license"
+install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/jetbrains-mono.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ttf-jetbrains-mono@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > jetbrains-mono@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

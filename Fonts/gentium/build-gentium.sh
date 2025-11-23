@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-PRETTY_NAME=fonts:gentium
+PRETTY_NAME=fonts:gentium-plus
 MAJOR=7
 MINOR=000
 PATCH=
@@ -18,10 +18,10 @@ cd Gentium-$VERSION
 
 find . -type f -name '*.ttf'   -exec install -Dm644 -t $DESTDIR/usr/share/fonts/TTF   {} \;
 find . -type f -name '*.woff2' -exec install -Dm644 -t $DESTDIR/usr/share/fonts/WOFF2 {} \;
-install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/ttf-gentium.license"
+install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/gentium.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../ttf-gentium@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../gentium@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
