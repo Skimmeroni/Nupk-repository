@@ -2,9 +2,9 @@
 
 PRETTY_NAME=wayland-protocols
 MAJOR=1
-MINOR=45
+MINOR=46
 PATCH=
-VERSION=1.45
+VERSION=1.46
 
 if [ ! -f $0 ]; then return; fi
 
