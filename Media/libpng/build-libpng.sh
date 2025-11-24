@@ -3,8 +3,8 @@
 PRETTY_NAME=libpng
 MAJOR=1
 MINOR=6
-PATCH=50
-VERSION=1.6.50
+PATCH=51
+VERSION=1.6.51
 
 if [ ! -f $0 ]; then return; fi
 
@@ -18,7 +18,6 @@ gzip -cd v$VERSION.tar.gz | tar -x
 cd libpng-$VERSION
 
 # LFS suggests adding support for animated PNGs, needed for building firefox
-
 gzip -cd ../libpng-$VERSION-apng.patch.gz | patch -p1
 
 ./configure \
