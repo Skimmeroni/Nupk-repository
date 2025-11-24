@@ -1,0 +1,48 @@
+#!/bin/sh -e
+
+PRETTY_NAME=swayimg
+MAJOR=4
+MINOR=6
+PATCH=
+VERSION=4.6
+
+mkdir temporary-builddir
+DESTDIR="$PWD/temporary-builddir"
+
+curl --location --remote-name --skip-existing https://github.com/artemsen/swayimg/archive/refs/tags/v$VERSION.tar.gz
+
+gzip -cd v$VERSION.tar.gz | tar -x
+cd swayimg-$VERSION
+
+# TODO: add svg support
+muon setup \
+	-D prefix=/usr \
+	-D buildtype=release \
+	-D wrap_mode=nofallback \
+	-D gif=enabled \
+	-D jpeg=enabled \
+	-D png=enabled \
+	-D tiff=enabled \
+	-D webp=enabled \
+	-D exif=disabled \
+	-D heif=disabled \
+	-D jxl=disabled \
+	-D svg=disabled \
+	-D bash=disabled \
+	-D zsh=disabled \
+	-D man=true \
+	-D desktop=true \
+	build 
+
+ninja -C build
+muon -C build install -d $DESTDIR
+
+strip --strip-unneeded "$DESTDIR/usr/bin/swayimg"
+install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/swayimg.license" 
+install -Dm644 extra/swayimgrc "$DESTDIR/etc/xdg/swayimg/config"
+
+doas chown -R root:root $DESTDIR
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../swayimg@$VERSION.tar.gz"
+CALLER_UID=$(id -un)
+CALLER_GID=$(id -gn)
+doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
