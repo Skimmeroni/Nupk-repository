@@ -8,8 +8,8 @@ VERSION=20.1.8
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/llvm/llvm-project/releases/download/llvmorg-$VERSION/llvm-$VERSION.src.tar.xz
 curl --location --remote-name --skip-existing https://github.com/llvm/llvm-project/releases/download/llvmorg-$VERSION/cmake-$VERSION.src.tar.xz
@@ -57,7 +57,7 @@ sed -e "s#@LLVM_HAS_RTTI@#$(build/bin/llvm-config --has-rtti)#g" \
 install -Dm644 ../llvm.pc $DESTDIR/usr/lib/pkgconfig/llvm.pc
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../llvm@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-llvm@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

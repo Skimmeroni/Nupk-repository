@@ -8,8 +8,8 @@ VERSION=5.5.1
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/tesseract-ocr/tesseract/archive/refs/tags/$VERSION.tar.gz
 
@@ -34,7 +34,7 @@ cmake --build build
 DESTDIR=$DESTDIR cmake --install build --strip
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../tesseract@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-tesseract@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -8,8 +8,8 @@ VERSION=5.2.2
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://downloads.sourceforge.net/project/giflib/giflib-$VERSION.tar.gz
 
@@ -31,7 +31,7 @@ find $DESTDIR -name '*.so'  -type f -exec strip --strip-unneeded {} \;
 rm -rf $DESTDIR/usr/share
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../giflib@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-giflib@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

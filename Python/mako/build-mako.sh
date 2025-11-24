@@ -8,8 +8,8 @@ VERSION=1.3.10
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/sqlalchemy/mako/archive/refs/tags/rel_${MAJOR}_${MINOR}_${PATCH}.tar.gz
 
@@ -19,7 +19,7 @@ cd mako-rel_${MAJOR}_${MINOR}_${PATCH}
 gpep517 install-from-source --optimize all --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../mako@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-mako@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

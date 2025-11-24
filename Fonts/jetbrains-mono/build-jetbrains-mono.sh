@@ -8,8 +8,8 @@ VERSION=2.304
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/JetBrains/JetBrainsMono/releases/download/v$VERSION/JetBrainsMono-$VERSION.zip
 
@@ -20,7 +20,7 @@ find fonts/webfonts -type f -name '*.woff2' -exec install -Dm644 -t $DESTDIR/usr
 install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/jetbrains-mono.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > jetbrains-mono@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > Fonts-jetbrains-mono@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

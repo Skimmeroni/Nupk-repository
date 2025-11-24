@@ -8,8 +8,8 @@ VERSION=2.41.2
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v$MAJOR.$MINOR/util-linux-$VERSION.tar.xz
 
@@ -51,7 +51,7 @@ find $DESTDIR -type f -name '*.la' -delete
 rmdir "$DESTDIR/usr/sbin"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../util-linux@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-util-linux@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

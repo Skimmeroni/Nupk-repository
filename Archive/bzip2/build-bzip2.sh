@@ -8,8 +8,8 @@ VERSION=1.0.8
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://sourceware.org/pub/bzip2/bzip2-$VERSION.tar.gz
 
@@ -42,7 +42,7 @@ ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR"
 ln -sf "libbz2.so.$VERSION" "$DESTDIR/usr/lib/libbz2.so.$MAJOR.$MINOR"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../bzip2@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Archive-bzip2@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

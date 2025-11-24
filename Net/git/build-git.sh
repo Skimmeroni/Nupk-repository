@@ -8,8 +8,8 @@ VERSION=2.51.2
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-$VERSION.tar.xz
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/software/scm/git/git-$VERSION.tar.xz
@@ -49,7 +49,7 @@ xz -cd ../git-manpages-$VERSION.tar.xz | tar -x -C "$DESTDIR/usr/share/man"
 rm -rf "$DESTDIR/usr/share/bash-completion"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../git@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-git@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -8,8 +8,8 @@ VERSION=1.3.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/mpmath/mpmath/archive/refs/tags/$VERSION.tar.gz
 
@@ -24,7 +24,7 @@ PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v[0]}.{v
 rm -rf $DESTDIR/usr/lib/python$PYTHON_VERSION/site-packages/mpmath/tests
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../mpmath@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-mpmath@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

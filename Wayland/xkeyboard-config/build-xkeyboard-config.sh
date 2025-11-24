@@ -8,8 +8,8 @@ VERSION=2.46
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://x.org/releases/individual/data/xkeyboard-config/xkeyboard-config-$VERSION.tar.xz
 
@@ -32,7 +32,7 @@ ninja -C build
 muon -C build install -d "$DESTDIR"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../xkeyboard-config@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-xkeyboard-config@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

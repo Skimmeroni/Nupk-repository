@@ -8,8 +8,8 @@ VERSION=0.11.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing http://synthcode.com/scheme/chibi/chibi-scheme-$VERSION.tgz
 
@@ -20,7 +20,7 @@ make PREFIX=/usr
 make PREFIX=/usr DESTDIR=$DESTDIR install
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../chibi-scheme@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-chibi-scheme@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

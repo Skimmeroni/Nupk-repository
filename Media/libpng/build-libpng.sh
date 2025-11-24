@@ -8,8 +8,8 @@ VERSION=1.6.50
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://www.github.com/pnggroup/libpng/archive/refs/tags/v$VERSION.tar.gz
 curl --location --remote-name --skip-existing https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$VERSION-apng.patch.gz
@@ -34,7 +34,7 @@ make DESTDIR=$DESTDIR install-strip
 find $DESTDIR -type fl -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../libpng@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-libpng@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -8,8 +8,8 @@ VERSION=2.11
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://w1.fi/releases/wpa_supplicant-$VERSION.tar.gz
 curl --location --remote-name --skip-existing https://raw.githubusercontent.com/gentoo/libressl/refs/heads/master/net-wireless/wpa_supplicant/files/wpa_supplicant-2.11-libressl.patch
@@ -48,7 +48,7 @@ install -Dm755 ../../wpa_supplicant.run "$DESTDIR/etc/sv/wpa_supplicant/run"
 ln -sf /run/runit/supervise.wpa_supplicant "$DESTDIR/etc/sv/wpa_supplicant/supervise"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../../wpa_supplicant@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../../Net-wpa_supplicant@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

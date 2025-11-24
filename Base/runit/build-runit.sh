@@ -8,8 +8,8 @@ VERSION=git
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 git clone https://github.com/void-linux/runit.git
 cd runit.git/src
@@ -41,7 +41,7 @@ ln -sf /usr/lib/init/rc.boot     "$DESTDIR/etc/runit/1"
 ln -sf /usr/lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../runit@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-runit@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

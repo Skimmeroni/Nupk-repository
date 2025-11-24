@@ -8,8 +8,8 @@ VERSION=9.3.28
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://www.swi-prolog.org/download/devel/src/swipl-$VERSION.tar.gz
 
@@ -46,7 +46,7 @@ mkdir -p "$DESTDIR/usr/share/LICENSES"
 mv "$DESTDIR/usr/lib/swipl/LICENSE" "$DESTDIR/usr/share/LICENSES/swi-prolog.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../swi-prolog@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-swi-prolog@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

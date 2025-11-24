@@ -8,8 +8,8 @@ VERSION=1.2.5
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/tree.h
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/queue.h
@@ -65,7 +65,7 @@ EOF
 chmod 755 "$DESTDIR/usr/bin/ldd"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../musl@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-musl@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

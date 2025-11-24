@@ -8,8 +8,8 @@ VERSION=2.14.1
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://download-mirror.savannah.gnu.org/releases/freetype/freetype-$VERSION.tar.xz
 
@@ -54,7 +54,7 @@ find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../freetype@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-freetype@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

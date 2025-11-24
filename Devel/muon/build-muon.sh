@@ -8,8 +8,8 @@ VERSION=0.5.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://git.sr.ht/~lattis/muon/archive/$VERSION.tar.gz
 
@@ -56,7 +56,7 @@ DESTDIR=$DESTDIR ./build/muon install
 strip --strip-unneeded "$DESTDIR/usr/bin/muon"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../muon@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-muon@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

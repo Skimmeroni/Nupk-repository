@@ -8,8 +8,8 @@ VERSION=git
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 mkdir -m 755 \
 	"$DESTDIR/boot" \
@@ -47,7 +47,7 @@ ln -sf ../run/lock         "$DESTDIR/var/lock"
 ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../skeleton@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-skeleton@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -8,8 +8,8 @@ VERSION=4.1.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/tesseract-ocr/tessdata_best/archive/refs/tags/$VERSION.tar.gz
 

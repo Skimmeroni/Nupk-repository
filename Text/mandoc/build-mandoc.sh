@@ -8,8 +8,8 @@ VERSION=1.14.6
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://mandoc.bsd.lv/snapshots/mandoc-$VERSION.tar.gz
 
@@ -39,7 +39,7 @@ make DESTDIR=$DESTDIR base-install
 find "$DESTDIR/usr/bin" -type f -exec chmod 755 {} \; -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../mandoc@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-mandoc@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -8,8 +8,8 @@ VERSION=6.16.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-$VERSION.tar.xz
 
@@ -38,7 +38,7 @@ strip --strip-unneeded "$DESTDIR/usr/bin/tc"
 strip --strip-unneeded "$DESTDIR/usr/lib/libnetlink.a"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../iproute2@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-iproute2@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

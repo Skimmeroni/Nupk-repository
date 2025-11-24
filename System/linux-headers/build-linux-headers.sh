@@ -8,8 +8,8 @@ VERSION=6.16.1
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/kernel/v$MAJOR.x/linux-$VERSION.tar.xz
 
@@ -26,7 +26,7 @@ do
 done
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../linux-headers@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-linux-headers@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -26,7 +26,7 @@ ninja -C build
 muon -C build install -d $DESTDIR
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../swaybg@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-swaybg@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

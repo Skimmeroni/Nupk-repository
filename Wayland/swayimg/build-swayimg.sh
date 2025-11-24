@@ -42,7 +42,7 @@ install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/swayimg.license"
 install -Dm644 extra/swayimgrc "$DESTDIR/etc/xdg/swayimg/config"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../swayimg@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-swayimg@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

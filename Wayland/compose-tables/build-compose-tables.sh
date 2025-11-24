@@ -12,8 +12,8 @@ VERSION=1.8.12
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://x.org/releases/individual/lib/libX11-$VERSION.tar.xz
 
@@ -33,7 +33,7 @@ make -C nls
 make DESTDIR=$DESTDIR -C nls install
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../compose-tables@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-compose-tables@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

@@ -8,8 +8,8 @@ VERSION=2017a
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/man-pages-posix/man-pages-posix-$MAJOR-$MINOR.tar.xz
 
@@ -54,7 +54,7 @@ $DESTDIR/usr/share/man/man1/tabs.1
 $DESTDIR/usr/share/man/man1/tput.1
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../man-pages-posix@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-man-pages-posix@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

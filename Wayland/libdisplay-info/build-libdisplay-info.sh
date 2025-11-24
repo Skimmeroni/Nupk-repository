@@ -8,8 +8,8 @@ VERSION=0.3.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$VERSION/libdisplay-info-$VERSION.tar.gz
 
@@ -32,7 +32,7 @@ find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../libdisplay-info@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-libdisplay-info@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

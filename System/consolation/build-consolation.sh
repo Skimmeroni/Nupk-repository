@@ -8,8 +8,8 @@ VERSION=0.0.10
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://deb.debian.org/debian/pool/main/c/consolation/consolation_$VERSION.orig.tar.xz
 
@@ -28,7 +28,7 @@ install -Dm755 ../consolation.run "$DESTDIR/etc/sv/consolation/run"
 ln -sf /run/runit/supervise.consolation "$DESTDIR/etc/sv/consolation/supervise"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../consolation@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-consolation@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

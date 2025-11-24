@@ -10,8 +10,8 @@ VERSION=7.1.0
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://github.com/gavinhoward/bc/releases/download/$VERSION/bc-$VERSION.tar.gz
 
@@ -31,7 +31,7 @@ make DESTDIR=$DESTDIR install
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../bc@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-bc@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

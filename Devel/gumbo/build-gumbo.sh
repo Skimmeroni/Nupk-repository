@@ -8,8 +8,8 @@ VERSION=0.13.2
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://codeberg.org/grisha/gumbo-parser/archive/$VERSION.tar.gz
 
@@ -29,7 +29,7 @@ find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../gumbo@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-gumbo@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR

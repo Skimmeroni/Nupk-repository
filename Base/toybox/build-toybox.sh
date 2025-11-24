@@ -8,8 +8,8 @@ VERSION=0.8.12
 
 if [ ! -f $0 ]; then return; fi
 
-mkdir temporary-destdir
 DESTDIR="$PWD/temporary-destdir"
+[ -d $DESTDIR ] || mkdir temporary-destdir
 
 curl --location --remote-name --skip-existing https://landley.net/toybox/downloads/toybox-$VERSION.tar.gz
 
@@ -32,7 +32,7 @@ do
 done
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../toybox@$VERSION.tar.gz"
+doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-toybox@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
