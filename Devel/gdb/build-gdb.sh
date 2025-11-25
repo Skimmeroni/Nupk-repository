@@ -2,9 +2,9 @@
 
 PRETTY_NAME=gdb
 MAJOR=16
-MINOR=1
+MINOR=3
 PATCH=
-VERSION=16.1
+VERSION=16.3
 
 if [ ! -f $0 ]; then return; fi
 
