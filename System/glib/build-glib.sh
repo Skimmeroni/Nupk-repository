@@ -2,9 +2,9 @@
 
 PRETTY_NAME=glib
 MAJOR=2
-MINOR=87
-PATCH=0
-VERSION=2.87.0
+MINOR=86
+PATCH=2
+VERSION=2.86.2
 
 if [ ! -f $0 ]; then return; fi
 
@@ -37,7 +37,6 @@ muon setup \
 ninja -C build
 muon -C build install -d $DESTDIR
 
-rm -rf $DESTDIR/usr/share/gdb
 rm -rf $DESTDIR/usr/share/gettext
 
 #find $DESTDIR/usr/bin      -type f -exec strip --strip-unneeded {} \;
