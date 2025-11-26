@@ -25,3 +25,6 @@ doas sh -c "tar -zcC $DESTDIR . | gzip > ../Fonts-gentium@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+
+printf "You have to run fc-cache for the font to be available!\n"
+# doas fc-cache -f
