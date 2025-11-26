@@ -2,9 +2,9 @@
 
 PRETTY_NAME=libinput
 MAJOR=1
-MINOR=29
-PATCH=2
-VERSION=1.29.2
+MINOR=30
+PATCH=0
+VERSION=1.30.0
 
 if [ ! -f $0 ]; then return; fi
 
