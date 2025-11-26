@@ -19,12 +19,13 @@ cd ghostscript-$VERSION
 # Ensure that no bundled library is preferred over system libaries
 rm -rf cups freetype ijs jbig2dec jpeg lcms2mt leptonica libpng openjpeg tesseract tiff zlib 
 
-# TODO: it is unclear if ghostscript can actually be built without brotli or not
+# --without-local-brotli doesn't actually work
 ./configure \
 	--prefix=/usr \
 	--with-jbig2dec \
 	--with-libtiff \
 	--with-system-libtiff \
+	--with-local-brotli \
 	--with-drivers=ALL \
 	--without-tesseract \
 	--without-ijs \

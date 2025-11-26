@@ -20,6 +20,7 @@ cd lynx$VERSION
 	--prefix=/usr \
 	--sysconfdir=/etc/lynx \
 	--disable-dired \
+	--without-brotli \
 	--without-bzlib \
 	--without-zlib \
 	--with-ssl
