@@ -2,9 +2,9 @@
 
 PRETTY_NAME=wayclip
 MAJOR=0
-MINOR=4
-PATCH=2
-VERSION=0.4.2
+MINOR=5
+PATCH=
+VERSION=0.5
 
 DESTDIR="$PWD/temporary-builddir"
 [ -d $DESTDIR ] || mkdir temporary-builddir
