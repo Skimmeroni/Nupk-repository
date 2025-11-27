@@ -42,3 +42,6 @@ doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-tzdata@$VERSION.tar.gz"
 CALLER_UID=$(id -un)
 CALLER_GID=$(id -gn)
 doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+
+printf "Don't forget to set up your current timezone!\n"
+printf "ln -sf /usr/share/zoneinfo/[Region]/[Country] /etc/localtime\n"

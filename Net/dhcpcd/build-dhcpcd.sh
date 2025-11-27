@@ -8,6 +8,9 @@ VERSION=10.3.0
 
 if [ ! -f $0 ]; then return; fi
 
+# NOTE: Toybox has a dhcp implementation that could
+# be taken advantage of
+
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 

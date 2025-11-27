@@ -6,6 +6,8 @@ MINOR=16
 PATCH=0
 VERSION=6.16.0
 
+# TODO: Toybox has an ip command, albeit experimental
+
 if [ ! -f $0 ]; then return; fi
 
 DESTDIR="$PWD/temporary-destdir"

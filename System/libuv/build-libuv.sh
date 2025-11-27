@@ -6,7 +6,9 @@ MINOR=51
 PATCH=0
 VERSION=1.51.0
 
-if [ ! -f $0 ]; then return; fi
+# NOTE: this is the only (sort of) mandatory package that requires
+# autotools. It can also be built using cmake, but cmake itself
+# requires libuv to be built. How ironic
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir

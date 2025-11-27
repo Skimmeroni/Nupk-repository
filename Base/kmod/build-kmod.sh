@@ -6,6 +6,9 @@ MINOR=2
 PATCH=
 VERSION=34.2
 
+# TODO: Toybox has a modprobe command that could replace kmod
+# As of now, libkmod isn't even used
+
 if [ ! -f $0 ]; then return; fi
 
 DESTDIR="$PWD/temporary-destdir"
