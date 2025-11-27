@@ -20,10 +20,9 @@ $CC -c *.c -DNOZOPFLI
 $CC -static -o pigz *.o -lz
 
 install -Dm755 pigz "$DESTDIR/usr/bin/pigz"
-install -Dm644 pigz "$DESTDIR/usr/share/man/man1/pigz.1"
-
-ln -sf pigz "$DESTDIR/usr/bin/gzip"
+install -Dm644 pigz.1 "$DESTDIR/usr/share/man/man1/pigz.1"
 strip --strip-unneeded "$DESTDIR/usr/bin/pigz"
+ln -sf pigz "$DESTDIR/usr/bin/gzip"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Archive-pigz@$VERSION.tar.gz"

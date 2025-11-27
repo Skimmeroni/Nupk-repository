@@ -25,13 +25,12 @@ cd OpenDoas-$VERSION
 
 make
 
-install -Dm755 doas $DESTDIR/usr/bin/doas
-install -Dm644 doas.1 $DESTDIR/usr/share/man/man1/doas.1
-install -Dm644 ../doas.conf $DESTDIR/etc/doas.conf
-install -Dm644 LICENSE $DESTDIR/usr/share/LICENSES/opendoas.license
-
-strip --strip-unneeded $DESTDIR/usr/bin/doas
-chmod u+s $DESTDIR/usr/bin/doas
+install -Dm755 doas "$DESTDIR/usr/bin/doas"
+install -Dm644 doas.1 "$DESTDIR/usr/share/man/man1/doas.1"
+install -Dm644 ../doas.conf "$DESTDIR/etc/doas.conf"
+install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/opendoas.license"
+strip --strip-unneeded "$DESTDIR/usr/bin/doas"
+chmod u+s "$DESTDIR/usr/bin/doas"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-opendoas@$VERSION.tar.gz"

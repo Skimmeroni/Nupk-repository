@@ -14,7 +14,8 @@ cd wayst
 
 # Note: PGO and LTO are available
 make window_protocol=wayland renderer=gles20 libutf8proc=on mode=quick
-install -Dm755 wayst $DESTDIR/usr/bin/wayst
+install -Dm755 wayst "$DESTDIR/usr/bin/wayst"
+strip --strip-unneeded "$DESTDIR/usr/bin/wayst"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wayst@$VERSION.tar.gz"
