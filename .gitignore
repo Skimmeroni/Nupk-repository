@@ -1,0 +1,7 @@
+# These are found in the PinebookPro repository
+Wayland/libdrm
+Wayland/mesa
+System/linux
+System/linux-firmware
+Media/ffmpeg
+Devel/libclc
