@@ -2,9 +2,9 @@
 
 PRETTY_NAME=wlsunset
 MAJOR=0
-MINOR=3
+MINOR=4
 PATCH=0
-VERSION=0.3.0
+VERSION=0.4.0
 
 DESTDIR="$PWD/temporary-builddir"
 [ -d $DESTDIR ] || mkdir temporary-builddir
@@ -17,7 +17,7 @@ cd wlsunset-$VERSION
 muon setup \
 	-D prefix=/usr \
 	-D buildtype=release \
-	-D man-pages=true \
+	-D man-pages=enabled \
 	build
 
 ninja -C build
