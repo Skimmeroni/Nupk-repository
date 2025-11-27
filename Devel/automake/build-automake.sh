@@ -22,6 +22,7 @@ make
 make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
+rm -rf "$DESTDIR/usr/share/doc"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-automake@$VERSION.tar.gz"
