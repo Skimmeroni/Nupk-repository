@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+### MARKED FOR REMOVAL ###
+
 PRETTY_NAME=mupdf
 MAJOR=1
 MINOR=26

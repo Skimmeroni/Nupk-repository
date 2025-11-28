@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+### MARKED FOR REMOVAL ###
+
 PRETTY_NAME=zathura-pdf-mupdf
 MAJOR=0
 MINOR=4

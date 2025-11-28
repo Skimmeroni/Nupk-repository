@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+### MARKED FOR REMOVAL ###
+
 PRETTY_NAME=jbig2dec
 MAJOR=0
 MINOR=20

@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+### MARKED FOR REMOVAL ###
+
 PRETTY_NAME=gumbo-parser
 MAJOR=0
 MINOR=13

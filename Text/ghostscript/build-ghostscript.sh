@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+### MARKED FOR REMOVAL ###
+
 PRETTY_NAME=ghostscript
 MAJOR=10
 MINOR=06
