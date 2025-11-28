@@ -6,8 +6,6 @@ MINOR=3
 PATCH=0
 VERSION=0.3.0
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -33,6 +31,4 @@ find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-libdisplay-info@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

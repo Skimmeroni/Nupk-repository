@@ -6,8 +6,6 @@ MINOR=11
 PATCH=0
 VERSION=0.11.0
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -21,6 +19,4 @@ make PREFIX=/usr DESTDIR=$DESTDIR install
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-chibi-scheme@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

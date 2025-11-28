@@ -10,8 +10,6 @@ MINOR=8
 PATCH=12
 VERSION=1.8.12
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -34,6 +32,4 @@ make DESTDIR=$DESTDIR -C nls install
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-compose-tables@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

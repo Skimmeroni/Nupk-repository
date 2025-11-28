@@ -6,8 +6,6 @@ MINOR=a
 PATCH=
 VERSION=2017a
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -55,6 +53,4 @@ $DESTDIR/usr/share/man/man1/tput.1
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-man-pages-posix@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

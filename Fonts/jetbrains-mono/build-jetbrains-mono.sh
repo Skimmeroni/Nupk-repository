@@ -6,8 +6,6 @@ MINOR=304
 PATCH=
 VERSION=2.304
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -21,9 +19,7 @@ install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/jetbrains-mono.license"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > Fonts-jetbrains-mono@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR
 
 printf "You have to run fc-cache for the font to be available!\n"
 # doas fc-cache -f

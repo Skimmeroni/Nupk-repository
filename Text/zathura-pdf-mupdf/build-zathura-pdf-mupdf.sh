@@ -32,6 +32,4 @@ strip --strip-unneeded $DESTDIR/usr/lib/zathura/libpdf-mupdf.so
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-zathura-pdf-mupdf@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

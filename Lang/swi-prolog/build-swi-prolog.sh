@@ -6,8 +6,6 @@ MINOR=3
 PATCH=28
 VERSION=9.3.28
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -47,6 +45,4 @@ mv "$DESTDIR/usr/lib/swipl/LICENSE" "$DESTDIR/usr/share/LICENSES/swi-prolog.lice
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-swi-prolog@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

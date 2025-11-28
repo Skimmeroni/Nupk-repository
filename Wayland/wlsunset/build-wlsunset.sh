@@ -28,6 +28,4 @@ install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/wlsunset.license"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wlsunset@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

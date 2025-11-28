@@ -6,8 +6,6 @@ MINOR=3
 PATCH=0
 VERSION=10.3.0
 
-if [ ! -f $0 ]; then return; fi
-
 # NOTE: Toybox has a dhcp implementation that could
 # be taken advantage of
 
@@ -41,6 +39,4 @@ strip --strip-unneeded "$DESTDIR/usr/bin/dhcpcd"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-dhcpcd@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

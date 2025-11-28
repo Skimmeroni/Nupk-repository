@@ -8,8 +8,6 @@ VERSION=6.16.0
 
 # TODO: Toybox has an ip command, albeit experimental
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -41,6 +39,4 @@ strip --strip-unneeded "$DESTDIR/usr/lib/libnetlink.a"
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-iproute2@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR

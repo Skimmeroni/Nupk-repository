@@ -6,8 +6,6 @@ MINOR=14
 PATCH=6
 VERSION=1.14.6
 
-if [ ! -f $0 ]; then return; fi
-
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 
@@ -40,6 +38,4 @@ find "$DESTDIR/usr/bin" -type f -exec chmod 755 {} \; -exec strip --strip-unneed
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-mandoc@$VERSION.tar.gz"
-CALLER_UID=$(id -un)
-CALLER_GID=$(id -gn)
-doas chown -R $CALLER_UID:$CALLER_GID $DESTDIR
+doas rm -rf $DESTDIR
