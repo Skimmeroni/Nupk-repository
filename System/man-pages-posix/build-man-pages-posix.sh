@@ -19,6 +19,8 @@ mkdir -p $DESTDIR/usr/share/man
 for j in 0 1 3
 do
 	mv man${j}p $DESTDIR/usr/share/man/man$j
+	# The '.p' suffix is no mistake: it stands for 'POSIX'.
+	# Frankly, I have no use for this distinction
 	for i in $DESTDIR/usr/share/man/man${j}/*.${j}p
 	do
 		mv $i ${i%.${j}p}.$j	
@@ -35,21 +37,21 @@ do
 done
 
 # Already present in gcc/binutils
-$DESTDIR/usr/share/man/man1/ar.1
-$DESTDIR/usr/share/man/man1/nm.1
-$DESTDIR/usr/share/man/man1/strings.1
-$DESTDIR/usr/share/man/man1/strip.1
+rm $DESTDIR/usr/share/man/man1/ar.1
+rm $DESTDIR/usr/share/man/man1/nm.1
+rm $DESTDIR/usr/share/man/man1/strings.1
+rm $DESTDIR/usr/share/man/man1/strip.1
 # Already present in bc
-$DESTDIR/usr/share/man/man1/bc.1
+rm $DESTDIR/usr/share/man/man1/bc.1
 # Already present in file
-$DESTDIR/usr/share/man/man1/file.1
+rm $DESTDIR/usr/share/man/man1/file.1
 # Already present in m4
-$DESTDIR/usr/share/man/man1/m4.1
+rm $DESTDIR/usr/share/man/man1/m4.1
 # Already present in mandoc
-$DESTDIR/usr/share/man/man1/man.1
+rm $DESTDIR/usr/share/man/man1/man.1
 # Already present in ncurses
-$DESTDIR/usr/share/man/man1/tabs.1
-$DESTDIR/usr/share/man/man1/tput.1
+rm $DESTDIR/usr/share/man/man1/tabs.1
+rm $DESTDIR/usr/share/man/man1/tput.1
 
 doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-man-pages-posix@$VERSION.tar.gz"
