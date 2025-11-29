@@ -21,5 +21,5 @@ doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > Fonts-jetbrains-mono@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
-printf "You have to run fc-cache for the font to be available!\n"
+printf "\033[1mYou have to run fc-cache for the font to be available!\033[0m\n"
 # doas fc-cache -f

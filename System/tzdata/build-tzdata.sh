@@ -39,5 +39,5 @@ doas chown -R root:root $DESTDIR
 doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-tzdata@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
-printf "Don't forget to set up your current timezone!\n"
-printf "ln -sf /usr/share/zoneinfo/[Region]/[Country] /etc/localtime\n"
+printf "\033[1mDon't forget to set up your current timezone!\033[0m\n"
+# "ln -sf /usr/share/zoneinfo/[Region]/[Country] /etc/localtime\n"

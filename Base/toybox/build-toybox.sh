@@ -44,7 +44,7 @@ make CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" change
 for i in change/*.bad
 do
 	applet=$(echo $i | awk '{sub(/.*\//, ""); sub(/\.bad.*/, ""); print}')
-	printf "\033[33;1mWARNING!\033[0m '%s' failed to build. You might want to check out why\n" $applet
+	printf "\033[33;1mWARNING!\033[0m \033[1m'%s' failed to build. You might want to check out why\033[0m\n" $applet
 	rm $i
 done
 
