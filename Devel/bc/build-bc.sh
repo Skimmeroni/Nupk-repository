@@ -1,12 +1,13 @@
 #!/bin/sh -e
 
-# TODO: phase out in favour of Toybox bc
-
 PRETTY_NAME=bc-gh
 MAJOR=7
 MINOR=1
 PATCH=0
 VERSION=7.1.0
+
+# NOTE: Toybox has a bc implementation, which at the moment
+# is just a respin of an old version of bc-gh
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir

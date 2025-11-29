@@ -6,6 +6,10 @@ MINOR=14
 PATCH=6
 VERSION=1.14.6
 
+# NOTE: since we don't use databases or fancy features, just display
+# man pages, using Toybox man could be a sensible choice. At the moment,
+# the Toybox implementation is not functional
+
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
 

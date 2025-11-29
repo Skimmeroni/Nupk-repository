@@ -6,7 +6,8 @@ MINOR=16
 PATCH=0
 VERSION=6.16.0
 
-# TODO: Toybox has an ip command, albeit experimental
+# TODO: Toybox has an ip applet which seems to be sufficient
+# for our purposes
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir

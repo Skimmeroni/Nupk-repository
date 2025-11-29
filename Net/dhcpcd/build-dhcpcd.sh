@@ -6,7 +6,7 @@ MINOR=3
 PATCH=0
 VERSION=10.3.0
 
-# NOTE: Toybox has a dhcp implementation that could
+# NOTE: Toybox has a dhcp client implementation that could
 # be taken advantage of
 
 DESTDIR="$PWD/temporary-destdir"

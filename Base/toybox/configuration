@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # ToyBox version: KCONFIG_VERSION
-# Fri Feb 21 22:05:11 2025
+# Sat Nov 29 14:50:50 2025
 #
 # CONFIG_TOYBOX_ON_ANDROID is not set
 CONFIG_TOYBOX_FORK=y
@@ -308,7 +308,7 @@ CONFIG_YES=y
 # CONFIG_MICROCOM is not set
 # CONFIG_NETCAT is not set
 # CONFIG_NETSTAT is not set
-# CONFIG_PING is not set
+CONFIG_PING=y
 # CONFIG_RFKILL is not set
 # CONFIG_SNTP is not set
 # CONFIG_TUNCTL is not set
@@ -335,11 +335,11 @@ CONFIG_MKNOD=y
 # CONFIG_MKNOD_Z is not set
 CONFIG_MKTEMP=y
 CONFIG_MOUNT=y
-CONFIG_PASSWD=y
-CONFIG_PASSWD_SAD=y
+# CONFIG_PASSWD is not set
+# CONFIG_PASSWD_SAD is not set
 CONFIG_PIDOF=y
 CONFIG_SEQ=y
-CONFIG_SU=y
+# CONFIG_SU is not set
 CONFIG_SYNC=y
 CONFIG_UMOUNT=y
 
