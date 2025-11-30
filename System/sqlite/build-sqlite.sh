@@ -3,8 +3,8 @@
 PRETTY_NAME=sqlite
 MAJOR=3
 MINOR=51
-PATCH=0
-VERSION=3.51.0
+PATCH=1
+VERSION=3.51.1
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
