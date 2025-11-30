@@ -3,8 +3,8 @@
 PRETTY_NAME=python:cython
 MAJOR=3
 MINOR=2
-PATCH=1
-VERSION=3.2.1
+PATCH=2
+VERSION=3.2.2
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
