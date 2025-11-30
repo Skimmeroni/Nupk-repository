@@ -34,5 +34,6 @@ strip --strip-unneeded $DESTDIR/usr/bin/luac
 strip --strip-unneeded $DESTDIR/usr/lib/liblua.a
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-lua@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Lang-lua@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

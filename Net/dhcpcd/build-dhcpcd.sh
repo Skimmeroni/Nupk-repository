@@ -38,5 +38,6 @@ ln -sf /run/runit/supervise.dhcpcd "$DESTDIR/etc/sv/dhcpcd/supervise"
 strip --strip-unneeded "$DESTDIR/usr/bin/dhcpcd"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-dhcpcd@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Net-dhcpcd@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

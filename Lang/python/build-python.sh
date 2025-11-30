@@ -56,5 +56,6 @@ find "$DESTDIR/usr/lib" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-python@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Lang-python@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

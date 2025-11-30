@@ -39,5 +39,6 @@ ln -sf /usr/lib/init/rc.boot     "$DESTDIR/etc/runit/1"
 ln -sf /usr/lib/init/rc.shutdown "$DESTDIR/etc/runit/3"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-runit@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-runit@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

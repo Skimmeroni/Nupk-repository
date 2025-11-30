@@ -23,5 +23,6 @@ rm -rf "$DESTDIR/usr/share/info"
 rm -rf "$DESTDIR/usr/share/doc"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-automake@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-automake@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

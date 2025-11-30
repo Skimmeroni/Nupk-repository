@@ -20,7 +20,8 @@ find . -type f -name '*.woff2' -exec install -Dm644 -t $DESTDIR/usr/share/fonts/
 install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/libertinus.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Fonts-libertinus@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Fonts-libertinus@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
 printf "\033[1mYou have to run fc-cache for the font to be available!\033[0m\n"

@@ -61,5 +61,6 @@ rm -rf "$DESTDIR/usr/share/cmake-$MAJOR.$MINOR/Help"
 find $DESTDIR/usr/bin -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-cmake@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-cmake@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

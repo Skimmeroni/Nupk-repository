@@ -46,5 +46,6 @@ rm -rf "$DESTDIR/usr/share/doc"
 strip --strip-unneeded $DESTDIR/usr/bin/gs
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-ghostscript@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-ghostscript@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

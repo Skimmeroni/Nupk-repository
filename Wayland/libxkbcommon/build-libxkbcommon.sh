@@ -35,5 +35,6 @@ find $DESTDIR -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find $DESTDIR -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-libxkbcommon@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-libxkbcommon@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

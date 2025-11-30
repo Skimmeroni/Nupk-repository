@@ -18,5 +18,6 @@ make PREFIX=/usr
 make PREFIX=/usr DESTDIR=$DESTDIR install
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-chibi-scheme@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Lang-chibi-scheme@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

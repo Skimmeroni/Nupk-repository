@@ -24,5 +24,6 @@ do
 done
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-linux-headers@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-linux-headers@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

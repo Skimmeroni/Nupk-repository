@@ -31,5 +31,6 @@ then
 fi
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-libffi@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-libffi@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

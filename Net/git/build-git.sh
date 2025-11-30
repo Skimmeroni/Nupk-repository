@@ -47,5 +47,6 @@ xz -cd ../git-manpages-$VERSION.tar.xz | tar -x -C "$DESTDIR/usr/share/man"
 rm -rf "$DESTDIR/usr/share/bash-completion"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-git@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Net-git@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

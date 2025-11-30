@@ -31,5 +31,6 @@ make -C nls
 make DESTDIR=$DESTDIR -C nls install
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-compose-tables@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-compose-tables@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

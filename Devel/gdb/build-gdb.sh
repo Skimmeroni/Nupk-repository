@@ -28,5 +28,6 @@ find $DESTDIR -name '*.la' -type f -delete
 rm -rf $DESTDIR/usr/share/info
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-gdb@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-gdb@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

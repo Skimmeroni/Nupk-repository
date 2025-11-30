@@ -22,5 +22,6 @@ do
 done
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > tesseract-data@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > tesseract-data@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

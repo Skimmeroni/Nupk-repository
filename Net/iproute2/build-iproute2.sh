@@ -38,5 +38,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/tc"
 strip --strip-unneeded "$DESTDIR/usr/lib/libnetlink.a"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-iproute2@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Net-iproute2@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

@@ -30,5 +30,6 @@ make DESTDIR=$DESTDIR install
 find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-bc@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-bc@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

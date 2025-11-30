@@ -31,5 +31,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/doas"
 chmod u+s "$DESTDIR/usr/bin/doas"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-opendoas@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-opendoas@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

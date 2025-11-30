@@ -18,5 +18,6 @@ install -Dm755 wayst "$DESTDIR/usr/bin/wayst"
 strip --strip-unneeded "$DESTDIR/usr/bin/wayst"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wayst@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-wayst@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

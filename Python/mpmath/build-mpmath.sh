@@ -22,5 +22,6 @@ PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v[0]}.{v
 rm -rf $DESTDIR/usr/lib/python$PYTHON_VERSION/site-packages/mpmath/tests
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-mpmath@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Python-mpmath@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

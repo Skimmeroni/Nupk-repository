@@ -23,5 +23,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/pigz"
 ln -sf pigz "$DESTDIR/usr/bin/gzip"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Archive-pigz@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Archive-pigz@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

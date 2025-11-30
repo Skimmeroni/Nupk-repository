@@ -27,5 +27,6 @@ rm -rf "$DESTDIR/usr/share/doc"
 rm -rf "$DESTDIR/usr/share/aclocal"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-bison@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-bison@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

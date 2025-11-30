@@ -31,5 +31,6 @@ find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 strip --strip-unneeded "$DESTDIR/usr/bin/wayland-scanner"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wayland@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-wayland@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

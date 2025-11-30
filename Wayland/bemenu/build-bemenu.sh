@@ -22,5 +22,6 @@ strip --strip-unneeded $DESTDIR/usr/bin/bemenu-run
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-bemenu@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-bemenu@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

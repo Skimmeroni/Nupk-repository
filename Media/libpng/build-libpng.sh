@@ -31,5 +31,6 @@ make DESTDIR=$DESTDIR install-strip
 find $DESTDIR -type fl -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-libpng@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Media-libpng@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

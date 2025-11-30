@@ -21,5 +21,6 @@ strip --strip-unneeded $DESTDIR/usr/bin/waycopy
 strip --strip-unneeded $DESTDIR/usr/bin/waypaste
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wayclip@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-wayclip@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

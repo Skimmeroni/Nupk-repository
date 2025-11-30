@@ -25,5 +25,6 @@ ninja -C build
 muon -C build install -d "$DESTDIR"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wayland-protocols@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-wayland-protocols@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

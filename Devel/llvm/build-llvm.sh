@@ -55,5 +55,6 @@ sed -e "s#@LLVM_HAS_RTTI@#$(build/bin/llvm-config --has-rtti)#g" \
 install -Dm644 ../llvm.pc $DESTDIR/usr/lib/pkgconfig/llvm.pc
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-llvm@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-llvm@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

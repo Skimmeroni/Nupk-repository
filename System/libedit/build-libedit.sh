@@ -26,5 +26,6 @@ find $DESTDIR -type f -name '*.la' -delete
 rm -rf "$DESTDIR/usr/share/man/man3"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-libedit@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-libedit@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

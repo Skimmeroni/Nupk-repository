@@ -40,5 +40,6 @@ ln -sf bsdtar   "$DESTDIR/usr/bin/tar"
 ln -sf bsdunzip "$DESTDIR/usr/bin/unzip"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Archive-libarchive@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Archive-libarchive@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

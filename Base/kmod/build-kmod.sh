@@ -43,5 +43,6 @@ make DESTDIR=$DESTDIR install-strip
 find $DESTDIR -type f -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-kmod@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-kmod@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

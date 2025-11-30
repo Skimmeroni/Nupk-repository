@@ -31,5 +31,6 @@ strip --strip-unneeded "$DESTDIR/usr/bin/mdevd-coldplug"
 rm -rf "$DESTDIR/usr/include"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-mdevd@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-mdevd@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

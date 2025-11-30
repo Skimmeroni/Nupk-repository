@@ -22,5 +22,6 @@ make DESTDIR=$DESTDIR install-strip
 rm -rf "$DESTDIR/usr/share/info"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-m4@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-m4@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

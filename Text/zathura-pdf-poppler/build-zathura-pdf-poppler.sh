@@ -25,5 +25,6 @@ muon -C build install -d $DESTDIR
 strip --strip-unneeded $DESTDIR/usr/lib/zathura/libpdf-poppler.so
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-zathura-pdf-poppler@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-zathura-pdf-poppler@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

@@ -26,5 +26,6 @@ install -Dm755 ../consolation.run "$DESTDIR/etc/sv/consolation/run"
 ln -sf /run/runit/supervise.consolation "$DESTDIR/etc/sv/consolation/supervise"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-consolation@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-consolation@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

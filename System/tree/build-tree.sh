@@ -20,5 +20,6 @@ install -Dm644 doc/tree.1 "$DESTDIR/usr/share/man/man1/tree.1"
 strip --strip-unneeded "$DESTDIR/usr/bin/tree"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-tree@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-tree@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

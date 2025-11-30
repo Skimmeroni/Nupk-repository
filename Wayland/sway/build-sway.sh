@@ -38,5 +38,6 @@ find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 rm -rf "$DESTDIR/usr/share/wayland-sessions"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-sway@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-sway@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

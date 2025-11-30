@@ -32,5 +32,6 @@ install -Dm644 COPYRIGHT.txt "$DESTDIR/usr/share/LICENSES/mpdecimal.license"
 rm -rf $DESTDIR/usr/share/doc
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-mpdecimal@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-mpdecimal@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

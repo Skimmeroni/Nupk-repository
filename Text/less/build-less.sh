@@ -20,5 +20,6 @@ make
 make DESTDIR=$DESTDIR install-strip
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-less@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-less@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

@@ -46,5 +46,6 @@ install -Dm755 ../../wpa_supplicant.run "$DESTDIR/etc/sv/wpa_supplicant/run"
 ln -sf /run/runit/supervise.wpa_supplicant "$DESTDIR/etc/sv/wpa_supplicant/supervise"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../../Net-wpa_supplicant@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../../Net-wpa_supplicant@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

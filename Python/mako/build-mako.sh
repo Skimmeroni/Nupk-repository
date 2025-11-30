@@ -17,5 +17,6 @@ cd mako-rel_${MAJOR}_${MINOR}_${PATCH}
 gpep517 install-from-source --optimize all --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-mako@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Python-mako@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

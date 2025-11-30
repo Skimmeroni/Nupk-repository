@@ -28,5 +28,6 @@ make DESTDIR=$DESTDIR install-pkgconfigDATA
 find $DESTDIR -type f -name '*.la' -delete 
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-libogg@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Media-libogg@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

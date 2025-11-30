@@ -41,5 +41,6 @@ rm -rf "$DESTDIR/usr/share/info"
 find $DESTDIR -type f -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-binutils@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Lang-binutils@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

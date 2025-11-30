@@ -31,5 +31,6 @@ DESTDIR=$DESTDIR cmake --install build --strip
 rm -rf $DESTDIR/usr/share
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-libjpeg-turbo@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Media-libjpeg-turbo@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

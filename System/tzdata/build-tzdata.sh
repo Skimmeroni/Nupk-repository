@@ -36,7 +36,8 @@ strip --strip-unneeded "$DESTDIR/usr/bin/zic"
 strip --strip-unneeded "$DESTDIR/usr/bin/zdump"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-tzdata@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-tzdata@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
 printf "\033[1mDon't forget to set up your current timezone!\033[0m\n"

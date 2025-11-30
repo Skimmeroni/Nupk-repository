@@ -14,5 +14,6 @@ curl https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types | g
 install -Dm644 mime.types "$DESTDIR/etc/mime.types"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > Base-mime-types@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > Base-mime-types@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

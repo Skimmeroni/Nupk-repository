@@ -27,5 +27,6 @@ strip --strip-unneeded $DESTDIR/usr/bin/wlsunset
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/wlsunset.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-wlsunset@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-wlsunset@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

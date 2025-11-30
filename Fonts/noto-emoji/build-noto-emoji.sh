@@ -18,7 +18,8 @@ install -Dm644 -t "$DESTDIR/usr/share/fonts/TTF" fonts/NotoColorEmoji.ttf
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/noto-emoji.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Fonts-noto-emoji@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Fonts-noto-emoji@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
 printf "\033[1mYou have to run fc-cache for the font to be available!\033[0m\n"

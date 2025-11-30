@@ -36,5 +36,6 @@ install -Dm644 leptonica-license.txt "$DESTDIR/usr/share/LICENSES/leptonica.lice
 find $DESTDIR -type f -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-leptonica@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Media-leptonica@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

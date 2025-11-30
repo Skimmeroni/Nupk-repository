@@ -49,5 +49,6 @@ find $DESTDIR -type f -name '*.la' -delete
 rmdir "$DESTDIR/usr/sbin"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-util-linux@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-util-linux@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

@@ -45,7 +45,8 @@ find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-gdk-pixbuf@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-gdk-pixbuf@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
 printf "\033[1mRemember to generate the loaders cache!\033[0m\n"

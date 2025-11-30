@@ -24,5 +24,6 @@ rm -rf "$DESTDIR/usr/share/doc"
 rm -rf "$DESTDIR/usr/share/info"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../System-gperf@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../System-gperf@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

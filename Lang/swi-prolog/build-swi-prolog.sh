@@ -44,5 +44,6 @@ mkdir -p "$DESTDIR/usr/share/LICENSES"
 mv "$DESTDIR/usr/lib/swipl/LICENSE" "$DESTDIR/usr/share/LICENSES/swi-prolog.license"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-swi-prolog@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Lang-swi-prolog@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

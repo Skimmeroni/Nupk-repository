@@ -24,5 +24,6 @@ rm -rf $DESTDIR/usr/lib/python$PYTHON_VERSION/site-packages/flit_core/vendor
 rm -rf $DESTDIR/usr/lib/python$PYTHON_VERSION/site-packages/flit_core-$VERSION.dist-info/licenses/flit_core/vendor
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-flit_core@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Python-flit_core@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

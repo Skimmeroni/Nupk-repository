@@ -40,5 +40,6 @@ rm -rf $DESTDIR/usr/share/fish
 rm -rf $DESTDIR/usr/share/zsh
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-zathura@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-zathura@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

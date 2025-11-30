@@ -17,5 +17,6 @@ install -Dm644 -t "$DESTDIR/usr/share/icons/Hackneyed" Hackneyed/index.theme
 cp -r Hackneyed/cursors "$DESTDIR/usr/share/icons/Hackneyed" 
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > Themes-hackneyed@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > Themes-hackneyed@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

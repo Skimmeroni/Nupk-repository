@@ -20,5 +20,6 @@ install -Dm755 vi "$DESTDIR/usr/bin/vi"
 strip --strip-unneeded "$DESTDIR/usr/bin/vi"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-nextvi@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-nextvi@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

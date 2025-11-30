@@ -27,5 +27,6 @@ cmake --build build
 DESTDIR=$DESTDIR cmake --install build --strip
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-openjpeg@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Media-openjpeg@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

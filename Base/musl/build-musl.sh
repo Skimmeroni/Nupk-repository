@@ -63,5 +63,6 @@ EOF
 chmod 755 "$DESTDIR/usr/bin/ldd"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-musl@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-musl@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

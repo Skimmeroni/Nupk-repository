@@ -42,5 +42,6 @@ install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/swayimg.license"
 install -Dm644 extra/swayimgrc "$DESTDIR/etc/xdg/swayimg/config"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-swayimg@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-swayimg@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

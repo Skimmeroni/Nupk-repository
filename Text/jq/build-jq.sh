@@ -25,5 +25,6 @@ make DESTDIR=$DESTDIR install-strip
 rm -rf "$DESTDIR/usr/share/doc"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-jq@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-jq@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

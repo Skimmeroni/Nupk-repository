@@ -22,5 +22,6 @@ make
 make DESTDIR=$DESTDIR install-strip
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Misc-cpipes@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Misc-cpipes@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

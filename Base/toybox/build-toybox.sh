@@ -54,5 +54,6 @@ do
 done
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-toybox@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-toybox@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

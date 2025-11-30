@@ -26,5 +26,6 @@ mv gpep517 $TARGET_DIRECTORY
 install -Dm755 ../gpep517 $DESTDIR/usr/bin/gpep517
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-gpep517@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Python-gpep517@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

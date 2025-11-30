@@ -19,5 +19,6 @@ install -Dm755 bin/fakesteak "$DESTDIR/usr/bin/fakesteak"
 strip --strip-unneeded "$DESTDIR/usr/bin/fakesteak"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Misc-fakesteak@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Misc-fakesteak@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

@@ -17,5 +17,6 @@ cd sympy-$VERSION
 gpep517 install-from-source --optimize all --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-sympy@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Python-sympy@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

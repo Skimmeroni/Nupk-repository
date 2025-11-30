@@ -41,5 +41,6 @@ make DESTDIR=$DESTDIR base-install
 find "$DESTDIR/usr/bin" -type f -exec chmod 755 {} \; -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Text-mandoc@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Text-mandoc@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

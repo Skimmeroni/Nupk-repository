@@ -21,5 +21,6 @@ python -m compileall installer
 mv installer $TARGET_DIRECTORY
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > Python-installer@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > Python-installer@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

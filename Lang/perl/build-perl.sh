@@ -62,5 +62,6 @@ rm -rf "$DESTDIR/usr/share/man/man3"
 find "$DESTDIR/usr/lib" -type f -exec chmod 644 {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Lang-perl@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Lang-perl@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

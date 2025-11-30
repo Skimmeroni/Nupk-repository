@@ -45,5 +45,6 @@ find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 # TODO: Since we use libudev-zero, can't we just remove installed udev rules? Should we?
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-libinput@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-libinput@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

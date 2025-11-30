@@ -28,5 +28,6 @@ make DESTDIR=$DESTDIR install
 ln -sf oksh "$DESTDIR/usr/bin/sh"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-oksh@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-oksh@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

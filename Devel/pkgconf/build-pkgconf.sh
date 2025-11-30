@@ -27,5 +27,6 @@ rm -rf "$DESTDIR/usr/share/doc"
 find $DESTDIR -type f -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-pkgconf@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-pkgconf@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

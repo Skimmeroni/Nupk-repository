@@ -30,5 +30,6 @@ install -Dm755 kpow    "$DESTDIR/usr/bin/kpow"
 strip --strip-unneeded "$DESTDIR/usr/bin/kpow"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-init-scripts@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-init-scripts@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

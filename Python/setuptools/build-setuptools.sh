@@ -18,5 +18,6 @@ cd setuptools-$VERSION
 python setup.py install --prefix=/usr --root=$DESTDIR
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Python-setuptools@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Python-setuptools@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

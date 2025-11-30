@@ -29,5 +29,6 @@ muon -C build install -d $DESTDIR
 strip --strip-unneeded $DESTDIR/usr/bin/grim
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-grim@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-grim@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

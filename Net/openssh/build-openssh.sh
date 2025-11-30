@@ -38,5 +38,6 @@ install -Dm755 ../sshd.run "$DESTDIR/etc/sv/sshd/run"
 ln -sf /run/runit/supervise.sshd "$DESTDIR/etc/sv/sshd/supervise"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Net-openssh@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Net-openssh@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

@@ -25,5 +25,6 @@ cmake --build build
 DESTDIR=$DESTDIR cmake --install build --strip
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-spirv-llvm-translator@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-spirv-llvm-translator@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

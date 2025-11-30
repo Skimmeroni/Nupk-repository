@@ -45,5 +45,6 @@ ln -sf ../run/lock         "$DESTDIR/var/lock"
 ln -sf ../proc/self/mounts "$DESTDIR/etc/mtab"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Base-skeleton@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Base-skeleton@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

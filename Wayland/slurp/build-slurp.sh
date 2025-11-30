@@ -26,5 +26,6 @@ muon -C build install -d $DESTDIR
 strip --strip-unneeded $DESTDIR/usr/bin/slurp
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Wayland-slurp@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Wayland-slurp@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

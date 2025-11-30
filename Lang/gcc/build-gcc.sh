@@ -67,5 +67,6 @@ then
 fi
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../../Lang-gcc@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../../Lang-gcc@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

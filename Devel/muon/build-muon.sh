@@ -54,5 +54,6 @@ DESTDIR=$DESTDIR ./build/muon install
 strip --strip-unneeded "$DESTDIR/usr/bin/muon"
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-muon@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-muon@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

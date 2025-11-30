@@ -29,5 +29,6 @@ find $DESTDIR -name '*.so'  -type f -exec strip --strip-unneeded {} \;
 rm -rf $DESTDIR/usr/share
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Media-giflib@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Media-giflib@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

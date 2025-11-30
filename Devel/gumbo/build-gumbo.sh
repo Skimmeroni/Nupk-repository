@@ -29,5 +29,6 @@ find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
-doas sh -c "tar -zcC $DESTDIR . | gzip > ../Devel-gumbo@$VERSION.tar.gz"
+cd $DESTDIR
+doas sh -c "tar -cf - * | gzip > ../Devel-gumbo@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
