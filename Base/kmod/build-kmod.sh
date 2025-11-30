@@ -1,13 +1,12 @@
 #!/bin/sh -e
 
+### MARKED FOR REMOVAL ###
+
 PRETTY_NAME=kmod
 MAJOR=34
 MINOR=2
 PATCH=
 VERSION=34.2
-
-# TODO: Toybox has a modprobe command that could replace kmod
-# As of now, libkmod isn't even used
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir

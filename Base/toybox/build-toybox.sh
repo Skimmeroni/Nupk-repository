@@ -3,8 +3,8 @@
 PRETTY_NAME=toybox
 MAJOR=0
 MINOR=8
-PATCH=12
-VERSION=0.8.12
+PATCH=13
+VERSION=0.8.13
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir temporary-destdir
