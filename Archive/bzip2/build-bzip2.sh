@@ -7,7 +7,7 @@ PATCH=8
 VERSION=1.0.8
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://sourceware.org/pub/bzip2/bzip2-$VERSION.tar.gz
 

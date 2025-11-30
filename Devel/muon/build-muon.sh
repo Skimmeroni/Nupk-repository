@@ -7,7 +7,7 @@ PATCH=0
 VERSION=0.5.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://git.sr.ht/~lattis/muon/archive/$VERSION.tar.gz
 

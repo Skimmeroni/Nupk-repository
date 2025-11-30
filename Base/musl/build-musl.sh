@@ -7,7 +7,7 @@ PATCH=5
 VERSION=1.2.5
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/tree.h
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/queue.h

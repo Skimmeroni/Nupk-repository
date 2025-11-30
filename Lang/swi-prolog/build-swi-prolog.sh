@@ -7,7 +7,7 @@ PATCH=28
 VERSION=9.3.28
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.swi-prolog.org/download/devel/src/swipl-$VERSION.tar.gz
 

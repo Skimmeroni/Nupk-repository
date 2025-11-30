@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types | grep -v '#' - > mime.types
 

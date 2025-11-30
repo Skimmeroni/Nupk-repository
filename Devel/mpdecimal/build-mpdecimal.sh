@@ -7,7 +7,7 @@ PATCH=1
 VERSION=4.0.1
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name www.bytereef.org/software/mpdecimal/releases/mpdecimal-$VERSION.tar.gz
 

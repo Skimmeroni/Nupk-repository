@@ -7,7 +7,7 @@ PATCH=328
 VERSION=1.4.328.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/KhronosGroup/SPIRV-Headers/archive/vulkan-sdk-$VERSION.tar.gz
 

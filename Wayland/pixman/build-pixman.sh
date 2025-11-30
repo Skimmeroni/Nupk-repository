@@ -7,7 +7,7 @@ PATCH=4
 VERSION=0.46.4
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://x.org/releases/individual/lib/pixman-$VERSION.tar.xz
 

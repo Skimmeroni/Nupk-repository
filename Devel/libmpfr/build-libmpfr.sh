@@ -7,7 +7,7 @@ PATCH=2
 VERSION=4.2.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.mpfr.org/mpfr-current/mpfr-$VERSION.tar.xz
 

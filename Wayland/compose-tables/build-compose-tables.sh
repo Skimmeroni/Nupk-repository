@@ -11,7 +11,7 @@ PATCH=12
 VERSION=1.8.12
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://x.org/releases/individual/lib/libX11-$VERSION.tar.xz
 

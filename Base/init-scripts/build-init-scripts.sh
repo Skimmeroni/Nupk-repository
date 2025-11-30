@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 git clone https://codeberg.org/kiss-community/init.git
 cd init-scripts.git

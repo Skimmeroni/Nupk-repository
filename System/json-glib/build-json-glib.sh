@@ -7,7 +7,7 @@ PATCH=6
 VERSION=1.10.6
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://download.gnome.org/sources/json-glib/$MAJOR.$MINOR/json-glib-$VERSION.tar.xz
 

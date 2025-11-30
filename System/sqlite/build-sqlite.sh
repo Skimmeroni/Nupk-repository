@@ -7,7 +7,7 @@ PATCH=1
 VERSION=3.51.1
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://sqlite.org/2025/sqlite-autoconf-${MAJOR}${MINOR}0${PATCH}00.tar.gz
 

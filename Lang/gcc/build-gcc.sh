@@ -7,7 +7,7 @@ PATCH=0
 VERSION=15.2.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://gcc.gnu.org/pub/gcc/releases/gcc-$VERSION/gcc-$VERSION.tar.xz
 

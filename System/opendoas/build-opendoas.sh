@@ -7,7 +7,7 @@ PATCH=2
 VERSION=6.8.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/Duncaen/OpenDoas/archive/v$VERSION.tar.gz
 

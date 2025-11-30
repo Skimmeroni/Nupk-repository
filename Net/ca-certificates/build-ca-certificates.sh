@@ -7,7 +7,7 @@ PATCH=04
 VERSION=20251104
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl https://curl.se/ca/cacert-${MAJOR}-${MINOR}-${PATCH}.pem > cert.pem
 install -Dm644 cert.pem "$DESTDIR/etc/ssl/cert.pem"

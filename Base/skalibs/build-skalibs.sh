@@ -7,7 +7,7 @@ PATCH=4
 VERSION=2.14.4.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.skarnet.org/software/skalibs/skalibs-$VERSION.tar.gz
 

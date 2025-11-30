@@ -11,7 +11,7 @@ VERSION=1.14.6
 # the Toybox implementation is not functional
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://mandoc.bsd.lv/snapshots/mandoc-$VERSION.tar.gz
 

@@ -9,7 +9,7 @@ PATCH=
 VERSION=34.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://kernel.org/pub/linux/utils/kernel/kmod/kmod-$VERSION.tar.xz
 

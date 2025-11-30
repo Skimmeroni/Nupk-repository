@@ -7,7 +7,7 @@ PATCH=13
 VERSION=0.8.13
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://landley.net/toybox/downloads/toybox-$VERSION.tar.gz
 

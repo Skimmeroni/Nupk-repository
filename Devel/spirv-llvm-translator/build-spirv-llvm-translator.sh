@@ -7,7 +7,7 @@ PATCH=8
 VERSION=20.1.8
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/v$VERSION/SPIRV-LLVM-Translator-$VERSION.tar.gz
 

@@ -7,7 +7,7 @@ PATCH=1
 VERSION=2.2.1
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://gitlab.com/OldManProgrammer/unix-tree/-/archive/$VERSION/unix-tree-$VERSION.tar.gz
 

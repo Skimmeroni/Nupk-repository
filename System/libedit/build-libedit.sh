@@ -7,7 +7,7 @@ PATCH=
 VERSION=20251016-3.1
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.thrysoee.dk/editline/libedit-$VERSION.tar.gz
 

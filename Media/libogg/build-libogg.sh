@@ -7,7 +7,7 @@ PATCH=6
 VERSION=1.3.6
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/xiph/ogg/releases/download/v$VERSION/libogg-$VERSION.tar.xz
 

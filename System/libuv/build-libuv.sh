@@ -11,7 +11,7 @@ VERSION=1.51.0
 # requires libuv to be built. How ironic
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.github.com/libuv/libuv/archive/refs/tags/v$VERSION.tar.gz
 

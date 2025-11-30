@@ -7,7 +7,7 @@ PATCH=2
 VERSION=2.41.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v$MAJOR.$MINOR/util-linux-$VERSION.tar.xz
 

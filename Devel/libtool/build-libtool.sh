@@ -7,7 +7,7 @@ PATCH=4
 VERSION=2.5.4
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/libtool/libtool-$VERSION.tar.xz
 

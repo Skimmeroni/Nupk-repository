@@ -7,7 +7,7 @@ PATCH=2
 VERSION=3.5.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/libffi/libffi/releases/download/v$VERSION/libffi-$VERSION.tar.gz
 

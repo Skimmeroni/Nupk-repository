@@ -7,7 +7,7 @@ PATCH=7
 VERSION=1.1.7
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://bitmath.org/code/mtdev/mtdev-$VERSION.tar.bz2
 

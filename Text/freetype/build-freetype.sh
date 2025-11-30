@@ -7,7 +7,7 @@ PATCH=1
 VERSION=2.14.1
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://download-mirror.savannah.gnu.org/releases/freetype/freetype-$VERSION.tar.xz
 

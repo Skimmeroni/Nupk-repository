@@ -9,7 +9,7 @@ PATCH=0
 VERSION=10.06.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${MAJOR}${MINOR}${PATCH}/ghostscript-$VERSION.tar.gz
 

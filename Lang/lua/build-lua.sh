@@ -7,7 +7,7 @@ PATCH=8
 VERSION=5.4.8
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.lua.org/ftp/lua-$VERSION.tar.gz
 

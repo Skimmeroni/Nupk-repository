@@ -7,7 +7,7 @@ PATCH=0
 VERSION=0.3.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$VERSION/libdisplay-info-$VERSION.tar.gz
 

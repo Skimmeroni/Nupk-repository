@@ -7,7 +7,7 @@ PATCH=2
 VERSION=2.51.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-$VERSION.tar.xz
 curl --location --remote-name --skip-existing https://mirrors.edge.kernel.org/pub/software/scm/git/git-$VERSION.tar.xz

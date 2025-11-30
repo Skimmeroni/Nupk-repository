@@ -7,7 +7,7 @@ PATCH=2
 VERSION=0.3.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/sabotage-linux/netbsd-curses/archive/refs/tags/v$VERSION.tar.gz
 gzip -cd v$VERSION.tar.gz | tar -x

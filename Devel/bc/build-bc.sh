@@ -10,7 +10,7 @@ VERSION=7.1.0
 # is just a respin of an old version of bc-gh
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/gavinhoward/bc/releases/download/$VERSION/bc-$VERSION.tar.gz
 

@@ -7,7 +7,7 @@ PATCH=8
 VERSION=668
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing http://www.greenwoodsoftware.com/less/less-$VERSION.tar.gz
 

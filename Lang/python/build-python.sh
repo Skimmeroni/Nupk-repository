@@ -7,7 +7,7 @@ PATCH=0
 VERSION=3.14.0
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz
 curl --location --remote-name --skip-existing https://raw.githubusercontent.com/gentoo/libressl/refs/heads/master/dev-lang/python/files/python-3.14.0-libressl.patch

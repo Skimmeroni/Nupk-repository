@@ -7,7 +7,7 @@ PATCH=4
 VERSION=0.2.4
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://github.com/domsson/fakesteak/archive/refs/tags/v$VERSION.tar.gz
 

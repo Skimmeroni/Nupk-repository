@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 mkdir -m 755 \
 	"$DESTDIR/boot" \

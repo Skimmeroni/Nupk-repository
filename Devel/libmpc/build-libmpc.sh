@@ -7,7 +7,7 @@ PATCH=1
 VERSION=1.3.1
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/mpc/mpc-$VERSION.tar.gz
 

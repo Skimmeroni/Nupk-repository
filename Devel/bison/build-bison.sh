@@ -7,7 +7,7 @@ PATCH=2
 VERSION=3.8.2
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://ftp.gnu.org/gnu/bison/bison-$VERSION.tar.xz
 

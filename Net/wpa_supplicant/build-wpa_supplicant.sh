@@ -7,7 +7,7 @@ PATCH=
 VERSION=2.11
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 curl --location --remote-name --skip-existing https://w1.fi/releases/wpa_supplicant-$VERSION.tar.gz
 curl --location --remote-name --skip-existing https://raw.githubusercontent.com/gentoo/libressl/refs/heads/master/net-wireless/wpa_supplicant/files/wpa_supplicant-2.11-libressl.patch

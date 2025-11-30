@@ -7,7 +7,7 @@ PATCH=
 VERSION=git
 
 DESTDIR="$PWD/temporary-destdir"
-[ -d $DESTDIR ] || mkdir temporary-destdir
+[ -d $DESTDIR ] || mkdir -p $DESTDIR
 
 git clone https://github.com/kyx0r/nextvi.git
 cd nextvi.git
