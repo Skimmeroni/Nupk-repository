@@ -1,4 +1,6 @@
-#!/bin/sh -e
+#!/bin/sh
+
+set -eu
 
 PRETTY_NAME=sway
 MAJOR=1

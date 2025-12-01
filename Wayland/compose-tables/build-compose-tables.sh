@@ -1,4 +1,6 @@
-#!/bin/sh -e
+#!/bin/sh
+
+set -eu
 
 # Taken one to one from KISS, with the compose-only patch slightly modified
 # It would be interesting to bypass the config entirely and install
