@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mkdir /run/dbus
+chown messagebus:messagebus /run/dbus
+# Possibly redudant
+chmod 755 /run/dbus
+
+dbus-uuidgen --ensure=/etc/machine-id
+exec dbus-daemon --system --nofork --nopidfile
