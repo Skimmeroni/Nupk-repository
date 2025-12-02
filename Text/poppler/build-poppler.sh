@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=poppler
 MAJOR=25
-MINOR=11
+MINOR=12
 PATCH=0
-VERSION=25.11.0
+VERSION=25.12.0
 
 DESTDIR="$PWD/temporary-builddir"
 [ -d $DESTDIR ] || mkdir temporary-builddir
