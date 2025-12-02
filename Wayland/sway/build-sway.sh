@@ -30,6 +30,7 @@ muon setup \
 	-D gdk-pixbuf=disabled \
 	-D swaybar=false \
 	-D tray=disabled \
+	-D sd-bus-provider=basu \
 	build
 
 ninja -C build
