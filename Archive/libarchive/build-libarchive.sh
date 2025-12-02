@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libarchive
 MAJOR=3
 MINOR=8
-PATCH=3
-VERSION=3.8.3
+PATCH=4
+VERSION=3.8.4
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
@@ -18,6 +18,8 @@ cd libarchive-$VERSION
 
 ./configure \
 	--prefix=/usr \
+	--enable-shared \
+	--enable-static \
 	--without-openssl \
 	--without-expat \
 	--without-xml2 \
@@ -26,8 +28,7 @@ cd libarchive-$VERSION
 	--without-nettle \
 	--with-bz2lib \
 	--with-zlib \
-	--with-lzma \
-	--enable-static
+	--with-lzma
 
 make
 make DESTDIR=$DESTDIR install-strip
