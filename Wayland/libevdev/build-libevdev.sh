@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libevdev
 MAJOR=1
 MINOR=13
-PATCH=5
-VERSION=1.13.5
+PATCH=6
+VERSION=1.13.6
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
