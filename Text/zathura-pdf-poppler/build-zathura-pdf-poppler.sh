@@ -16,13 +16,13 @@ curl --location --remote-name --skip-existing https://github.com/pwmt/zathura-pd
 gzip -cd $VERSION.tar.gz | tar -x
 cd zathura-pdf-poppler-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 strip --strip-unneeded $DESTDIR/usr/lib/zathura/libpdf-poppler.so
 

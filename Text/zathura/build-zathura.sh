@@ -20,7 +20,7 @@ cd zathura-$VERSION
 # Taken from KISS, not exactly the best option
 patch -p1 < ../remove_gettext.patch
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
@@ -30,11 +30,11 @@ muon setup \
 	-D convert-icon=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
-strip --strip-unneeded /usr/bin/zathura
-strip --strip-unneeded /usr/bin/zathura-sandbox
+strip --strip-unneeded "$DESTDIR/usr/bin/zathura"
+strip --strip-unneeded "$DESTDIR/usr/bin/zathura-sandbox"
 
 rm -rf $DESTDIR/usr/share/bash-completion
 rm -rf $DESTDIR/usr/share/dbus-1

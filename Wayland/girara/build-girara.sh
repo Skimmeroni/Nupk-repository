@@ -16,7 +16,7 @@ curl --location --remote-name --skip-existing https://github.com/pwmt/girara/arc
 gzip -cd $VERSION.tar.gz | tar -x
 cd girara-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
@@ -26,8 +26,8 @@ muon setup \
 	-D tests=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
