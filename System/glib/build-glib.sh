@@ -16,10 +16,7 @@ curl --location --remote-name --skip-existing https://download.gnome.org/sources
 xz -cd glib-$VERSION.tar.xz | tar -x
 cd glib-$VERSION
 
-# Prevents muon from failing
-rm subprojects/gvdb.wrap
-
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
 	-D buildtype=release \
@@ -34,13 +31,17 @@ muon setup \
 	-D introspection=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
-rm -rf $DESTDIR/usr/share/gettext
+rm -rf "$DESTDIR/usr/share/gettext"
+# Bash-completions aren't a toggable option, they are installed
+# if bash is found in $PATH even if you don't want to
+rm -rf "$DESTDIR/usr/share/bash-completion"
 
 #find $DESTDIR/usr/bin      -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
+#TODO: find $DESTDIR -name '*.so*' ! -name '*.py' -type f -exec strip --strip-unneeded {} \;
 find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR

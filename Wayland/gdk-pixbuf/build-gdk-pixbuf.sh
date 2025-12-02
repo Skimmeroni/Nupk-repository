@@ -20,7 +20,7 @@ cd gdk-pixbuf-$VERSION
 print '#!/usr/bin/env python3' > build-aux/post-install.py
 patch -p1 < ../dont-test-loaders-cache.patch
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
@@ -40,8 +40,8 @@ muon setup \
 	-D thumbnailer=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR 
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
@@ -52,4 +52,5 @@ doas sh -c "tar -cf - * | gzip > ../Wayland-gdk-pixbuf@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
 printf "\033[1mRemember to generate the loaders cache!\033[0m\n"
-# doas gdk-pixbuf-query-loaders
+# doas mkdir -p /usr/lib/gdk-pixbuf-2.0/2.10.0
+# doas gdk-pixbuf-query-loaders --update-cache
