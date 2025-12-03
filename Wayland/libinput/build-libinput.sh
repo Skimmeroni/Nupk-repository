@@ -16,13 +16,7 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/lib
 gzip -cd libinput-$VERSION.tar.gz | tar -x
 cd libinput-$VERSION
 
-# Libinput has no support for static linking, which is why the default_library
-# directive doesn't actually do anything. It's there just in case things change
-# in the future
-
-# TODO: libwacom has to be toggled on and off explicitly. Wouldn't it make
-# much more sense to use automatic discovery?
-
+# -D default_library=both doesn't actually do anything
 muon setup \
 	-D prefix=/usr \
 	-D sysconfdir=/etc \
@@ -34,7 +28,6 @@ muon setup \
 	-D documentation=false \
 	-D tests=false \
 	-D zshcompletiondir=no \
-	-D libwacom=false \
 	build
 
 ninja -C build
@@ -43,8 +36,6 @@ muon -C build install -d "$DESTDIR"
 strip --strip-unneeded "$DESTDIR/usr/bin/libinput"
 find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
 find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
-
-# TODO: Since we use libudev-zero, can't we just remove installed udev rules? Should we?
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
