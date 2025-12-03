@@ -1,0 +1,30 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -538,27 +538,7 @@
+ 
+ distclean-libtool:
+ 	-rm -f libtool config.lt
+-install-desktopDATA: $(desktop_DATA)
+-	@$(NORMAL_INSTALL)
+-	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
+-	if test -n "$$list"; then \
+-	  echo " $(MKDIR_P) '$(DESTDIR)$(desktopdir)'"; \
+-	  $(MKDIR_P) "$(DESTDIR)$(desktopdir)" || exit 1; \
+-	fi; \
+-	for p in $$list; do \
+-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+-	  echo "$$d$$p"; \
+-	done | $(am__base_list) | \
+-	while read files; do \
+-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(desktopdir)'"; \
+-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(desktopdir)" || exit $$?; \
+-	done
+ 
+-uninstall-desktopDATA:
+-	@$(NORMAL_UNINSTALL)
+-	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
+-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+-	dir='$(DESTDIR)$(desktopdir)'; $(am__uninstall_files_from_dir)
+ install-pkgconfigDATA: $(pkgconfig_DATA)
+ 	@$(NORMAL_INSTALL)
+ 	@list='$(pkgconfig_DATA)'; test -n "$(pkgconfigdir)" || list=; \
