@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=mako
+PRETTY_NAME=mako-notifier
 MAJOR=1
 MINOR=10
 PATCH=0
