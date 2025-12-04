@@ -16,19 +16,18 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/eme
 gzip -cd grim-$VERSION.tar.gz | tar -x
 cd grim-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
+	-D strip=true \
 	-D bash-completions=false \
 	-D fish-completions=false \
 	-D jpeg=enabled \
 	-D man-pages=enabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-strip --strip-unneeded $DESTDIR/usr/bin/grim
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

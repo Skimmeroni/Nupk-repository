@@ -16,12 +16,13 @@ curl --location --remote-name --skip-existing https://github.com/xkbcommon/libxk
 gzip -cd xkbcommon-$VERSION.tar.gz | tar -x
 cd libxkbcommon-xkbcommon-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D libdir=/usr/lib \
 	-D libexecdir=/usr/lib \
 	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	-D enable-docs=false \
 	-D enable-tools=false \
 	-D enable-wayland=true \
@@ -30,11 +31,8 @@ muon setup \
 	-D enable-xkbregistry=false \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-find $DESTDIR -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find $DESTDIR -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

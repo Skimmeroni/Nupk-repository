@@ -16,20 +16,16 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/glv
 gzip -cd libglvnd-v$VERSION.tar.gz | tar -x
 cd libglvnd-v$VERSION
 
-patch -p1 < ../bypass-failing-check-for-muon.patch
-
-# Again, default_library=both doesn't actually do anything
-muon setup \
+# -D default_library=both doesn't actually do anything
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

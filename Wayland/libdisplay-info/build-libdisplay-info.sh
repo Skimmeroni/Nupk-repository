@@ -16,20 +16,16 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/eme
 gzip -cd libdisplay-info-$VERSION.tar.gz | tar -x
 cd libdisplay-info-$VERSION
 
-rm -rf subprojects
-
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
+	-D wrap_mode=nofallback \
+	-D strip=true \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

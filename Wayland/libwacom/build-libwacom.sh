@@ -16,21 +16,18 @@ curl --location --remote-name --skip-existing https://github.com/linuxwacom/libw
 xz -cd libwacom-$VERSION.tar.xz | tar -x
 cd libwacom-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
 	-D buildtype=release \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D documentation=disabled \
 	-D tests=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

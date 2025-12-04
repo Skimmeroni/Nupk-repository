@@ -21,6 +21,7 @@ meson setup \
 	-D default_library=both \
 	-D buildtype=release \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D default_bus=dbus-daemon \
 	-D docs=false \
 	-D introspection=disabled \
@@ -31,9 +32,6 @@ meson setup \
 
 meson compile -C build
 meson install -C build --destdir $DESTDIR
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

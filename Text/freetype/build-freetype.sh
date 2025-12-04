@@ -36,9 +36,11 @@ else
 	HARFBUZZ_AT_HOME=disabled
 fi
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
+	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	-D harfbuzz=$HARFBUZZ_AT_HOME \
 	-D zlib=enabled \
 	-D brotli=disabled \
@@ -47,11 +49,8 @@ muon setup \
 	-D tests=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

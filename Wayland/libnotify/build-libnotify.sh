@@ -17,11 +17,12 @@ xz -cd libnotify-$VERSION.tar.xz | tar -x
 cd libnotify-$VERSION
 
 # -D default_library=both doesn't do anything
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D tests=false \
 	-D gtk_doc=false \
 	-D man=false \
@@ -29,12 +30,8 @@ muon setup \
 	-D docbook_docs=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
-strip --strip-unneeded "$DESTDIR/usr/bin/notify-send"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

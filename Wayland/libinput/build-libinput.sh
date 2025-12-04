@@ -17,25 +17,22 @@ gzip -cd libinput-$VERSION.tar.gz | tar -x
 cd libinput-$VERSION
 
 # -D default_library=both doesn't actually do anything
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D sysconfdir=/etc \
 	-D mandir=/usr/share/man \
 	-D libexecdir=/usr/lib \
 	-D default_library=both \
 	-D buildtype=release \
+	-D strip=true \
 	-D debug-gui=false \
 	-D documentation=false \
 	-D tests=false \
 	-D zshcompletiondir=no \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-strip --strip-unneeded "$DESTDIR/usr/bin/libinput"
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

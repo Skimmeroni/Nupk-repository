@@ -17,9 +17,11 @@ gzip -cd wlroots-$VERSION.tar.gz | tar -x
 cd wlroots-$VERSION
 
 # TODO: vulkan?
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
+	-D buildtype=release \
+	-D strip=true \
 	-D backends='libinput,drm' \
 	-D renderers=gles2 \
 	-D color-management=enabled \
@@ -30,11 +32,8 @@ muon setup \
 	-D examples=false \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

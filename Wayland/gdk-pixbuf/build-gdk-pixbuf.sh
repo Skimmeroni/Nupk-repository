@@ -17,6 +17,7 @@ xz -cd gdk-pixbuf-$VERSION.tar.xz | tar -x
 cd gdk-pixbuf-$VERSION
 
 # Disable preemptive caching in any shape or form
+# Might not be necessary now that we use meson
 print '#!/usr/bin/env python3' > build-aux/post-install.py
 patch -p1 < ../dont-test-loaders-cache.patch
 
@@ -25,6 +26,7 @@ meson setup \
 	-D buildtype=release \
 	-D default_library=both \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D png=enabled \
 	-D jpeg=enabled \
 	-D tiff=enabled \
@@ -42,9 +44,6 @@ meson setup \
 
 meson compile -C build
 meson install -C build --destdir $DESTDIR
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

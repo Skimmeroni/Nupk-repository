@@ -17,10 +17,11 @@ gzip -cd sway-$VERSION.tar.gz | tar -x
 cd sway-$VERSION
 
 # TODO: use /etc instead of /usr/etc
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D man-pages=enabled \
 	-D swaynag=true \
 	-D default-wallpaper=false \
@@ -33,10 +34,9 @@ muon setup \
 	-D sd-bus-provider=basu \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
-find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
 # Since we don't use PAM, this is irrelevant
 rm -rf "$DESTDIR/usr/share/wayland-sessions"
 

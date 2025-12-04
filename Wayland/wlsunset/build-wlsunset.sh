@@ -16,16 +16,16 @@ curl --location --remote-name --skip-existing https://git.sr.ht/~kennylevinsen/w
 gzip -cd $VERSION.tar.gz | tar -x
 cd wlsunset-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
+	-D strip=true \
 	-D man-pages=enabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
-strip --strip-unneeded $DESTDIR/usr/bin/wlsunset
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/wlsunset.license"
 
 doas chown -R root:root $DESTDIR

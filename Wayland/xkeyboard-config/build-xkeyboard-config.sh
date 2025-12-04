@@ -22,14 +22,14 @@ patch -p1 < ../install-pkg-config-to-lib.patch
 sed "s/subdir('po')//g" meson.build > meson.build.new
 mv meson.build.new meson.build
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D compat-rules=true \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

@@ -8,7 +8,7 @@ MINOR=24
 PATCH=51
 VERSION=3.24.51
 
-# Snatching gtk from repology is problematic
+# Grabbing gtk version from repology is problematic
 
 DESTDIR="$PWD/temporary-builddir"
 [ -d $DESTDIR ] || mkdir temporary-builddir
@@ -23,6 +23,7 @@ meson setup \
 	-D buildtype=release \
 	-D default_library=both \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D broadway_backend=false \
 	-D cloudproviders=false \
 	-D demos=false \
@@ -41,9 +42,6 @@ meson setup \
 
 meson compile -C build
 meson install -C build --destdir $DESTDIR
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
 
 rm -rf "$DESTDIR/usr/share/gettext"
 

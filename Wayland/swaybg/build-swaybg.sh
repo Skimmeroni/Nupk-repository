@@ -16,16 +16,16 @@ curl --location --remote-name --skip-existing https://github.com/swaywm/swaybg/a
 gzip -cd v$VERSION.tar.gz | tar -x
 cd swaybg-$VERSION
 
-# TODO: gdk-pixbuf has to be installed anyway
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
+	-D strip=true \
 	-D man-pages=enabled \
-	-D gdk-pixbuf=disabled \
+	-D gdk-pixbuf=enabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

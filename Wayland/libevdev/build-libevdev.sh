@@ -16,22 +16,20 @@ curl --location --remote-name --skip-existing https://freedesktop.org/software/l
 xz -cd libevdev-$VERSION.tar.xz | tar -x
 cd libevdev-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
 	-D buildtype=release \
+	-D strip=true \
 	-D documentation=disabled \
 	-D tests=disabled \
 	-D tools=disabled \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
-rm -rf $DESTDIR/usr/share
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+rm -rf "$DESTDIR/usr/share"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

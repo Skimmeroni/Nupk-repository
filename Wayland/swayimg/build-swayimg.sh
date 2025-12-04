@@ -17,10 +17,11 @@ gzip -cd v$VERSION.tar.gz | tar -x
 cd swayimg-$VERSION
 
 # TODO: add svg support
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D gif=enabled \
 	-D jpeg=enabled \
 	-D png=enabled \
@@ -36,10 +37,9 @@ muon setup \
 	-D desktop=true \
 	build 
 
-ninja -C build
-muon -C build install -d $DESTDIR
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
-strip --strip-unneeded "$DESTDIR/usr/bin/swayimg"
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/swayimg.license" 
 install -Dm644 extra/swayimgrc "$DESTDIR/etc/xdg/swayimg/config"
 

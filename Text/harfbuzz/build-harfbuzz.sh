@@ -16,11 +16,12 @@ curl --location --remote-name --skip-existing https://github.com/harfbuzz/harfbu
 xz -cd harfbuzz-$VERSION.tar.xz | tar -x
 cd harfbuzz-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
 	-D buildtype=release \
 	-D libdir=/usr/lib \
+	-D strip=true \
 	-D cairo=enabled \
 	-D freetype=enabled \
 	-D glib=enabled \
@@ -37,11 +38,8 @@ muon setup \
 	-D utilities=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

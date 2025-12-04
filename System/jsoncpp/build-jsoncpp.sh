@@ -16,20 +16,16 @@ curl --location --remote-name --skip-existing https://github.com/open-source-par
 gzip -cd jsoncpp-$VERSION.tar.gz | tar -x
 cd jsoncpp-$VERSION
 
-# Muon does not support the cmake module (yet)
-patch -p1 < ../bypass-cmake-module.patch
-
-muon setup \
-	-D tests=false \
-	-D default_library=both \
+meson setup \
 	-D prefix=/usr \
+	-D buildtype=release \
+	-D default_library=both \
+	-D strip=true \
+	-D tests=false \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

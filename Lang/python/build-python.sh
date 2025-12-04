@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=python
 MAJOR=3
 MINOR=14
-PATCH=0
-VERSION=3.14.0
+PATCH=1
+VERSION=3.14.1
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
@@ -32,6 +32,7 @@ EOF
 	--prefix=/usr \
 	--enable-shared \
 	--enable-loadable-sqlite-extensions \
+	--enable-optimizations \
 	--with-readline=editline \
 	--with-tzpath=/usr/share/zoneinfo \
 	--with-system-expat \
@@ -46,12 +47,14 @@ make DESTDIR=$DESTDIR install
 ln -sf python3         "$DESTDIR/usr/bin/python"
 ln -sf python3-config  "$DESTDIR/usr/bin/python-config"
 
+# Turtles are cute though
 find "$DESTDIR/usr/lib/python$MAJOR.$MINOR/__pycache__" -name 'turtle*.pyc' -delete
-rm $DESTDIR/usr/bin/idle*
-rm -rf $DESTDIR/usr/lib/python$MAJOR.$MINOR/idlelib
-rm -rf $DESTDIR/usr/lib/python$MAJOR.$MINOR/turtle.py
-rm -rf $DESTDIR/usr/lib/python$MAJOR.$MINOR/turtledemo
-rm -rf $DESTDIR/usr/lib/python$MAJOR.$MINOR/tkinter
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtle.py"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtledemo"
+# TKinter does not support Wayland
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/tkinter"
+rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/idlelib"
+rm "$DESTDIR/usr/bin/idle*"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/python3"
 find "$DESTDIR/usr/lib" -name '*.a'   -type f -exec strip --strip-unneeded {} \;

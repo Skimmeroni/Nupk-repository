@@ -16,9 +16,10 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/cai
 gzip -cd cairo-$VERSION.tar.gz | tar -x
 cd cairo-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
+	-D strip=true \
 	-D fontconfig=enabled \
 	-D freetype=enabled \
 	-D png=enabled \
@@ -31,11 +32,8 @@ muon setup \
 	-D tee=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

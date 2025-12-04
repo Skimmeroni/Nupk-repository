@@ -16,9 +16,9 @@ curl --location --remote-name --skip-existing https://download.gnome.org/sources
 xz -cd adwaita-icon-theme-$VERSION.tar.xz | tar -x
 cd adwaita-icon-theme-$VERSION
 
-muon setup -D prefix=/usr build
-ninja -C build
-muon -C build install -d $DESTDIR
+meson setup -D prefix=/usr build
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

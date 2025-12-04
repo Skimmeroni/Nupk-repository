@@ -20,6 +20,7 @@ meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
 	-D buildtype=release \
+	-D strip=true \
 	-D libmount=disabled \
 	-D sysprof=disabled \
 	-D man-pages=disabled \
@@ -38,11 +39,6 @@ rm -rf "$DESTDIR/usr/share/gettext"
 # Bash-completions aren't a toggable option, they are installed
 # if bash is found in $PATH even if you don't want to
 rm -rf "$DESTDIR/usr/share/bash-completion"
-
-#find $DESTDIR/usr/bin      -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-#TODO: find $DESTDIR -name '*.so*' ! -name '*.py' -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

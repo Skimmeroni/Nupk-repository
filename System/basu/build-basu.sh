@@ -21,14 +21,11 @@ meson setup \
 	-D default_library=both \
 	-D buildtype=release \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	build
 
 meson compile -C build
 meson install -C build --destdir $DESTDIR
-
-strip --strip-unneeded "$DESTDIR/usr/bin/basuctl"
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

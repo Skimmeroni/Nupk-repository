@@ -18,9 +18,11 @@ cd pango-$VERSION
 
 rm -rf subprojects
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
+	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	-D cairo=enabled \
 	-D freetype=enabled \
 	-D fontconfig=enabled \
@@ -31,12 +33,8 @@ muon setup \
 	-D build-examples=false \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find $DESTDIR/usr/bin       -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

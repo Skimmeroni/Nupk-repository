@@ -19,12 +19,11 @@ cd zathura-pdf-poppler-$VERSION
 meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
+	-D strip=true \
 	build
 
 meson compile -C build
 meson install -C build --destdir $DESTDIR
-
-strip --strip-unneeded $DESTDIR/usr/lib/zathura/libpdf-poppler.so
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

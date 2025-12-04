@@ -25,6 +25,7 @@ meson setup \
 	-D buildtype=release \
 	-D default_library=both \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D manpages=disabled \
 	-D tests=disabled \
 	-D convert-icon=disabled \
@@ -33,13 +34,10 @@ meson setup \
 meson compile -C build
 meson install -C build --destdir $DESTDIR
 
-strip --strip-unneeded "$DESTDIR/usr/bin/zathura"
-strip --strip-unneeded "$DESTDIR/usr/bin/zathura-sandbox"
-
-rm -rf $DESTDIR/usr/share/bash-completion
-rm -rf $DESTDIR/usr/share/dbus-1
-rm -rf $DESTDIR/usr/share/fish
-rm -rf $DESTDIR/usr/share/zsh
+rm -rf "$DESTDIR/usr/share/dbus-1"
+rm -rf "$DESTDIR/usr/share/bash-completion"
+rm -rf "$DESTDIR/usr/share/fish"
+rm -rf "$DESTDIR/usr/share/zsh"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

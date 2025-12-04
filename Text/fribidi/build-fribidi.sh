@@ -16,19 +16,18 @@ curl --location --remote-name --skip-existing https://github.com/fribidi/fribidi
 xz -cd fribidi-$VERSION.tar.xz | tar -x
 cd fribidi-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
+	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	-D bin=false \
 	-D docs=false \
 	-D tests=false \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

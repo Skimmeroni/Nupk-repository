@@ -16,15 +16,15 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/way
 xz -cd wayland-protocols-$VERSION.tar.xz | tar -x
 cd wayland-protocols-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D datadir=lib \
 	-D buildtype=release \
 	-D tests=false \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

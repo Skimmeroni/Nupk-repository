@@ -42,13 +42,15 @@ cd dbus-$VERSION
 
 # The post-install hook is nothing but trouble and, since we set the
 # permissions ourselves, serves no purpose
+# Might not be necessary when using meson
 printf "#!/usr/bin/env python3" > meson_post_install.py
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D localstatedir=/var \
 	-D buildtype=release \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D default_library=both \
 	-D dbus_user=messagebus \
 	-D relocation=disabled \
@@ -57,13 +59,8 @@ muon setup \
 	-D xml_docs=disabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
-strip --strip-unneeded "$DESTDIR/usr/libexec/dbus-daemon-launch-helper"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 # NOTE: dbus has /var/lib/dbus but only contains a symlink to /etc/machine-id,
 # which probably means that it's redundant

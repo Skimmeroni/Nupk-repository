@@ -16,21 +16,19 @@ curl --location --remote-name --skip-existing https://github.com/emersion/mako/r
 gzip -cd mako-$VERSION.tar.gz | tar -x
 cd mako-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D default_library=both \
 	-D buildtype=release \
+	-D strip=true \
 	-D wrap_mode=nofallback \
 	-D sd-bus-provider=basu \
 	-D man-pages=enabled \
 	-D icons=enabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-strip --strip-unneeded "$DESTDIR/usr/bin/mako"
-strip --strip-unneeded "$DESTDIR/usr/bin/makoctl"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

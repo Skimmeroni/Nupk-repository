@@ -16,21 +16,19 @@ curl --location --remote-name --skip-existing https://x.org/releases/individual/
 xz -cd pixman-$VERSION.tar.xz | tar -x
 cd pixman-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	-D gtk=disabled \
 	-D tests=disabled \
 	-D libpng=disabled \
 	-D demos=disabled \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

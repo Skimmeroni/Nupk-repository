@@ -16,21 +16,18 @@ curl --location --remote-name --skip-existing https://gitlab.freedesktop.org/way
 xz -cd wayland-$VERSION.tar.xz | tar -x
 cd wayland-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
 	-D default_library=both \
+	-D strip=true \
 	-D tests=false \
 	-D documentation=false \
 	-D dtd_validation=false \
 	build
 
-ninja -C build
-muon -C build install -d "$DESTDIR"
-
-find "$DESTDIR/usr/lib" -type f -name '*.a'   -exec strip --strip-unneeded {} \;
-find "$DESTDIR/usr/lib" -type f -name '*.so*' -exec strip --strip-unneeded {} \;
-strip --strip-unneeded "$DESTDIR/usr/bin/wayland-scanner"
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

@@ -21,6 +21,7 @@ meson setup \
 	-D buildtype=release \
 	-D default_library=both \
 	-D wrap_mode=nofallback \
+	-D strip=true \
 	-D gtk_doc=false \
 	-D tests=disabled \
 	-D vapi=disabled \
@@ -29,9 +30,6 @@ meson setup \
 
 meson compile -C build
 meson install -C build --destdir $DESTDIR
-
-find $DESTDIR -name '*.a'   -type f -exec strip --strip-unneeded {} \;
-find $DESTDIR -name '*.so*' -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

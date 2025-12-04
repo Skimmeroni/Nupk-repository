@@ -16,16 +16,15 @@ curl --location --remote-name --skip-existing https://github.com/emersion/slurp/
 gzip -cd slurp-$VERSION.tar.gz | tar -x
 cd slurp-$VERSION
 
-muon setup \
+meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
+	-D strip=true \
 	-D man-pages=enabled \
 	build
 
-ninja -C build
-muon -C build install -d $DESTDIR
-
-strip --strip-unneeded $DESTDIR/usr/bin/slurp
+meson compile -C build
+meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
