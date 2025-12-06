@@ -1,22 +1,24 @@
 #/bin/sh -e 
 
+set -eu
+
 PRETTY_NAME=swi-prolog
-MAJOR=9
-MINOR=3
-PATCH=28
-VERSION=9.3.28
+MAJOR=10
+MINOR=0
+PATCH=0
+VERSION=10.0.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
 
-curl --location --remote-name --skip-existing https://www.swi-prolog.org/download/devel/src/swipl-$VERSION.tar.gz
+curl --location --remote-name --skip-existing https://www.swi-prolog.org/download/stable/src/swipl-$VERSION.tar.gz
 
 gzip -cd swipl-$VERSION.tar.gz | tar -x
 cd swipl-$VERSION
 
 cmake -B build \
-	-D CMAKE_BUILD_TYPE=Release \
 	-D CMAKE_INSTALL_PREFIX=/usr \
+	-D CMAKE_BUILD_TYPE=Release \
 	-D INSTALL_DOCUMENTATION=OFF \
 	-D INSTALL_TESTS=OFF \
 	-D BUILD_TESTING=OFF \
