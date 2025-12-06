@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libpng
 MAJOR=1
 MINOR=6
-PATCH=51
-VERSION=1.6.51
+PATCH=53
+VERSION=1.6.53
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
