@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=libnl
 MAJOR=3
-MINOR=11
+MINOR=12
 PATCH=0
-VERSION=3.11.0
+VERSION=3.12.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
