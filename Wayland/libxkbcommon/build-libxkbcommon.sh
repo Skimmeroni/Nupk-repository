@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libxkbcommon
 MAJOR=1
 MINOR=13
-PATCH=0
-VERSION=1.13.0
+PATCH=1
+VERSION=1.13.1
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
