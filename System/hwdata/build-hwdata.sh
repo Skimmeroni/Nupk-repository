@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=hwdata
 MAJOR=0
-MINOR=401
+MINOR=402
 PATCH=
-VERSION=0.401
+VERSION=0.402
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
@@ -16,10 +16,7 @@ curl --location --remote-name --skip-existing https://github.com/vcrhonek/hwdata
 gzip -cd v$VERSION.tar.gz | tar -x
 cd hwdata-$VERSION
 
-./configure \
-	--prefix=/usr \
-	--disable-blacklist
-
+./configure --prefix=/usr --disable-blacklist
 make DESTDIR=$DESTDIR install
 
 doas chown -R root:root $DESTDIR
