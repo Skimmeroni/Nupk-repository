@@ -21,7 +21,7 @@ install -Dm644 OFL.txt "$DESTDIR/usr/share/LICENSES/jetbrains-mono.license"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > Fonts-jetbrains-mono@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Fonts-jetbrains-mono@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
 
 printf "\033[1mYou have to run fc-cache for the font to be available!\033[0m\n"
