@@ -3,29 +3,30 @@
 set -eu
 
 PRETTY_NAME=libedit
-MAJOR=20251016-3
-MINOR=1
-PATCH=
-VERSION=20251016-3.1
+MAJOR=20251016
+MINOR=3
+PATCH=1
+VERSION=20251016.3.1
+
+# The versioning scheme is probably incorrect
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
 
-curl --location --remote-name --skip-existing https://www.thrysoee.dk/editline/libedit-$VERSION.tar.gz
+curl --location --remote-name --skip-existing https://www.thrysoee.dk/editline/libedit-$MAJOR-$MINOR.$PATCH.tar.gz
 
-gzip -cd libedit-$VERSION.tar.gz | tar -x
-cd libedit-$VERSION
+gzip -cd libedit-$MAJOR-$MINOR.$PATCH.tar.gz | tar -x
+cd libedit-$MAJOR-$MINOR.$PATCH
 
 ./configure \
 	--prefix=/usr \
-	--enable-static \
-	--enable-fast-install
+	--enable-shared \
+	--enable-static
 
 make
-make DESTDIR=$DESTDIR install
+make DESTDIR=$DESTDIR install-strip
 
 find $DESTDIR -type f -name '*.la' -delete
-rm -rf "$DESTDIR/usr/share/man/man3"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
