@@ -59,7 +59,7 @@ meson setup \
 	-D xml_docs=disabled \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 # NOTE: dbus has /var/lib/dbus but only contains a symlink to /etc/machine-id,

@@ -40,7 +40,7 @@ meson setup \
 	-D tracker3=false \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 rm -rf "$DESTDIR/usr/share/gettext"

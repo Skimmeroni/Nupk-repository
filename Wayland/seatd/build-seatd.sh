@@ -25,7 +25,7 @@ meson setup \
 	-D server=enabled \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 chmod u+s $DESTDIR/usr/bin/seatd-launch

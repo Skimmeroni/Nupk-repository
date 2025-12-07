@@ -34,7 +34,7 @@ meson setup \
 	-D sd-bus-provider=basu \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 # Since we don't use PAM, this is irrelevant

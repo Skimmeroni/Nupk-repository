@@ -43,7 +43,7 @@ cmake -B build \
 	-D LLVM_ENABLE_ZSTD=OFF \
 	-W no-dev -G Ninja
 
-cmake --build build
+cmake --build build --verbose
 DESTDIR=$DESTDIR cmake --install build --strip
 
 # Sligthly edited from KISS to clean up messy paths, not exactly reliable

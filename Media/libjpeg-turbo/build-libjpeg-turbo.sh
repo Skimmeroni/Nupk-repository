@@ -27,7 +27,7 @@ cmake -B build \
 	-D WITH_TOOLS=OFF \
 	-G Ninja
 
-cmake --build build
+cmake --build build --verbose
 DESTDIR=$DESTDIR cmake --install build --strip
 
 rm -rf $DESTDIR/usr/share

@@ -24,7 +24,7 @@ meson setup \
 	-D strip=true \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR

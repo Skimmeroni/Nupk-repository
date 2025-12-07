@@ -28,7 +28,7 @@ cmake -B build \
 	-D SPIRV_TOOLS_BUILD_STATIC=OFF \
 	-G Ninja
 
-cmake --build build
+cmake --build build --verbose
 DESTDIR=$DESTDIR cmake --install build --strip
 
 doas chown -R root:root $DESTDIR

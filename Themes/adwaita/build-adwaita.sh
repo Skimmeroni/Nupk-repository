@@ -17,7 +17,7 @@ xz -cd adwaita-icon-theme-$VERSION.tar.xz | tar -x
 cd adwaita-icon-theme-$VERSION
 
 meson setup -D prefix=/usr build
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR

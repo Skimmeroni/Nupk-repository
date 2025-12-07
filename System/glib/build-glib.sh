@@ -32,7 +32,7 @@ meson setup \
 	-D introspection=disabled \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 rm -rf "$DESTDIR/usr/share/gettext"

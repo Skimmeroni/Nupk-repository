@@ -49,7 +49,7 @@ meson setup \
 	-D tests=disabled \
 	build
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR

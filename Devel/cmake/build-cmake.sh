@@ -50,7 +50,7 @@ else
 		-D BUILD_QtDialog=OFF \
 		-G Ninja
 	
-	cmake --build build
+	cmake --build build --verbose
 	DESTDIR=$DESTDIR cmake --install build
 fi
 

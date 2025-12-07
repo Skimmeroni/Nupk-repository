@@ -31,7 +31,7 @@ cmake -B build \
 	-D BUILD_TESTING=OFF \
 	-G Ninja
 
-cmake --build build
+cmake --build build --verbose
 DESTDIR=$DESTDIR cmake --install build --strip
 
 doas chown -R root:root $DESTDIR

@@ -30,7 +30,7 @@ cmake -B build \
 	-D GRAPHICS_DISABLED=ON \
 	-G Ninja
 
-cmake --build build
+cmake --build build --verbose
 DESTDIR=$DESTDIR cmake --install build --strip
 
 doas chown -R root:root $DESTDIR

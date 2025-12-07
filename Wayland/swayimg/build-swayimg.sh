@@ -37,7 +37,7 @@ meson setup \
 	-D desktop=true \
 	build 
 
-meson compile -C build
+meson compile -C build --verbose
 meson install -C build --destdir $DESTDIR
 
 install -Dm644 LICENSE "$DESTDIR/usr/share/LICENSES/swayimg.license" 
