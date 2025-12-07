@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=xvid
+PRETTY_NAME=xvidcore
 MAJOR=
 MINOR=
 PATCH=
