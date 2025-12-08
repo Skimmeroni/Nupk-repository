@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=python:glad
+PRETTY_NAME=glad
 MAJOR=2
 MINOR=0
 PATCH=8

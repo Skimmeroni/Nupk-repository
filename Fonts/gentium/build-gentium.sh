@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=fonts:gentium-plus
+PRETTY_NAME=fonts:gentium
 MAJOR=7
 MINOR=000
 PATCH=
