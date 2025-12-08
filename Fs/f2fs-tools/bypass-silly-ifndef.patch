@@ -1,0 +1,12 @@
+--- a/include/f2fs_fs.h
++++ b/include/f2fs_fs.h
+@@ -103,9 +103,6 @@
+ typedef uint8_t		u8;
+ typedef u32		block_t;
+ typedef u32		nid_t;
+-#ifndef bool
+-typedef u8		bool;
+-#endif
+ typedef unsigned long	pgoff_t;
+ typedef unsigned short	umode_t;
+ 
