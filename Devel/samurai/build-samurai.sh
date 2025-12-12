@@ -21,8 +21,8 @@ make PREFIX=/usr DESTDIR=$DESTDIR install
 
 strip --strip-unneeded "$DESTDIR/usr/bin/samu"
 
-ln -sf samu   $DESTDIR/usr/bin/ninja
-ln -sf samu.1 $DESTDIR/usr/share/man/man1/ninja.1
+ln -sf samu   "$DESTDIR/usr/bin/ninja"
+ln -sf samu.1 "$DESTDIR/usr/share/man/man1/ninja.1"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

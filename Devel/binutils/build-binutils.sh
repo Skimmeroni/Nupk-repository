@@ -44,5 +44,5 @@ find $DESTDIR -type f -name '*.la' -delete
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../Lang-binutils@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Devel-binutils@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

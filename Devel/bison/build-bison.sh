@@ -18,15 +18,13 @@ cd bison-$VERSION
 
 ./configure \
 	--prefix=/usr \
-	--disable-nls \
-	--without-libtextstyle-prefix
+	--disable-nls
 
 make
 make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share/info"
 rm -rf "$DESTDIR/usr/share/doc"
-rm -rf "$DESTDIR/usr/share/aclocal"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

@@ -29,7 +29,8 @@ cd bc-$VERSION
 make
 make DESTDIR=$DESTDIR install
 
-find "$DESTDIR/usr/bin" -type f -exec strip --strip-unneeded {} \;
+strip --strip-unneeded "$DESTDIR/usr/bin/bc"
+strip --strip-unneeded "$DESTDIR/usr/bin/dc"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

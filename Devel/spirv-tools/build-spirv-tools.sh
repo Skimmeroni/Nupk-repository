@@ -16,16 +16,11 @@ curl --location --remote-name --skip-existing https://github.com/KhronosGroup/SP
 gzip -cd vulkan-sdk-$VERSION.tar.gz | tar -x
 cd SPIRV-Tools-vulkan-sdk-$VERSION
 
-# Taken from Gentoo
 cmake -B build \
 	-D CMAKE_BUILD_TYPE=Release \
 	-D CMAKE_INSTALL_PREFIX=/usr \
-	-D CMAKE_C_FLAGS="$CFLAGS -DNDEBUG" \
-	-D CMAKE_CXX_FLAGS="$CXXFLAGS -DNDEBUG" \
 	-D SPIRV-Headers_SOURCE_DIR=/usr \
-	-D SPIRV_WERROR=OFF \
 	-D SPIRV_SKIP_TESTS=ON \
-	-D SPIRV_TOOLS_BUILD_STATIC=OFF \
 	-G Ninja
 
 cmake --build build --verbose
