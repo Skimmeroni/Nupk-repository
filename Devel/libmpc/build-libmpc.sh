@@ -18,10 +18,11 @@ cd mpc-$VERSION
 
 ./configure \
 	--prefix=/usr \
-	--enable-shared
+	--enable-shared \
+	--enable-static
 
 make
-make DESTDIR=$DESTDIR install
+make DESTDIR=$DESTDIR install-strip
 
 rm -rf "$DESTDIR/usr/share"
 find $DESTDIR -type f -name '*.la' -delete

@@ -19,7 +19,7 @@ cd mpfr-$VERSION
 ./configure \
 	--prefix=/usr \
 	--enable-shared \
-	--enable-thread-safe
+	--enable-static
 
 make
 make DESTDIR=$DESTDIR install-strip

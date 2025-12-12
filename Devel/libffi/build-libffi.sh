@@ -16,20 +16,27 @@ curl --location --remote-name --skip-existing https://github.com/libffi/libffi/r
 gzip -cd libffi-$VERSION.tar.gz | tar -x
 cd libffi-$VERSION
 
-./configure --prefix=/usr
+./configure \
+	--prefix=/usr \
+	--enable-shared \
+	--enable-static \
+	--disable-docs \
+	--disable-debug
 
 make
 make DESTDIR=$DESTDIR install-strip
 
-rm -rf $DESTDIR/usr/share
+rm -rf "$DESTDIR/usr/share"
 find $DESTDIR -type f -name '*.la' -delete
 
+# TODO: find a way to avoid having to do this by hand, since
+# this doesn't seem to be reliable
 if [ -d "$DESTDIR/usr/lib64" ]
 then
-	mv $DESTDIR/usr/lib64/* $DESTDIR/usr/lib
-	rmdir $DESTDIR/usr/lib64
-	sed 's|lib64|lib|g' $DESTDIR/usr/lib/pkgconfig/libffi.pc > $DESTDIR/usr/lib/pkgconfig/libffi.pc.new
-	mv $DESTDIR/usr/lib/pkgconfig/libffi.pc.new $DESTDIR/usr/lib/pkgconfig/libffi.pc
+	mv "$DESTDIR/usr/lib64/"* "$DESTDIR/usr/lib"
+	rmdir "$DESTDIR/usr/lib64"
+	sed 's|lib64|lib|g' "$DESTDIR/usr/lib/pkgconfig/libffi.pc" > "$DESTDIR/usr/lib/pkgconfig/libffi.pc.new"
+	mv "$DESTDIR/usr/lib/pkgconfig/libffi.pc.new" "$DESTDIR/usr/lib/pkgconfig/libffi.pc"
 fi
 
 doas chown -R root:root $DESTDIR
