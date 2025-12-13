@@ -19,16 +19,18 @@ cd lynx$VERSION
 ./configure \
 	--prefix=/usr \
 	--sysconfdir=/etc/lynx \
+	--enable-widec \
 	--disable-dired \
 	--without-brotli \
 	--without-bzlib \
 	--without-zlib \
+	--with-screen=ncursesw \
 	--with-ssl
 
 make
 make DESTDIR=$DESTDIR install
 
-strip --strip-unneeded $DESTDIR/usr/bin/lynx
+strip --strip-unneeded "$DESTDIR/usr/bin/lynx"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
