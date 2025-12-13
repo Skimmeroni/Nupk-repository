@@ -16,13 +16,13 @@ curl --location --remote-name --skip-existing https://github.com/htop-dev/htop/r
 xz -cd htop-$VERSION.tar.xz | tar -x
 cd htop-$VERSION
 
-./configure \
-	--prefix=/usr \
-	--sysconfdir=/etc \
-	--disable-unicode
+./configure --prefix=/usr
 
 make
-make DESTDIR=$DESTDIR install-strip
+
+install -Dm755 htop "$DESTDIR/usr/bin/htop"
+strip --strip-unneeded "$DESTDIR/usr/bin/htop"
+install -Dm644 htop.1 "$DESTDIR/usr/share/man/man1/htop.1"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
