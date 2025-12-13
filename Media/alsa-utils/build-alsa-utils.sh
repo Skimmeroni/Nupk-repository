@@ -18,6 +18,7 @@ cd alsa-utils-$VERSION
 
 ./configure \
 	--prefix=/usr \
+	--sbindir=/usr/bin \
 	--disable-alsaconf \
 	--disable-nls \
 	--disable-xmlto \
