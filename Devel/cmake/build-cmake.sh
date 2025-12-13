@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=cmake
 MAJOR=4
 MINOR=2
-PATCH=0
-VERSION=4.2.0
+PATCH=1
+VERSION=4.2.1
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
@@ -48,6 +48,7 @@ else
 		-D CMake_ENABLE_DEBUGGER=OFF \
 		-D BUILD_TESTING=OFF \
 		-D BUILD_QtDialog=OFF \
+		-D BUILD_CursesDialog=OFF \
 		-G Ninja
 	
 	cmake --build build --verbose
