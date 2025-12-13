@@ -27,12 +27,12 @@ _gdbm _dbm
 _tkinter
 EOF
 
+# TODO: optimize?
 ./configure \
 	ac_cv_working_openssl_hashlib=yes \
 	--prefix=/usr \
 	--enable-shared \
 	--enable-loadable-sqlite-extensions \
-	--enable-optimizations \
 	--with-readline=editline \
 	--with-tzpath=/usr/share/zoneinfo \
 	--with-system-expat \
@@ -54,7 +54,8 @@ rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/turtledemo"
 # TKinter does not support Wayland
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/tkinter"
 rm -rf "$DESTDIR/usr/lib/python$MAJOR.$MINOR/idlelib"
-rm "$DESTDIR/usr/bin/idle*"
+rm "$DESTDIR/usr/bin/idle$MAJOR"
+rm "$DESTDIR/usr/bin/idle$MAJOR.$MINOR"
 
 strip --strip-unneeded "$DESTDIR/usr/bin/python3"
 find "$DESTDIR/usr/lib" -name '*.a'   -type f -exec strip --strip-unneeded {} \;
