@@ -26,5 +26,5 @@ ln -sf samu.1 "$DESTDIR/usr/share/man/man1/ninja.1"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../Devel-samurai@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Build-samurai@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

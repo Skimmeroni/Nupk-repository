@@ -22,5 +22,5 @@ rm -rf "$DESTDIR/usr/share/polkit-1"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../Devel-meson@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Build-meson@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

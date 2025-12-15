@@ -65,5 +65,5 @@ find $DESTDIR/usr/bin -type f -exec strip --strip-unneeded {} \;
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../Devel-cmake@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Build-cmake@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

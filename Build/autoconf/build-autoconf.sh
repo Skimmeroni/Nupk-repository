@@ -25,5 +25,5 @@ rm -rf "$DESTDIR/usr/share/info"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../Devel-autoconf@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Build-autoconf@$VERSION.tar.gz"
 doas rm -rf $DESTDIR

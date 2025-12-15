@@ -27,7 +27,7 @@ make -C gdb DESTDIR=$DESTDIR install-strip
 make -C gdbserver DESTDIR=$DESTDIR install-strip
 
 find $DESTDIR -name '*.la' -type f -delete
-rm -rf $DESTDIR/usr/share/info
+rm -rf "$DESTDIR/usr/share/info"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
