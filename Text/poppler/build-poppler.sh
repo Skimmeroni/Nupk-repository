@@ -16,6 +16,7 @@ curl --location --remote-name --skip-existing https://poppler.freedesktop.org/po
 xz -cd poppler-$VERSION.tar.xz | tar -x
 cd poppler-$VERSION
 
+# Note: it's unclear how much we gain from enabling boost
 cmake -B build \
 	-D CMAKE_INSTALL_PREFIX=/usr \
 	-D CMAKE_BUILD_TYPE=Release \

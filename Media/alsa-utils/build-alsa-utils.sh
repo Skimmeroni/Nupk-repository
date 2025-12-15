@@ -32,3 +32,6 @@ doas chown -R root:root $DESTDIR
 cd $DESTDIR
 doas sh -c "tar -cf - * | gzip > ../Media-alsa-utils@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
+
+printf "\033[1mRemember to run alsactl!\033[0m\n"
+# doas alsactl init

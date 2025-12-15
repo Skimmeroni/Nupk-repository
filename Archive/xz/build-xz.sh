@@ -17,9 +17,9 @@ gzip -cd xz-$VERSION.tar.gz | tar -x
 cd xz-$VERSION
 
 ./configure \
-    --prefix=/usr \
-    --disable-doc \
-    --disable-nls
+	--prefix=/usr \
+	--disable-doc \
+	--disable-nls
 
 make
 make DESTDIR=$DESTDIR install-strip
