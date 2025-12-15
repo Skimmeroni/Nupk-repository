@@ -11,8 +11,6 @@ VERSION=2.15.1
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
 
-# Only needed for at-spi2-core at the moment
-
 curl --location --remote-name --skip-existing https://download.gnome.org/sources/libxml2/$MAJOR.$MINOR/libxml2-$VERSION.tar.xz
 
 xz -cd libxml2-$VERSION.tar.xz | tar -x
@@ -24,7 +22,7 @@ meson setup \
 	-D default_library=both \
 	-D wrap_mode=nofallback \
 	-D strip=true \
-	-D icu=disabled \
+	-D icu=enabled \
 	-D readline=disabled \
 	-D docs=disabled \
 	-D python=disabled \

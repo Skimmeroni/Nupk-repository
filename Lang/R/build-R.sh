@@ -17,7 +17,6 @@ gzip -cd R-$VERSION.tar.gz | tar -x
 cd R-$VERSION
 
 # TODO: lto?
-# TODO: ICU?
 ./configure \
 	ac_cv_path_PDFTEX= \
 	ac_cv_path_PDFLATEX= \
@@ -32,12 +31,12 @@ cd R-$VERSION
 	--with-lapack=openblas \
 	--with-system-tre \
 	--with-cairo \
+	--with-ICU \
 	--with-jpeglib \
 	--with-libpng \
 	--with-libtiff \
 	--without-R-lto \
 	--without-recommended-packages \
-	--without-ICU \
 	--without-libdeflate-compression \
 	--without-nls \
 	--without-readline \

@@ -25,11 +25,11 @@ meson setup \
 	-D cairo=enabled \
 	-D freetype=enabled \
 	-D glib=enabled \
-	-D icu=disabled \
+	-D gobject=enabled \
+	-D icu=enabled \
 	-D benchmark=disabled \
 	-D chafa=disabled \
 	-D coretext=disabled \
-	-D gobject=disabled \
 	-D introspection=disabled \
 	-D tests=disabled \
 	-D wasm=disabled \
@@ -38,7 +38,7 @@ meson setup \
 	-D utilities=disabled \
 	build
 
-meson compile -C build --verbose
+meson compile -C build --verbose --jobs 1
 meson install -C build --destdir $DESTDIR
 
 doas chown -R root:root $DESTDIR

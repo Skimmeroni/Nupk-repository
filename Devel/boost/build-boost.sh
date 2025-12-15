@@ -30,7 +30,6 @@ PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v[0]}.{v
 # point in doing so, being self-contained
 ./bootstrap.sh \
 	--prefix="$DESTDIR/usr" \
-	--without-icu \
 	--with-python-version=$PYTHON_VERSION
 
 # -q stops at first error, -d+2 renders output more verbose
@@ -42,7 +41,6 @@ PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v[0]}.{v
 	threading=multi \
 	variant=release \
 	-s NO_COMPRESSION=1 \
-	--disable-icu boost.locale.icu=off \
 	--without-mpi \
 	--without-locale \
 	--without-context \
@@ -59,7 +57,6 @@ PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v[0]}.{v
 	threading=multi \
 	variant=release \
 	-s NO_COMPRESSION=1 \
-	--disable-icu boost.locale.icu=off \
 	--without-mpi \
 	--without-locale \
 	--without-context \
