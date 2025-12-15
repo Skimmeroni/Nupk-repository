@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=meson
 MAJOR=1
-MINOR=9
-PATCH=2
-VERSION=1.9.2
+MINOR=10
+PATCH=0
+VERSION=1.10.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
