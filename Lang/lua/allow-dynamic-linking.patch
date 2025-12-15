@@ -1,0 +1,13 @@
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -86,6 +86,10 @@
+ 	@echo "RM= $(RM)"
+ 	@echo "UNAME= $(UNAME)"
+ 
++LUA_SO= liblua.so
++$(LUA_SO): $(BASE_O)
++	$(CC) -shared -o $@ $(LDFLAGS) $^ $(LIBS)
++
+ # Convenience targets for popular platforms.
+ ALL= all
+ 
