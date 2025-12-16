@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=tzdata
 MAJOR=2025
-MINOR=b
+MINOR=c
 PATCH=
-VERSION=2025b
+VERSION=2025c
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
