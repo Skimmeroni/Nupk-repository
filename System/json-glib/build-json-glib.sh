@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=json-glib
 MAJOR=1
 MINOR=10
-PATCH=6
-VERSION=1.10.6
+PATCH=8
+VERSION=1.10.8
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
