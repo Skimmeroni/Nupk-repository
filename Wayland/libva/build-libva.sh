@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=libva
 MAJOR=2
-MINOR=22
+MINOR=23
 PATCH=0
-VERSION=2.22.0
+VERSION=2.23.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
