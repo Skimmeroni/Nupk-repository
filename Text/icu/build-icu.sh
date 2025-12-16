@@ -16,6 +16,10 @@ curl --location --remote-name --skip-existing https://github.com/unicode-org/icu
 gzip -cd icu4c-$VERSION-sources.tgz | tar -x
 cd icu/source
 
+# ACTUALLY disable the versioning macro
+sed 's|#define U_DISABLE_RENAMING 0|#define U_DISABLE_RENAMING 1|g' common/unicode/uconfig.h > common/unicode/uconfig.h.new
+mv common/unicode/uconfig.h.new common/unicode/uconfig.h
+
 ./configure \
 	CC=gcc \
 	CXX=g++ \
