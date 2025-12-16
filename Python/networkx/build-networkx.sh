@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=networkx
+PRETTY_NAME=python:networkx
 MAJOR=3
 MINOR=6
 PATCH=1

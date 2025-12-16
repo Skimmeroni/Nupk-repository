@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=biopython
+PRETTY_NAME=python:biopython
 MAJOR=1
 MINOR=86
 PATCH=

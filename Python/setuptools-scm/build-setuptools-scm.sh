@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=setuptools-scm
+PRETTY_NAME=python:setuptools-scm
 MAJOR=9
 MINOR=2
 PATCH=2
