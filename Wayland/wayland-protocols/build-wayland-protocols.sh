@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=wayland-protocols
 MAJOR=1
-MINOR=46
+MINOR=47
 PATCH=
-VERSION=1.46
+VERSION=1.47
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
