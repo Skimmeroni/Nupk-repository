@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libinput
 MAJOR=1
 MINOR=30
-PATCH=0
-VERSION=1.30.0
+PATCH=1
+VERSION=1.30.1
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
