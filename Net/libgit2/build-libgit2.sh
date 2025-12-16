@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libgit2
 MAJOR=1
 MINOR=9
-PATCH=1
-VERSION=1.9.1
+PATCH=2
+VERSION=1.9.2
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
