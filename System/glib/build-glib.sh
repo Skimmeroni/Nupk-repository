@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=glib
 MAJOR=2
 MINOR=86
-PATCH=2
-VERSION=2.86.2
+PATCH=3
+VERSION=2.86.3
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
