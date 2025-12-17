@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=libjpeg-turbo
 MAJOR=3
 MINOR=1
-PATCH=2
-VERSION=3.1.2
+PATCH=3
+VERSION=3.1.3
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
@@ -30,7 +30,7 @@ cmake -B build \
 cmake --build build --verbose
 DESTDIR=$DESTDIR cmake --install build --strip
 
-rm -rf $DESTDIR/usr/share
+rm -rf "$DESTDIR/usr/share"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
