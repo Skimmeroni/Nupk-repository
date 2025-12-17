@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=graphviz
 MAJOR=14
 MINOR=1
-PATCH=0
-VERSION=14.1.0
+PATCH=1
+VERSION=14.1.1
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
@@ -17,6 +17,8 @@ xz -cd graphviz-$VERSION.tar.xz | tar -x
 cd graphviz-$VERSION
 
 # TODO: svg?
+# Note: disabling GD disables output in raster formats, which
+# we do not care about anyway
 ./configure \
 	--prefix=/usr \
 	--enable-shared \
