@@ -11,20 +11,23 @@ VERSION=1.2.5
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
 
+# TODO: KISS includes these compatibility headers for those packages
+# that need them. It would be interesting to know which and how many
+# packages actually rely on those
+# It would also make sense to fetch them from a more reliable location
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/tree.h
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/queue.h
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/cdefs.h
 curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/getent.c
-curl --location --remote-name --skip-existing https://codeberg.org/kiss-community/repo/raw/branch/master/core/musl/files/getconf.c
 curl --location --remote-name --skip-existing https://www.musl-libc.org/releases/musl-$VERSION.tar.gz
 
 mkdir -p "$DESTDIR/usr/bin"
-$CC $CFLAGS -static getent.c   -o "$DESTDIR/usr/bin/getent"
-$CC $CFLAGS -static getconf.c  -o "$DESTDIR/usr/bin/getconf"
+$CC $CFLAGS -static getent.c -o "$DESTDIR/usr/bin/getent"
+strip --strip-unneeded "$DESTDIR/usr/bin/getent"
 
-install -Dm755 cdefs.h "$DESTDIR/usr/include/sys/cdefs.h"
-install -Dm755 queue.h "$DESTDIR/usr/include/sys/queue.h"
-install -Dm755 tree.h  "$DESTDIR/usr/include/sys/tree.h"
+install -Dm644 cdefs.h "$DESTDIR/usr/include/sys/cdefs.h"
+install -Dm644 queue.h "$DESTDIR/usr/include/sys/queue.h"
+install -Dm644 tree.h  "$DESTDIR/usr/include/sys/tree.h"
 
 gzip -cd musl-$VERSION.tar.gz | tar -x
 cd musl-$VERSION
@@ -36,33 +39,9 @@ cd musl-$VERSION
 make
 make DESTDIR=$DESTDIR install
 
-# This *should* make musl architecture-independent
-# Taken from Alpine Linux
-case $(uname -m) in
-	aarch64*)	ARCH="aarch64" ;;
-	arm*)		ARCH="arm" ;;
-	x86)		ARCH="i386" ;;
-	x86_64)		ARCH="x86_64" ;;
-	ppc)		ARCH="powerpc" ;;
-	ppc64*)		ARCH="powerpc64" ;;
-	s390*)		ARCH="s390x" ;;
-	mips64*)	ARCH="mips64" ;;
-	mips*)		ARCH="mips" ;;
-	riscv64)	ARCH="riscv64" ;;
-	loongarch64)	ARCH="loongarch64" ;;
-esac
-
-ln -sf libc.so "$DESTDIR/usr/lib/ld-musl-$ARCH.so.1"
-
-strip --strip-unneeded "$DESTDIR/usr/bin/getent"
-strip --strip-unneeded "$DESTDIR/usr/bin/getconf"
-
-cat > "$DESTDIR/usr/bin/ldd" << EOF
-#!/bin/sh
-exec /lib/ld-musl-$ARCH.so.1 --list "\$@"
-EOF
-
-chmod 755 "$DESTDIR/usr/bin/ldd"
+sed "s|@ARCHITECTURE@|$(uname -m)|g" ../ldd.stub > ../ldd
+install -Dm755 ../ldd "$DESTDIR/usr/bin/ldd"
+ln -sf libc.so "$DESTDIR/usr/lib/ld-musl-$(uname -m).so.1"
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR

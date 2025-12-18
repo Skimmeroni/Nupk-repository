@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /lib/ld-musl-@ARCHITECTURE@.so.1 --list "\$@"
