@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # ToyBox version: KCONFIG_VERSION
-# Sun Nov 30 15:57:47 2025
+# Thu Dec 18 15:07:18 2025
 #
 # CONFIG_TOYBOX_ON_ANDROID is not set
 CONFIG_TOYBOX_FORK=y
@@ -41,7 +41,7 @@ CONFIG_GREP=y
 CONFIG_EGREP=y
 CONFIG_FGREP=y
 CONFIG_HEAD=y
-# CONFIG_ICONV is not set
+CONFIG_ICONV=y
 CONFIG_ID=y
 # CONFIG_GROUPS is not set
 CONFIG_LOGNAME=y
@@ -78,8 +78,8 @@ CONFIG_SPLIT=y
 CONFIG_TAIL=y
 # CONFIG_TAR is not set
 CONFIG_TEE=y
-CONFIG_TEST=y
-CONFIG_TEST_GLUE=y
+# CONFIG_TEST is not set
+# CONFIG_TEST_GLUE is not set
 CONFIG_TIME=y
 CONFIG_TOUCH=y
 CONFIG_TRUE=y
@@ -128,7 +128,7 @@ CONFIG_GETTY=y
 # CONFIG_GITCHECKOUT is not set
 # CONFIG_GROUPADD is not set
 # CONFIG_GROUPDEL is not set
-CONFIG_HEXDUMP=y
+# CONFIG_HEXDUMP is not set
 # CONFIG_INIT is not set
 CONFIG_IP=y
 # CONFIG_IPCRM is not set
@@ -169,7 +169,7 @@ CONFIG_MODPROBE=y
 # CONFIG_TCPSVD is not set
 # CONFIG_TELNET is not set
 # CONFIG_TELNETD is not set
-CONFIG_TFTP=y
+# CONFIG_TFTP is not set
 # CONFIG_TFTPD is not set
 CONFIG_TR=y
 # CONFIG_TRACEROUTE is not set
@@ -200,7 +200,7 @@ CONFIG_CHROOT=y
 # CONFIG_DEVMEM is not set
 # CONFIG_DOS2UNIX is not set
 # CONFIG_UNIX2DOS is not set
-CONFIG_EJECT=y
+# CONFIG_EJECT is not set
 # CONFIG_FACTOR is not set
 CONFIG_FALLOCATE=y
 CONFIG_FLOCK=y

@@ -23,6 +23,10 @@ cd toybox-$VERSION
 # counterparts. The only exceptions are those utilities that come with an
 # actually useful library, such as libarchive or util-linux
 
+# Look for ncursesw, not curses
+sed 's|-lcurses|-lncursesw -ltinfow|g' kconfig/Makefile > kconfig/Makefile.new
+mv kconfig/Makefile.new kconfig/Makefile
+
 # The scripts use egrep, which is deprecated and prone to fail. grep -E is equivalent
 for i in scripts/*.sh
 do
@@ -34,7 +38,7 @@ done
 mv ../configuration .config
 make oldconfig
 
-# TODO: handling SUID is all over the place. This means that, for example,
+# TODO: SUID handling is all over the place. This means that, for example,
 # su does not work
 make CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" change
 
@@ -44,7 +48,7 @@ make CFLAGS="$CFLAGS -static" LDFLAGS="$LDFLAGS -static" change
 for i in change/*.bad
 do
 	applet=$(echo $i | awk '{sub(/.*\//, ""); sub(/\.bad.*/, ""); print}')
-	printf "\033[33;1mWARNING!\033[0m \033[1m'%s' failed to build. You might want to check out why\033[0m\n" $applet
+	printf "\033[33;1m@\033[0m \033[1m'%s' failed to build. You might want to check out why\033[0m\n" $applet
 	rm $i
 done
 
