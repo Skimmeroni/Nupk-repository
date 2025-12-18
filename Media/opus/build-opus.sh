@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=opus
 MAJOR=1
-MINOR=5
-PATCH=2
-VERSION=1.5.2
+MINOR=6
+PATCH=
+VERSION=1.6
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
