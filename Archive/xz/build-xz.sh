@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=xz
 MAJOR=5
 MINOR=8
-PATCH=1
-VERSION=5.8.1
+PATCH=2
+VERSION=5.8.2
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
