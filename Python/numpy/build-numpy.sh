@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=python:numpy
 MAJOR=2
-MINOR=3
-PATCH=5
-VERSION=2.3.5
+MINOR=4
+PATCH=0
+VERSION=2.4.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
