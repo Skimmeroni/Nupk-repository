@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=libressl
 MAJOR=4
-MINOR=2
-PATCH=1
-VERSION=4.2.1
+MINOR=1
+PATCH=0
+VERSION=4.1.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
