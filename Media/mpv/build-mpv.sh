@@ -4,9 +4,9 @@ set -eu
 
 PRETTY_NAME=mpv
 MAJOR=0
-MINOR=40
+MINOR=41
 PATCH=0
-VERSION=0.40.0
+VERSION=0.41.0
 
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
