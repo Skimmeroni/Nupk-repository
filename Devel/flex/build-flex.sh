@@ -11,15 +11,12 @@ VERSION=2.6.4
 DESTDIR="$PWD/temporary-destdir"
 [ -d $DESTDIR ] || mkdir -p $DESTDIR
 
-curl --location --remote-name --skip-existing https://github.com/westes/flex/releases/download/v/flex-$VERSION.tar.gz
+curl --location --remote-name --skip-existing https://github.com/westes/flex/releases/download/v$VERSION/flex-$VERSION.tar.gz
 
 gzip -cd flex-$VERSION.tar.gz | tar -x
 cd flex-$VERSION
 
-./configure \
-	--prefix=/usr \
-	ac_cv_func_malloc_0_nonnull=yes \
-	ac_cv_func_realloc_0_nonnull=yes
+./configure --prefix=/usr
 
 make
 make DESTDIR=$DESTDIR install-strip
