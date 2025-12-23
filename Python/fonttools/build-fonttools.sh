@@ -2,7 +2,7 @@
 
 set -eu
 
-PRETTY_NAME=python:fonttools
+PRETTY_NAME=fonttools
 MAJOR=4
 MINOR=61
 PATCH=1
