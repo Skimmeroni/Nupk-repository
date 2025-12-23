@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=alsa-utils
 MAJOR=1
 MINOR=2
-PATCH=14
-VERSION=1.2.14
+PATCH=15
+VERSION=1.2.15.1
 
 DESTDIR="$PWD/temporary-builddir"
 [ -d $DESTDIR ] || mkdir temporary-builddir
