@@ -49,5 +49,5 @@ ln -sf /run/runit/supervise.wpa_supplicant "$DESTDIR/etc/sv/wpa_supplicant/super
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../../Net-wpa_supplicant@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Net-wpa_supplicant@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
