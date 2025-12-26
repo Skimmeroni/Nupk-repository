@@ -16,7 +16,6 @@ curl --location --remote-name --skip-existing https://gitlab.com/api/v4/projects
 xz -cd graphviz-$VERSION.tar.xz | tar -x
 cd graphviz-$VERSION
 
-# TODO: svg?
 # Note: disabling GD disables output in raster formats, which
 # we do not care about anyway
 ./configure \
@@ -30,12 +29,12 @@ cd graphviz-$VERSION
 	--with-poppler \
 	--with-pangocairo \
 	--with-freetype2 \
+	--with-rsvg \
 	--without-gdk \
 	--without-gdk-pixbuf \
 	--without-gtk \
 	--without-gtkgl \
 	--without-gtkglext \
-	--without-rsvg \
 	--without-webp \
 	--without-libgd
 
