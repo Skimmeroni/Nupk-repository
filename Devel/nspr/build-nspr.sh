@@ -5,8 +5,8 @@ set -eu
 PRETTY_NAME=nspr
 MAJOR=4
 MINOR=38
-PATCH=
-VERSION=4.38
+PATCH=2
+VERSION=4.38.2
 
 # Taken pretty much word-for-word from https://packages.gentoo.org/packages/dev-libs/nspr
 
