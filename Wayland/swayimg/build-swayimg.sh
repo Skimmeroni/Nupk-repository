@@ -16,7 +16,6 @@ curl --location --remote-name --skip-existing https://github.com/artemsen/swayim
 gzip -cd v$VERSION.tar.gz | tar -x
 cd swayimg-$VERSION
 
-# TODO: add svg support
 meson setup \
 	-D prefix=/usr \
 	-D buildtype=release \
@@ -30,7 +29,7 @@ meson setup \
 	-D exif=disabled \
 	-D heif=disabled \
 	-D jxl=disabled \
-	-D svg=disabled \
+	-D svg=enabled \
 	-D bash=disabled \
 	-D zsh=disabled \
 	-D man=true \
