@@ -1,0 +1,42 @@
+# Most default options are fine
+change-id = "ignore"
+
+[llvm]
+# Use system LLVM
+download-ci-llvm = false
+link-shared = true
+
+[build]
+# Only build for native target
+build = "@TRIPLET@"
+host = ["@TRIPLET@"]
+target = ["@TRIPLET@"]
+# Avoid building the documentation
+docs = false
+# Stick to the current available dependencies
+locked-deps = true
+# Also build cargo, not just the compiler
+extended = true
+tools = ["cargo"]
+# Not possible with system LLVM
+optimized-compiler-builtins = false
+# Swarm the console with useful information
+verbose = 3
+
+[install]
+# Install to /usr and not to /usr/local
+prefix = "/usr"
+
+[rust]
+# Strip the resulting binaries 
+strip = true
+# Avoid stepping out of the comfort zone
+channel = "stable"
+# Dodge a dependency on FileCheck
+codegen-tests = false
+
+[target.@TRIPLET@]
+# REALLY use system LLVM
+llvm-config = "/usr/bin/llvm-config"
+# Not possible on musl
+crt-static = false
