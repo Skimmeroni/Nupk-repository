@@ -21,9 +21,9 @@ cd binutils-$VERSION
 	--with-lib-path=/usr/lib \
 	--enable-ld=default \
 	--enable-plugins \
+	--enable-lto \
 	--disable-jansson \
 	--disable-gold \
-	--disable-lto \
 	--disable-multilib \
 	--disable-werror \
 	--disable-gdb \

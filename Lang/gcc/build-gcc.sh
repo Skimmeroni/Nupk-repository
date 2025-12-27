@@ -24,11 +24,9 @@ cd "gcc-$VERSION/builderoni"
 	--mandir=/usr/share/man \
 	--infodir=/usr/share/info \
 	--disable-multilib \
-	--disable-lto \
 	--disable-symvers \
 	--disable-libmpx \
 	--disable-libmudflap \
-	--disable-libsanitizer \
 	--disable-werror \
 	--disable-fixed-point \
 	--disable-nls \
@@ -37,8 +35,11 @@ cd "gcc-$VERSION/builderoni"
 	--enable-__cxa_atexit \
 	--enable-default-pie \
 	--enable-default-ssp \
+	--enable-lto \
 	--enable-shared \
+	--enable-plugins \
 	--enable-host-shared \
+	--enable-libsanitizer \
 	--enable-threads \
 	--enable-tls \
 	--enable-initfini-array \
@@ -70,5 +71,5 @@ fi
 
 doas chown -R root:root $DESTDIR
 cd $DESTDIR
-doas sh -c "tar -cf - * | gzip > ../../Lang-gcc@$VERSION.tar.gz"
+doas sh -c "tar -cf - * | gzip > ../Lang-gcc@$VERSION.tar.gz"
 doas rm -rf $DESTDIR
