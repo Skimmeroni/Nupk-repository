@@ -18,22 +18,15 @@ cd binutils-$VERSION
 
 ./configure \
 	--prefix=/usr \
-	--with-lib-path=/usr/lib \
-	--enable-ld=default \
+	--enable-ld=yes \
 	--enable-plugins \
 	--enable-lto \
 	--disable-jansson \
-	--disable-gold \
 	--disable-multilib \
 	--disable-werror \
-	--disable-gdb \
 	--disable-nls \
-	--disable-readline \
-	--disable-gprof \
 	--disable-gprofng \
-	--with-mmap \
-	--with-system-zlib \
-	--without-zstd
+	--disable-compressed-debug-sessions
 
 make configure-host
 make tooldir=/usr
